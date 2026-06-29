@@ -31,25 +31,49 @@ export const portfolio = {
   projects: [
     {
       title: "Moss X",
-      description: "Modular monolithic e-commerce platform with Redis caching, dynamic pricing, and Razorpay idempotency protection.",
+      subtitle: "Modular monolithic e-commerce platform",
       image: "/projects/mossx.png",
-      tech: ["Node.js", "Express", "MongoDB", "Redis", "Docker", "Render"],
+      features: [
+        "Razorpay idempotency",
+        "Dynamic pricing",
+        "Redis caching",
+        "Docker",
+        "MongoDB",
+        "Node.js"
+      ],
+      year: "2025",
       liveUrl: "https://mossx.in",
-      githubUrl: "https://github.com/ShouryaUpadhyaya", // Assuming generic since not provided
+      githubUrl: "https://github.com/ShouryaUpadhyaya",
     },
     {
       title: "OpenPumTa",
-      description: "Productivity platform with WebSocket timer synchronization, Redis-backed analytics, and AI-powered insights.",
+      subtitle: "Production productivity platform",
       image: "/projects/openpumta.png",
-      tech: ["Express.js", "Prisma", "PostgreSQL", "React", "Docker", "Nginx"],
+      features: [
+        "1500+ users",
+        "30 REST APIs",
+        "Redis",
+        "Docker",
+        "Linux VPS",
+        "PostgreSQL"
+      ],
+      year: "2024",
       liveUrl: "https://openpumta.com",
       githubUrl: "https://github.com/ShouryaUpadhyaya",
     },
     {
       title: "Cook Off 10.0",
-      description: "Live competitive programming platform supporting 1000+ users with a custom CodeMirror 6 editor.",
+      subtitle: "Live competitive programming platform",
       image: "/projects/cookoff.png",
-      tech: ["Next.js", "React", "Zustand", "Tailwind", "MongoDB"],
+      features: [
+        "1000+ concurrent users",
+        "CodeMirror 6 editor",
+        "Zustand state management",
+        "Next.js App Router",
+        "MongoDB",
+        "Tailwind CSS"
+      ],
+      year: "2024",
       liveUrl: "#",
       githubUrl: "https://github.com/ShouryaUpadhyaya",
     }
