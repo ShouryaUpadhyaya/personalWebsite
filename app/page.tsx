@@ -1,12 +1,13 @@
 import { Navbar } from "@/components/navbar/navbar";
+import { Hero } from "@/components/hero/hero";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      {/* Sections will be added here */}
-      <div className="pt-24 min-h-[200vh]">
-        {/* Placeholder height to test scroll */}
+      <Hero />
+      <div className="min-h-[100vh]">
+        {/* Placeholder for remaining sections */}
       </div>
     </main>
   );
