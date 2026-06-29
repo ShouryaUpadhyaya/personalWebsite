@@ -33,7 +33,7 @@ function TerminalLogs() {
 
   return (
     <div className="flex flex-col gap-1 font-mono text-sm">
-      {logs.map((log, i) => (
+      {logs.filter(Boolean).map((log, i) => (
         <div key={i} className={log.color}>
           <span className="text-neutral-500 mr-2">{`>`}</span>
           {log.text}

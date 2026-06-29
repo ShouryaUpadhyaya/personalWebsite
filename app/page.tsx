@@ -1,6 +1,5 @@
 import { Navbar } from "@/components/navbar/navbar";
 import { Hero } from "@/components/hero/hero";
-import { Stats } from "@/components/stats/stats";
 import { Projects } from "@/components/projects/projects";
 import { Experience } from "@/components/experience/experience";
 import { Writing } from "@/components/writing/writing";
@@ -13,7 +12,6 @@ export default function Home() {
     <main className="min-h-screen bg-neutral-950 text-neutral-50 selection:bg-neutral-800">
       <Navbar />
       <Hero />
-      <Stats />
       <Projects />
       <Experience />
       <Writing />

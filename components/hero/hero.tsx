@@ -7,6 +7,8 @@ import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
+import { Stats } from "@/components/stats/stats";
+
 const AnimatedTerminal = dynamic(() => import("@/components/terminal/terminal").then(mod => mod.AnimatedTerminal), { ssr: false });
 
 const container = {
@@ -26,9 +28,9 @@ const item = {
 
 export function Hero() {
   return (
-    <section className="min-h-[90vh] flex items-center pt-24 pb-12">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section className="min-h-screen flex flex-col justify-center pt-24 pb-12 border-b border-white/10">
+      <div className="container mx-auto px-4 md:px-8 flex-grow flex flex-col justify-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16 md:mb-24">
           <motion.div
             variants={container}
             initial="hidden"
@@ -66,13 +68,17 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="w-full relative"
+            className="w-full relative hidden lg:block"
           >
             <div className="absolute -inset-0.5 bg-gradient-to-tr from-neutral-800 to-neutral-700 rounded-xl blur opacity-20"></div>
             <div className="relative">
               <AnimatedTerminal />
             </div>
           </motion.div>
+        </div>
+        
+        <div className="mt-auto">
+          <Stats />
         </div>
       </div>
     </section>
