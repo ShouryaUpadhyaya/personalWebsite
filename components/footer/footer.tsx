@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Github, Linkedin, Twitter } from "@/components/icons";
 import { portfolio } from "@/data/portfolio";
 
 export function Footer() {

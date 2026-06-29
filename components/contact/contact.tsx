@@ -2,7 +2,8 @@
 
 import { motion } from "motion/react";
 import Link from "next/link";
-import { Send, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Send, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter } from "@/components/icons";
 import { portfolio } from "@/data/portfolio";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

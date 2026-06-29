@@ -4,8 +4,10 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Mail } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
-import { AnimatedTerminal } from "@/components/terminal/terminal";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const AnimatedTerminal = dynamic(() => import("@/components/terminal/terminal").then(mod => mod.AnimatedTerminal), { ssr: false });
 
 const container = {
   hidden: { opacity: 0 },
