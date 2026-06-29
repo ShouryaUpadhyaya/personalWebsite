@@ -41,6 +41,7 @@ export const portfolio = {
         "MongoDB",
         "Node.js"
       ],
+      tech: ["NODE.JS", "REDIS", "RAZORPAY"],
       year: "2025",
       liveUrl: "https://mossx.in",
       githubUrl: "https://github.com/ShouryaUpadhyaya",
@@ -57,6 +58,7 @@ export const portfolio = {
         "Linux VPS",
         "PostgreSQL"
       ],
+      tech: ["NEXT.JS", "POSTGRESQL", "REDIS", "DOCKER"],
       year: "2024",
       liveUrl: "https://openpumta.com",
       githubUrl: "https://github.com/ShouryaUpadhyaya",
@@ -73,6 +75,7 @@ export const portfolio = {
         "MongoDB",
         "Tailwind CSS"
       ],
+      tech: ["NEXT.JS", "ZUSTAND", "CODEMIRROR", "MONGODB"],
       year: "2024",
       liveUrl: "#",
       githubUrl: "https://github.com/ShouryaUpadhyaya",
