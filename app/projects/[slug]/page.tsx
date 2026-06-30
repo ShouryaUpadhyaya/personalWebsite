@@ -9,6 +9,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Github } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Slideshow } from "@/components/projects/slideshow";
+import { Mermaid } from "@/components/projects/mermaid";
 import Image from "next/image";
 
 interface PageProps {
@@ -106,6 +107,17 @@ export default async function ProjectPage({ params }: PageProps) {
                   />
                 </div>
               ),
+              code: ({ node, inline, className, children, ...props }: any) => {
+                const match = /language-(\w+)/.exec(className || "");
+                if (!inline && match && match[1] === "mermaid") {
+                  return <Mermaid chart={String(children).replace(/\n$/, "")} />;
+                }
+                return (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
             }}
           >
             {content}
