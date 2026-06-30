@@ -12,9 +12,46 @@ import { Slideshow } from "@/components/projects/slideshow";
 import { Mermaid } from "@/components/projects/mermaid";
 import Image from "next/image";
 
+import { Metadata } from "next";
+
 interface PageProps {
   params: {
     slug: string;
+  };
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = portfolio.projects.find((p) => p.slug === slug);
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+    };
+  }
+
+  return {
+    title: `${project.title} | Shourya Upadhyaya`,
+    description: project.goal || project.subtitle,
+    openGraph: {
+      title: `${project.title} | Shourya Upadhyaya`,
+      description: project.goal || project.subtitle,
+      url: `https://www.shouryaupadhyaya.com/projects/${project.slug}`,
+      images: [
+        {
+          url: project.image,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} | Shourya Upadhyaya`,
+      description: project.goal || project.subtitle,
+      images: [project.image],
+    },
   };
 }
 

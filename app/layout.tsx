@@ -15,8 +15,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.shouryaupadhyaya.com"),
   title: "Shourya Upadhyaya | Lead Full-Stack Developer",
   description: "Portfolio of Shourya Upadhyaya, building production-ready scalable systems and beautiful user interfaces.",
+  keywords: ["Shourya Upadhyaya", "Full-Stack Developer", "Next.js", "React", "Node.js", "Software Engineer", "Portfolio"],
+  authors: [{ name: "Shourya Upadhyaya" }],
+  creator: "Shourya Upadhyaya",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.shouryaupadhyaya.com",
+    title: "Shourya Upadhyaya | Lead Full-Stack Developer",
+    description: "Portfolio of Shourya Upadhyaya, building production-ready scalable systems and beautiful user interfaces.",
+    siteName: "Shourya Upadhyaya Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shourya Upadhyaya | Lead Full-Stack Developer",
+    description: "Portfolio of Shourya Upadhyaya, building production-ready scalable systems and beautiful user interfaces.",
+    creator: "@Shourya60756648",
+  },
 };
 
 export default function RootLayout({
