@@ -2,15 +2,16 @@
 
 **Stop burning out on sheer willpower.** OpenPumTa is the only productivity system that tracks your focus, forces 21-day consistency, and uses AI to prevent dopamine burnout—all without locking your data in a walled garden.
 
-![OpenPumTa Banner](/projects/openpumta/banner.png)
-
 ## The Problem
-You rely on 5 different apps to study—Yeolpumta for timers, Notion for notes, and scattered habit trackers. None talk to each other. When you drop a habit, you lose momentum. The result? Distraction, burnout, and broken streaks. 
+
+You rely on 5 different apps to study—Yeolpumta for timers, Notion for notes, and scattered habit trackers. None talk to each other. When you drop a habit, you lose momentum. The result? Distraction, burnout, and broken streaks.
 
 ## The Outcome
-A single, desktop-first workspace that locks you into deep work and builds unbreakable 21-day streaks. 
+
+A single, desktop-first workspace that locks you into deep work and builds unbreakable 21-day streaks.
 
 ## How It Works (The Mechanism)
+
 1. **The 6-Habit Limit:** You are only allowed to track up to 6 habits at a time. This prevents overwhelm and forces you to focus on what matters.
 2. **"Bad Day Plans":** Every habit has a minimum baseline (e.g., "Do 1 pushup"). On low-energy days, you do the baseline to keep the streak alive. No zeros.
 3. **AI Burnout Coach:** The app uses Groq LLMs to analyze your daily reviews and focus logs, identifying burnout risks before you crash.
@@ -89,17 +90,19 @@ flowchart TB
 ```
 
 ### The Value Stack
-* **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS, Zustand, TanStack Query, Recharts.
-* **Backend:** Express, Node.js, WebSockets, TypeScript, Zod, Passport, Google OAuth.
-* **Data Layer:** PostgreSQL (via Prisma ORM), Redis (Stats Caching).
-* **Infrastructure:** Docker Compose, Nginx, Prometheus, Grafana.
-* **AI:** Groq API for fast LLM-powered reports.
+
+- **Frontend:** Next.js 16, React 19, TypeScript, Tailwind CSS, Zustand, TanStack Query, Recharts.
+- **Backend:** Express, Node.js, WebSockets, TypeScript, Zod, Passport, Google OAuth.
+- **Data Layer:** PostgreSQL (via Prisma ORM), Redis (Stats Caching).
+- **Infrastructure:** Docker Compose, Nginx, Prometheus, Grafana.
+- **AI:** Groq API for fast LLM-powered reports.
 
 ---
 
 ## Detailed Features
 
 ### Dashboard & Overview
+
 The central hub for your entire day.
 
 ![Dashboard](/projects/openpumta/Dashboard.png)
@@ -111,6 +114,7 @@ The central hub for your entire day.
 - **Subject Setup:** Click and quickly configure tracking subjects with a name, goal time per day, color, and difficulty. Link habits directly to subjects so they auto-complete after a certain amount of time passes!
 
 ### Habits (21-Day Protocol)
+
 Designed around strict, achievable consistency.
 
 ![Habits List](/projects/openpumta/habit_1.png)
@@ -122,31 +126,33 @@ Designed around strict, achievable consistency.
 ![Habits Stats 1](/projects/openpumta/habit_2.png)
 ![Habits Stats 2](/projects/openpumta/habit_3.png)
 
-
 ### Workspace
+
 A Notion-like canvas for your personal productivity systems.
 
 ![Workspace Example](/projects/openpumta/workspace%20example.png)
 
 - **Rich Text Blocks:** Use todos, headings, paragraphs, and dividers.
 - **Build Your Systems:** Create custom pages like a "Daily Planner" with a section for today's todos and another for the week's priorities.
-- **Notion Compatibility:** Copy and paste your existing Notion templates directly into openPumta—they work seamlessly! 
+- **Notion Compatibility:** Copy and paste your existing Notion templates directly into openPumta—they work seamlessly!
 
 ### Clock & Focus
+
 - **Visual Progress:** See the current subject time, total time of the day, and a visual progress ring.
 - **Evolving Avatar:** Watch your avatar evolve as your focus time increases throughout the session!
 
 ![Focus Timer](/projects/openpumta/timer.png)
 
 ### Stats
+
 We believe in "Show, Don't Tell" when it comes to stats. Dive into detailed visual breakdowns of your performance.
 
 ![Stats 1](/projects/openpumta/stats_1.png)
 ![Stats 2](/projects/openpumta/stats2.png)
 ![Stats 3](/projects/openpumta/stats_3.png)
 
-
 ### Settings
+
 Easily configure your profile, subjects, and preferences.
 
 ![Settings 1](/projects/openpumta/setting1.png)
@@ -155,6 +161,7 @@ Easily configure your profile, subjects, and preferences.
 ---
 
 ## The Proof
-* Successfully served **1,500+ lifetime visitors**.
-* Reduced database load by **over 80%** using Redis caching.
-* Maintained **zero downtime** with sub-50ms sync latency. 
+
+- Successfully served **1,500+ lifetime visitors**.
+- Reduced database load by **over 80%** using Redis caching.
+- Maintained **zero downtime** with sub-50ms sync latency.
