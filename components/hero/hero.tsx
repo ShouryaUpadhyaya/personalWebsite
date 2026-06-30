@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, FileText } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -42,25 +42,21 @@ export function Hero() {
                 <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight">
                   {portfolio.personal.name}
                 </h1>
-                <h2 className="text-2xl md:text-3xl text-neutral-400 mt-2 font-medium">
-                  {portfolio.personal.subtitle}
+                <h2 className="text-xl md:text-2xl text-neutral-400 mt-4 font-medium leading-relaxed max-w-2xl">
+                  I build scalable, high-performance web applications that don't crash when your traffic spikes.
                 </h2>
               </motion.div>
               
-              <motion.p variants={item} className="text-lg text-neutral-400 max-w-lg leading-relaxed">
-                {portfolio.personal.description}
-              </motion.p>
-              
               <motion.div variants={item} className="flex flex-wrap gap-4 pt-4">
                 <Button size="lg" className="bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-none px-8" asChild>
-                  <Link href="#projects">
-                    View Projects <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
+                  <a href="https://calendly.com/shouryaupadhyaya79" target="_blank" rel="noopener noreferrer">
+                    Book a Discovery Call
+                  </a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 uppercase tracking-widest font-mono text-xs rounded-none px-8" asChild>
-                  <Link href="#contact">
-                    <Mail className="mr-2 h-4 w-4" /> Contact Me
-                  </Link>
+                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 uppercase tracking-widest font-mono text-xs rounded-none px-8 bg-neutral-900/50 text-neutral-300" asChild>
+                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                    Get Resume <FileText className="ml-2 h-4 w-4" />
+                  </a>
                 </Button>
               </motion.div>
             </motion.div>

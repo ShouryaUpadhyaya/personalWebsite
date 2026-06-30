@@ -84,14 +84,28 @@ export function Projects() {
                         {project.subtitle}
                       </p>
                       
-                      <ul className="space-y-3 mb-8">
-                        {project.features.map((feature, i) => (
-                          <li key={i} className="flex items-center text-neutral-400 gap-3">
-                            <Check className="w-4 h-4 text-green-500 shrink-0" />
-                            <span className="text-sm font-medium">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="space-y-4 mb-8 text-sm">
+                        {project.goal && (
+                          <div>
+                            <span className="font-bold text-neutral-300 block mb-1">Goal</span>
+                            <p className="text-neutral-400">{project.goal}</p>
+                          </div>
+                        )}
+                        {project.challenge && (
+                          <div>
+                            <span className="font-bold text-neutral-300 block mb-1">Challenge</span>
+                            <p className="text-neutral-400">{project.challenge}</p>
+                          </div>
+                        )}
+                        {project.result && (
+                          <div>
+                            <span className="font-bold text-green-400 block mb-1 flex items-center gap-2">
+                              <Check className="w-4 h-4" /> Result
+                            </span>
+                            <p className="text-neutral-400">{project.result}</p>
+                          </div>
+                        )}
+                      </div>
 
                       {project.tech && project.tech.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-10">

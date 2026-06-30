@@ -15,7 +15,7 @@ import {
 export const portfolio = {
   personal: {
     name: "Shourya Upadhyaya",
-    subtitle: "Lead Full-Stack Developer",
+    subtitle: "Full-stack Developer",
     description: "Building production-ready scalable systems and beautiful user interfaces. Passionate about solving complex engineering problems with modern tech.",
     email: "shouryaupadhyaya26@gmail.com",
     github: "https://github.com/ShouryaUpadhyaya",
@@ -30,53 +30,38 @@ export const portfolio = {
   ],
   projects: [
     {
-      title: "Moss X",
-      subtitle: "Modular monolithic e-commerce platform",
-      image: "/projects/mossx.png",
-      features: [
-        "Razorpay idempotency",
-        "Dynamic pricing",
-        "Redis caching",
-        "Docker",
-        "MongoDB",
-        "Node.js"
-      ],
-      tech: ["NODE.JS", "REDIS", "RAZORPAY"],
-      year: "2025",
-      liveUrl: "https://mossx.in",
-      githubUrl: "https://github.com/Moss-X/Website",
-    },
-    {
       title: "OpenPumTa",
       subtitle: "Production productivity platform",
       image: "/projects/openpumta.png",
-      features: [
-        "1500+ users",
-        "30 REST APIs",
-        "Redis",
-        "Docker",
-        "Linux VPS",
-        "PostgreSQL"
-      ],
+      goal: "Build a scalable, real-time productivity platform to serve thousands of users across devices.",
+      challenge: "Handling concurrent real-time timer syncs and heavy analytics queries without crashing the database.",
+      result: "Reduced database load by utilizing Redis caching and WebSocket syncs, successfully serving 1,500+ lifetime visitors with zero downtime.",
       tech: ["NEXT.JS", "POSTGRESQL", "REDIS", "DOCKER"],
-      year: "2024",
+      year: "Jan. 2025 - Present",
       liveUrl: "https://openpumta.com",
       githubUrl: "https://github.com/ShouryaUpadhyaya/ProductivitySystemPersonalUse-",
+    },
+    {
+      title: "Moss X",
+      subtitle: "Modular monolithic e-commerce platform",
+      image: "/projects/mossx.png",
+      goal: "Engineer a reliable monolithic e-commerce backend with secure payments and fast product queries.",
+      challenge: "Preventing duplicate payment charges during network failures and keeping product feeds fast under load.",
+      result: "Implemented Razorpay idempotency for secure checkout and reduced homepage latency to under 50ms using Redis, delivering a flawless shopping experience.",
+      tech: ["NODE.JS", "REDIS", "RAZORPAY"],
+      year: "Apr. 2025 - Oct. 2025",
+      liveUrl: "https://mossx.in",
+      githubUrl: "https://github.com/Moss-X/Website",
     },
     {
       title: "Cook Off 10.0",
       subtitle: "Live competitive programming platform",
       image: "/projects/cookoff.png",
-      features: [
-        "1000+ concurrent users",
-        "CodeMirror 6 editor",
-        "Zustand state management",
-        "Next.js App Router",
-        "MongoDB",
-        "Tailwind CSS"
-      ],
+      goal: "Develop a live competitive programming platform capable of sustaining high traffic spikes.",
+      challenge: "Ensuring code state persistence and low API latency when hundreds of users submit code simultaneously.",
+      result: "Sustained 40% concurrent load across 1,000+ users without data loss, utilizing a triple-layer persistence system.",
       tech: ["NEXT.JS", "ZUSTAND", "CODEMIRROR", "MONGODB"],
-      year: "2024",
+      year: "Sept. 2025 - Feb. 2026",
       liveUrl: "#",
       githubUrl: "https://github.com/CodeChefVIT/cookoff-portal-10.0",
     }
@@ -144,6 +129,38 @@ export const portfolio = {
       category: "Languages",
       icon: Code2,
       skills: ["JavaScript", "TypeScript", "Python", "SQL", "C++"]
+    }
+  ],
+  testimonials: [
+    {
+      name: "Client/Manager Name",
+      role: "CEO",
+      company: "Moss X",
+      text: "Shourya is an exceptional full-stack developer. He delivered our backend early and it hasn't gone down since. The idempotency and caching systems he built saved us thousands in potential lost sales."
+    },
+    {
+      name: "Client/Manager Name",
+      role: "Founder",
+      company: "Nepbyte Technology",
+      text: "Shourya dramatically improved our frontend performance. The 40% increase in our Lighthouse score directly impacted our SEO and conversion rates. Highly recommended."
+    }
+  ],
+  faq: [
+    {
+      question: "Do you handle both frontend design and backend deployment?",
+      answer: "Yes, I am a true full-stack developer. I take projects from zero to production, handling everything from React/Next.js interfaces to complex Node.js/PostgreSQL database architectures and Docker deployments."
+    },
+    {
+      question: "What is your typical turnaround time?",
+      answer: "Turnaround times depend on the scope of the project, but I prioritize fast, iterative delivery. We will establish clear milestones during our discovery call so you know exactly when features will be live."
+    },
+    {
+      question: "Are you open to full-time roles or just contract work?",
+      answer: "I am actively looking for full-stack internships, full-time roles, as well as taking on select high-impact freelance gigs."
+    },
+    {
+      question: "What happens if there are bugs after launch?",
+      answer: "For all my freelance projects, I provide a 30-day post-launch guarantee. If any bugs arise related to my code within the first 30 days of launch, I will fix them completely free of charge."
     }
   ]
 };
