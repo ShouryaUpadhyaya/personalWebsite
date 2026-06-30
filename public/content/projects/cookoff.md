@@ -1,31 +1,28 @@
-# Cook Off 10.0
+# Cook-Off 10.0 Portal: Scalable Competitive Coding
 
-**Cook Off 10.0** is a live competitive programming platform designed to host coding competitions with hundreds of simultaneous participants.
+**The ultimate real-time competitive programming platform built to handle hundreds of concurrent coders without breaking a sweat.**
 
-![Cook Off](/projects/cookoff.png)
+![Cook-Off](/projects/cookoff.png)
 
-## The Challenge
+## The Problem
+During live coding contests, hundreds of users submit code, save drafts, and run tests simultaneously in the final 5 minutes. Most platforms crash, lose drafts, or lag out, ruining the contest experience.
 
-Ensuring code state persistence and low API latency when hundreds of users submit code, save drafts, and run tests simultaneously during the final minutes of a contest.
+## The Outcome
+A flawless, real-time contest experience with zero dropped submissions and sub-second compiler feedback for over 1,000 users.
 
-## The Solution
+## How It Works (The Mechanism)
+1. **Triple-Layer Persistence:** Code state is guaranteed through local Zustand state, fast Redis in-memory caching, and durable MongoDB storage. 
+2. **Custom CodeMirror Editor:** Built a customized editor that handles syntax highlighting, auto-completion, and real-time syncing without blocking the main thread.
+3. **Auto-Submission:** Code is automatically submitted when the timer runs out, ensuring no participant loses progress.
+4. **Optimized Server Actions:** Reduced payload sizes and utilized Next.js Server Components to render the live leaderboard instantly.
 
-I developed a resilient real-time architecture:
-1. **Triple-Layer Persistence**: 
-   - Local state via Zustand.
-   - In-memory cache via Redis for fast reads/writes.
-   - Long-term storage via MongoDB for durability.
-2. **CodeMirror Integration**: Built a customized CodeMirror editor that handles syntax highlighting, auto-completion, and real-time syncing without blocking the main thread.
-3. **Optimized Next.js Server Actions**: Reduced payload sizes and utilized server components to render the leaderboard and contest details quickly.
+### The Value Stack
+* **Frontend:** Next.js (App Router), Zustand, Tailwind CSS
+* **Code Editor:** CodeMirror
+* **Backend & Data:** Node.js, MongoDB, Redis
+* **Real-time:** WebSockets
 
-### Key Technologies
-* Next.js (App Router)
-* Zustand
-* CodeMirror
-* MongoDB
-* Tailwind CSS
-
-## Results
+## The Proof
 * Sustained **40% concurrent load** across **1,000+ users** without a single dropped submission.
-* Maintained sub-second response times during peak submission windows.
-* Delivered a flawless experience for participants and contest organizers.
+* Maintained **sub-second response times** during peak submission windows.
+* Delivered a rock-solid, scalable platform for CodeChef-VIT's premier event.

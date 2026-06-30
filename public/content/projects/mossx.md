@@ -1,28 +1,28 @@
-# Moss X
+# MossX: High-Performance Modular Monolith
 
-**Moss X** is a modular monolithic e-commerce platform built to handle high traffic and secure transactions without compromising on speed.
+**A lightning-fast E-Commerce platform that guarantees zero duplicate charges and sub-50ms catalog load times.**
 
-![Moss X](/projects/mossx.png)
+![MossX](/projects/mossx.png)
 
-## The Challenge
+## The Problem
+Modern retail platforms either bloat your codebase or crash during high-traffic checkout events, leading to duplicate charges, lost carts, and furious customers. 
 
-Preventing duplicate payment charges during network failures (a common issue in e-commerce) and keeping product feeds fast under load.
+## The Outcome
+A seamless, production-ready monolithic platform handling guest cart merging, secure multi-gateway payments, and real-time analytics. Shoppers get a frictionless experience, and administrators get full control.
 
-## The Solution
+## How It Works (The Mechanism)
+1. **Zero Duplicate Charges:** Integrated Razorpay and Stripe with custom idempotency logic to guarantee that users are never charged twice, even if their network drops mid-request.
+2. **Instant Product Loading:** Intelligent Redis caching for the product catalog and user sessions drastically reduces read pressure on MongoDB.
+3. **Frictionless Shopping:** Intelligent cart merging allows users to build a cart anonymously and seamlessly sync it upon login.
+4. **Bulletproof Security:** Dual-Token Authentication (JWT + HttpOnly refresh tokens) mitigates CSRF and XSS risks.
 
-I engineered a reliable monolithic backend architecture:
-1. **Idempotency Keys**: Integrated Razorpay with custom idempotency logic to guarantee that users are never charged twice for the same transaction, even if their network drops mid-request.
-2. **Redis Caching**: Implemented intelligent Redis caching for the product catalog and user sessions, drastically reducing read pressure on the primary database.
-3. **Modular Monolith**: Kept the architecture simple yet scalable by separating domains internally without the overhead of microservices.
+### The Value Stack
+* **Frontend:** React 18, Vite, Zustand
+* **Backend:** Node.js, Express
+* **Database & Caching:** MongoDB, Upstash Redis
+* **Payments & Storage:** Stripe, Razorpay, Cloudinary
 
-### Key Technologies
-* Node.js & Express
-* MongoDB
-* Redis
-* Razorpay API
-* Docker
-
-## Results
+## The Proof
 * Reduced homepage and product catalog latency to **under 50ms**.
 * Achieved **100% reliable checkouts** with zero duplicate charges reported.
-* Scaled effortlessly during peak traffic events.
+* Scaled effortlessly during peak traffic events without the overhead of microservices.
