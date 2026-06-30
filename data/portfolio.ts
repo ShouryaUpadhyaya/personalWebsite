@@ -40,7 +40,8 @@ export const portfolio = {
       year: "Jan. 2025 - Present",
       liveUrl: "https://openpumta.com",
       githubUrl: "https://github.com/ShouryaUpadhyaya/ProductivitySystemPersonalUse-",
-      readmeUrl: "/content/projects/openpumta.md"
+      readmeUrl: "/content/projects/openpumta.md",
+      slug: "openpumta"
     },
     {
       title: "Moss X",
@@ -53,7 +54,8 @@ export const portfolio = {
       year: "Apr. 2025 - Oct. 2025",
       liveUrl: "https://mossx.in",
       githubUrl: "https://github.com/Moss-X/Website",
-      readmeUrl: "/content/projects/mossx.md"
+      readmeUrl: "/content/projects/mossx.md",
+      slug: "mossx"
     },
     {
       title: "Cook Off 10.0",
@@ -66,7 +68,8 @@ export const portfolio = {
       year: "Sept. 2025 - Feb. 2026",
       liveUrl: "#",
       githubUrl: "https://github.com/CodeChefVIT/cookoff-portal-10.0",
-      readmeUrl: "/content/projects/cookoff.md"
+      readmeUrl: "/content/projects/cookoff.md",
+      slug: "cookoff"
     }
   ],
   experience: [

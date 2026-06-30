@@ -8,8 +8,6 @@ import { Github } from "@/components/icons";
 import { portfolio } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ProjectReadme } from "./project-readme";
 
 const container = {
   hidden: { opacity: 0 },
@@ -137,60 +135,12 @@ export function Projects() {
                   </div>
 
                   <div className="flex justify-center relative z-10 pt-6 border-t border-white/10">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" className="border-white/20 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-8 py-6 bg-white/5 text-neutral-200 transition-transform hover:scale-105 backdrop-blur-md">
-                          <BookOpen className="mr-2 h-4 w-4" /> Read More Details
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-2xl bg-neutral-950 border border-white/10 text-white rounded-2xl">
-                        <DialogHeader>
-                          <DialogTitle className="text-2xl mb-2">{project.title}</DialogTitle>
-                        </DialogHeader>
-                        <div className="space-y-6 text-sm py-4 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
-                          {/* Use Markdown README if available */}
-                          {/* @ts-ignore - readmeUrl exists on our specific project type */}
-                          {project.readmeUrl ? (
-                            <ProjectReadme url={(project as any).readmeUrl} />
-                          ) : (
-                            <>
-                              {project.goal && (
-                                <div>
-                                  <span className="font-bold text-neutral-300 block mb-2 text-base">Goal</span>
-                                  <p className="text-neutral-400 leading-relaxed text-base">{project.goal}</p>
-                                </div>
-                              )}
-                              {project.challenge && (
-                                <div>
-                                  <span className="font-bold text-neutral-300 block mb-2 text-base">Challenge</span>
-                                  <p className="text-neutral-400 leading-relaxed text-base">{project.challenge}</p>
-                                </div>
-                              )}
-                              {project.result && (
-                                <div className="bg-white/5 p-4 rounded-xl border border-white/5">
-                                  <span className="font-bold text-green-400 flex items-center gap-2 mb-2 text-base">
-                                    <Check className="w-5 h-5" /> Result
-                                  </span>
-                                  <p className="text-neutral-300 leading-relaxed text-base">{project.result}</p>
-                                </div>
-                              )}
-                            </>
-                          )}
-                        </div>
-                        <div className="flex flex-wrap gap-4 mt-2 pt-4 border-t border-white/10">
-                          <Button variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 bg-white/5 text-neutral-300 transition-transform hover:scale-105" asChild>
-                            <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="mr-2 h-3.5 w-3.5" /> Live Link
-                            </Link>
-                          </Button>
-                          <Button variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 bg-white/5 text-neutral-300 transition-transform hover:scale-105" asChild>
-                            <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Github className="mr-2 h-3.5 w-3.5" /> Github
-                            </Link>
-                          </Button>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                    <Button variant="outline" className="border-white/20 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-8 py-6 bg-white/5 text-neutral-200 transition-transform hover:scale-105 backdrop-blur-md" asChild>
+                      {/* @ts-ignore */}
+                      <Link href={`/projects/${project.slug}`}>
+                        <BookOpen className="mr-2 h-4 w-4" /> Read More Details
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </motion.div>
