@@ -54,7 +54,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-black text-white py-24">
-      <div className="container mx-auto px-4 md:px-8 max-w-4xl">
+      <div className="container mx-auto px-4 md:px-8 max-w-6xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 border-b border-white/10 pb-8">
           <Link 
             href="/#projects"

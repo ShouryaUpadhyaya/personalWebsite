@@ -2,7 +2,6 @@
 
 **The ultimate real-time competitive programming platform built to handle hundreds of concurrent coders without breaking a sweat.**
 
-
 ## The Problem
 During live coding contests, hundreds of users submit code, save drafts, and run tests simultaneously in the final 5 minutes. Most platforms crash, lose drafts, or lag out, ruining the contest experience.
 
@@ -14,27 +13,6 @@ A flawless, real-time contest experience with zero dropped submissions and sub-s
 2. **Custom CodeMirror Editor:** Built a customized editor that handles syntax highlighting, auto-completion, and real-time syncing without blocking the main thread.
 3. **Auto-Submission:** Code is automatically submitted when the timer runs out, ensuring no participant loses progress.
 4. **Optimized Server Actions:** Reduced payload sizes and utilized Next.js Server Components to render the live leaderboard instantly.
-
----
-
-## Detailed Features
-
-- **Advanced Code Editor**: Powered by CodeMirror, supporting multiple languages (Python, Java, C++, etc.), themes, and keybindings.
-- **Progress Restoration**: Your code, selected language, and current round are automatically saved to `localStorage`, allowing you to resume your session anytime.
-- **Auto-Submission**: Code is automatically submitted when the timer runs out, ensuring no progress is lost.
-- **Resizable Layout**: A flexible and resizable panel layout to customize your workspace.
-- **Real-time Scoreboard**: Users can monitor their scores in real time as they complete rounds.
-- **Multi-language Support**: The portal uses the Monaco editor, with support for many languages like Python, Java, C++, etc.
-- **Real-time Compiler Feedback**: Get instant feedback on your code with detailed compiler messages and test case results.
-
-### Login Interface
-![Login](/projects/cookoff-portal-10.0/login.png)
-
-### Live Dashboard
-![Dashboard](/projects/cookoff-portal-10.0/dashboard.png)
-
-### The Kitchen (Code Editor)
-![Kitchen](/projects/cookoff-portal-10.0/kitchen.jpg)
 
 ---
 
@@ -81,6 +59,29 @@ The coding part of the application's state is managed by a single Zustand store,
 * **Code Editor**: CodeMirror
 * **HTTP Client**: Axios
 * **Notifications**: Firestore, React Hot Toast
+
+---
+
+## Detailed Features
+
+- **Advanced Code Editor**: Powered by CodeMirror, supporting multiple languages (Python, Java, C++, etc.), themes, and keybindings.
+- **Progress Restoration**: Your code, selected language, and current round are automatically saved to `localStorage`, allowing you to resume your session anytime.
+- **Auto-Submission**: Code is automatically submitted when the timer runs out, ensuring no progress is lost.
+- **Resizable Layout**: A flexible and resizable panel layout to customize your workspace.
+- **Real-time Scoreboard**: Users can monitor their scores in real time as they complete rounds.
+- **Multi-language Support**: The portal uses the Monaco editor, with support for many languages like Python, Java, C++, etc.
+- **Real-time Compiler Feedback**: Get instant feedback on your code with detailed compiler messages and test case results.
+
+### Login Interface
+![Login](/projects/cookoff-portal-10.0/login.png)
+
+### Live Dashboard
+![Dashboard](/projects/cookoff-portal-10.0/dashboard.png)
+
+### The Kitchen (Code Editor)
+![Kitchen](/projects/cookoff-portal-10.0/kitchen.jpg)
+
+---
 
 ## The Proof
 * Sustained **40% concurrent load** across **1,000+ users** without a single dropped submission.
