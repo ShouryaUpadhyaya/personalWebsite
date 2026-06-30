@@ -5,7 +5,9 @@ import path from "path";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import { Github } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 interface PageProps {
@@ -34,13 +36,32 @@ export default async function ProjectPage({ params }: PageProps) {
   return (
     <div className="min-h-screen bg-black text-white py-24">
       <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-        <Link 
-          href="/#projects"
-          className="inline-flex items-center text-neutral-400 hover:text-white transition-colors mb-12 font-mono text-sm uppercase tracking-wider"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Projects
-        </Link>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-12 border-b border-white/10 pb-8">
+          <Link 
+            href="/#projects"
+            className="inline-flex items-center text-neutral-400 hover:text-white transition-colors font-mono text-sm uppercase tracking-wider"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Projects
+          </Link>
+          
+          <div className="flex flex-wrap gap-4">
+            {project.liveUrl && project.liveUrl !== "#" && (
+              <Button variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 bg-white/5 text-neutral-300 transition-transform hover:scale-105" asChild>
+                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="mr-2 h-3.5 w-3.5" /> Live Link
+                </Link>
+              </Button>
+            )}
+            {project.githubUrl && project.githubUrl !== "#" && (
+              <Button variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 bg-white/5 text-neutral-300 transition-transform hover:scale-105" asChild>
+                <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                  <Github className="mr-2 h-3.5 w-3.5" /> Github
+                </Link>
+              </Button>
+            )}
+          </div>
+        </div>
         
         <div className="prose prose-invert prose-neutral max-w-none 
           prose-img:rounded-2xl prose-img:border prose-img:border-white/10 prose-img:shadow-2xl

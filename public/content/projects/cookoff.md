@@ -2,7 +2,6 @@
 
 **The ultimate real-time competitive programming platform built to handle hundreds of concurrent coders without breaking a sweat.**
 
-![Cook-Off Banner](/projects/cookoff-banner.png)
 
 ## The Problem
 During live coding contests, hundreds of users submit code, save drafts, and run tests simultaneously in the final 5 minutes. Most platforms crash, lose drafts, or lag out, ruining the contest experience.
@@ -29,13 +28,13 @@ A flawless, real-time contest experience with zero dropped submissions and sub-s
 - **Real-time Compiler Feedback**: Get instant feedback on your code with detailed compiler messages and test case results.
 
 ### Login Interface
-![Login](/projects/cookoff-login.png)
+![Login](/projects/cookoff-portal-10.0/login.png)
 
 ### Live Dashboard
-![Dashboard](/projects/cookoff-dashboard.png)
+![Dashboard](/projects/cookoff-portal-10.0/dashboard.png)
 
 ### The Kitchen (Code Editor)
-![Kitchen](/projects/cookoff-kitchen.jpg)
+![Kitchen](/projects/cookoff-portal-10.0/kitchen.jpg)
 
 ---
 

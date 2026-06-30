@@ -2,7 +2,6 @@
 
 **A lightning-fast E-Commerce platform that guarantees zero duplicate charges and sub-50ms catalog load times.**
 
-![MossX Banner](/projects/mossx-banner.png)
 
 ## The Problem
 Modern retail platforms either bloat your codebase or crash during high-traffic checkout events, leading to duplicate charges, lost carts, and furious customers. 

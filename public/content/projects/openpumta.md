@@ -2,7 +2,7 @@
 
 **Stop burning out on sheer willpower.** OpenPumTa is the only productivity system that tracks your focus, forces 21-day consistency, and uses AI to prevent dopamine burnout—all without locking your data in a walled garden.
 
-![OpenPumTa Banner](/projects/openpumta-banner.png)
+![OpenPumTa Banner](/projects/openpumta/banner.png)
 
 ## The Problem
 You rely on 5 different apps to study—Yeolpumta for timers, Notion for notes, and scattered habit trackers. None talk to each other. When you drop a habit, you lose momentum. The result? Distraction, burnout, and broken streaks. 
@@ -21,7 +21,7 @@ A single, desktop-first workspace that locks you into deep work and builds unbre
 ### Dashboard & Overview
 The central hub for your entire day.
 
-![Dashboard](/projects/openpumta-dashboard.png)
+![Dashboard](/projects/openpumta/Dashboard.png)
 
 - **Quick Actions:** Immediately start a timer for any subject.
 - **Habit Section:** Quickly check off your daily habits.
@@ -32,20 +32,20 @@ The central hub for your entire day.
 ### Habits (21-Day Protocol)
 Designed around strict, achievable consistency.
 
-![Habits List](/projects/openpumta-habit1.png)
+![Habits List](/projects/openpumta/habit_1.png)
 
 - **The "Perfect Day":** Complete just 4 habits to achieve a "Perfect Day" score. We celebrate your momentum: completing 2 habits triggers small confetti, and hitting 4 triggers a massive celebration!
 - **21-Day Heatmap:** Your progress is shown in a 21-day heatmap by default.
 - **Subject Linking:** Habits can be linked to subjects for automatic completion during focus sessions.
 
-![Habits Stats 1](/projects/openpumta-habit2.png)
-![Habits Stats 2](/projects/openpumta-habit3.png)
+![Habits Stats 1](/projects/openpumta/habit_2.png)
+![Habits Stats 2](/projects/openpumta/habit_3.png)
 
 
 ### Workspace
 A Notion-like canvas for your personal productivity systems.
 
-![Workspace Example](/projects/openpumta-workspace.png)
+![Workspace Example](/projects/openpumta/workspace%20example.png)
 
 - **Rich Text Blocks:** Use todos, headings, paragraphs, and dividers.
 - **Build Your Systems:** Create custom pages like a "Daily Planner" with a section for today's todos and another for the week's priorities.
@@ -55,21 +55,21 @@ A Notion-like canvas for your personal productivity systems.
 - **Visual Progress:** See the current subject time, total time of the day, and a visual progress ring.
 - **Evolving Avatar:** Watch your avatar evolve as your focus time increases throughout the session!
 
-![Focus Timer](/projects/openpumta-timer.png)
+![Focus Timer](/projects/openpumta/timer.png)
 
 ### Stats
 We believe in "Show, Don't Tell" when it comes to stats. Dive into detailed visual breakdowns of your performance.
 
-![Stats 1](/projects/openpumta-stats1.png)
-![Stats 2](/projects/openpumta-stats2.png)
-![Stats 3](/projects/openpumta-stats3.png)
+![Stats 1](/projects/openpumta/stats_1.png)
+![Stats 2](/projects/openpumta/stats2.png)
+![Stats 3](/projects/openpumta/stats_3.png)
 
 
 ### Settings
 Easily configure your profile, subjects, and preferences.
 
-![Settings 1](/projects/openpumta-setting1.png)
-![Settings 2](/projects/openpumta-setting2.png)
+![Settings 1](/projects/openpumta/setting1.png)
+![Settings 2](/projects/openpumta/setting_2.png)
 
 ---
 
