@@ -60,7 +60,7 @@ export const portfolio = {
     {
       title: "Cook Off 10.0",
       subtitle: "Scalable Competitive Coding Portal",
-      image: "/projects/cookoff.png",
+      image: "/projects/cookoff-portal-10.0/kitchen.jpg",
       goal: "Deliver a flawless, real-time contest experience with zero dropped submissions for over 1,000 concurrent coders.",
       challenge: "Ensuring zero data loss and sub-second compiler feedback when hundreds of users submit code in the final 5 minutes.",
       result: "Sustained 40% concurrent load across 1,000+ users without a single dropped submission via triple-layer persistence.",
