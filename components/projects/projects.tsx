@@ -9,6 +9,7 @@ import { portfolio } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ProjectReadme } from "./project-readme";
 
 const container = {
   hidden: { opacity: 0 },
@@ -146,26 +147,34 @@ export function Projects() {
                         <DialogHeader>
                           <DialogTitle className="text-2xl mb-2">{project.title}</DialogTitle>
                         </DialogHeader>
-                        <div className="space-y-6 text-sm py-4 max-h-[60vh] overflow-y-auto pr-2">
-                          {project.goal && (
-                            <div>
-                              <span className="font-bold text-neutral-300 block mb-2 text-base">Goal</span>
-                              <p className="text-neutral-400 leading-relaxed text-base">{project.goal}</p>
-                            </div>
-                          )}
-                          {project.challenge && (
-                            <div>
-                              <span className="font-bold text-neutral-300 block mb-2 text-base">Challenge</span>
-                              <p className="text-neutral-400 leading-relaxed text-base">{project.challenge}</p>
-                            </div>
-                          )}
-                          {project.result && (
-                            <div className="bg-white/5 p-4 rounded-xl border border-white/5">
-                              <span className="font-bold text-green-400 flex items-center gap-2 mb-2 text-base">
-                                <Check className="w-5 h-5" /> Result
-                              </span>
-                              <p className="text-neutral-300 leading-relaxed text-base">{project.result}</p>
-                            </div>
+                        <div className="space-y-6 text-sm py-4 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+                          {/* Use Markdown README if available */}
+                          {/* @ts-ignore - readmeUrl exists on our specific project type */}
+                          {project.readmeUrl ? (
+                            <ProjectReadme url={(project as any).readmeUrl} />
+                          ) : (
+                            <>
+                              {project.goal && (
+                                <div>
+                                  <span className="font-bold text-neutral-300 block mb-2 text-base">Goal</span>
+                                  <p className="text-neutral-400 leading-relaxed text-base">{project.goal}</p>
+                                </div>
+                              )}
+                              {project.challenge && (
+                                <div>
+                                  <span className="font-bold text-neutral-300 block mb-2 text-base">Challenge</span>
+                                  <p className="text-neutral-400 leading-relaxed text-base">{project.challenge}</p>
+                                </div>
+                              )}
+                              {project.result && (
+                                <div className="bg-white/5 p-4 rounded-xl border border-white/5">
+                                  <span className="font-bold text-green-400 flex items-center gap-2 mb-2 text-base">
+                                    <Check className="w-5 h-5" /> Result
+                                  </span>
+                                  <p className="text-neutral-300 leading-relaxed text-base">{project.result}</p>
+                                </div>
+                              )}
+                            </>
                           )}
                         </div>
                         <div className="flex flex-wrap gap-4 mt-2 pt-4 border-t border-white/10">
