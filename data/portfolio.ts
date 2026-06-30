@@ -19,7 +19,7 @@ export const portfolio = {
     description: "Building production-ready scalable systems and beautiful user interfaces. Passionate about solving complex engineering problems with modern tech.",
     email: "shouryaupadhyaya26@gmail.com",
     github: "https://github.com/ShouryaUpadhyaya",
-    linkedin: "https://linkedin.com/in/shourya-upadhyaya",
+    linkedin: "https://www.linkedin.com/in/shourya-upadhyaya-998535332",
     twitter: "https://x.com/Shourya60756648"
   },
   stats: [
@@ -44,7 +44,7 @@ export const portfolio = {
       tech: ["NODE.JS", "REDIS", "RAZORPAY"],
       year: "2025",
       liveUrl: "https://mossx.in",
-      githubUrl: "https://github.com/ShouryaUpadhyaya",
+      githubUrl: "https://github.com/Moss-X/Website",
     },
     {
       title: "OpenPumTa",
@@ -61,7 +61,7 @@ export const portfolio = {
       tech: ["NEXT.JS", "POSTGRESQL", "REDIS", "DOCKER"],
       year: "2024",
       liveUrl: "https://openpumta.com",
-      githubUrl: "https://github.com/ShouryaUpadhyaya",
+      githubUrl: "https://github.com/ShouryaUpadhyaya/ProductivitySystemPersonalUse-",
     },
     {
       title: "Cook Off 10.0",
@@ -78,13 +78,15 @@ export const portfolio = {
       tech: ["NEXT.JS", "ZUSTAND", "CODEMIRROR", "MONGODB"],
       year: "2024",
       liveUrl: "#",
-      githubUrl: "https://github.com/ShouryaUpadhyaya",
+      githubUrl: "https://github.com/CodeChefVIT/cookoff-portal-10.0",
     }
   ],
   experience: [
     {
       role: "Lead Full-Stack Developer",
       company: "Moss X",
+      companyUrl: "https://mossx.in",
+      githubUrl: "https://github.com/Moss-X/Website",
       period: "Apr. 2025 - Oct. 2025",
       description: "Designed modular monolithic backend, reduced database read pressure via Redis caching, and integrated Razorpay with idempotency.",
       skills: ["Node.js", "Express", "MongoDB", "Redis", "Docker"]

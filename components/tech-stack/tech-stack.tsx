@@ -47,10 +47,10 @@ export function TechStack() {
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {category.skills.map((skill, i) => (
-                    <Badge 
+                      <Badge 
                       key={i} 
                       variant="outline" 
-                      className="rounded-full px-4 py-1.5 text-xs font-medium border-white/10 bg-transparent text-neutral-300 hover:text-white hover:border-white/30 transition-all duration-300"
+                      className="rounded-full px-4 py-1.5 text-xs font-medium border-neutral-700 bg-transparent text-neutral-300 hover:text-white hover:border-neutral-500 transition-all duration-300"
                     >
                       {skill}
                     </Badge>

@@ -32,7 +32,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("h-full dark antialiased", geistSans.variable, geistMono.variable, inter.variable)}
     >
-      <body className="min-h-full flex flex-col font-sans bg-neutral-950 text-neutral-50 selection:bg-neutral-800">
+      <body suppressHydrationWarning className="min-h-full flex flex-col font-sans bg-neutral-950 text-neutral-50 selection:bg-neutral-800">
         <TooltipProvider>
           {children}
         </TooltipProvider>

@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { portfolio } from "@/data/portfolio";
 import { Badge } from "@/components/ui/badge";
+import { GitBranch } from "lucide-react";
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,7 +45,18 @@ export function Experience() {
               <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
                 <h3 className="text-xl font-bold text-white">{exp.role}</h3>
                 <span className="text-neutral-400 font-medium hidden md:inline">•</span>
-                <span className="text-lg text-neutral-300 font-medium">{exp.company}</span>
+                {exp.companyUrl ? (
+                  <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="text-lg text-neutral-300 font-medium hover:text-white transition-colors underline decoration-white/30 underline-offset-4">
+                    {exp.company}
+                  </a>
+                ) : (
+                  <span className="text-lg text-neutral-300 font-medium">{exp.company}</span>
+                )}
+                {exp.githubUrl && (
+                  <a href={exp.githubUrl} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors md:ml-2">
+                    <GitBranch className="w-5 h-5" />
+                  </a>
+                )}
               </div>
               
               <div className="mb-4 text-sm font-mono text-neutral-500 bg-neutral-900/50 inline-block px-3 py-1 rounded-md border border-white/5">
