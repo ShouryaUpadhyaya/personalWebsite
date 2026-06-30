@@ -41,7 +41,70 @@ export const portfolio = {
       liveUrl: "https://openpumta.com",
       githubUrl: "https://github.com/ShouryaUpadhyaya/ProductivitySystemPersonalUse-",
       readmeUrl: "/content/projects/openpumta.md",
-      slug: "openpumta"
+      slug: "openpumta",
+      mermaidChart: `flowchart TB
+    %% Clients
+    subgraph Clients["Clients"]
+        Browser["🌐 Web Browser"]
+        Mobile["📱 Mobile App"]
+    end
+
+    %% VPS / Host Server
+    subgraph VPS["VPS (Self-Hosted)"]
+        Nginx["🛡️ Nginx Reverse Proxy\\n(SSL / Routing)"]
+
+        %% Docker Network
+        subgraph Docker["Docker Compose Network"]
+
+            %% Frontend Layer
+            NextJS["🖥️ Next.js\\n(Web Frontend)"]
+
+            %% Backend Layer
+            subgraph Backend["Backend API Layer"]
+                Express["⚙️ Node.js + Express\\n(REST + Zod Validation)"]
+                WS["⚡ WebSockets\\n(Real-time Timer Sync)"]
+            end
+
+            %% Data Layer
+            subgraph DataLayer["Data Layer"]
+                Postgres[("🐘 PostgreSQL\\n(Core Database)")]
+                Redis[("🔴 Redis\\n(Stats Caching)")]
+            end
+
+            %% Observability Stack
+            subgraph Observability["Observability Stack"]
+                Prometheus["📊 Prometheus\\n(Metrics Scraper)"]
+                Grafana["📈 Grafana\\n(Monitoring Dashboards)"]
+            end
+
+        end
+    end
+
+    %% Client Connections
+    Browser -->|HTTP/HTTPS| Nginx
+    Browser -->|WSS| Nginx
+    Mobile -->|HTTP/HTTPS| Nginx
+    Mobile -->|WSS| Nginx
+
+    %% Proxy Routing
+    Nginx -->|Route /_next| NextJS
+    Nginx -->|Route /api| Express
+    Nginx -->|WebSocket Connection| WS
+
+    %% Internal Application Logic
+    NextJS -->|SSR / CSR API Calls| Express
+
+    %% Database and Caching
+    Express -->|Prisma ORM Queries| Postgres
+    Express -->|Cache Read/Write| Redis
+
+    %% Monitoring Metrics
+    Prometheus -.->|Scrape /metrics| Express
+    Prometheus -.->|Scrape /metrics| NextJS
+    Prometheus -.->|Scrape Exporter| Postgres
+    Prometheus -.->|Scrape Exporter| Redis
+
+    Grafana -->|Query Metrics| Prometheus`
     },
     {
       title: "Moss X",
@@ -55,7 +118,27 @@ export const portfolio = {
       liveUrl: "https://mossx.in",
       githubUrl: "https://github.com/Moss-X/Website",
       readmeUrl: "/content/projects/mossx.md",
-      slug: "mossx"
+      slug: "mossx",
+      mermaidChart: `graph TD
+    Client[React Client SPA] --> API[Express API Gateway]
+
+    API --> Auth[Auth Service]
+    API --> Product[Product Service]
+    API --> Cart[Cart Service]
+    API --> Payment[Payment Service]
+    API --> Analytics[Analytics Service]
+
+    Auth --> Mongo[(MongoDB)]
+    Product --> Mongo
+    Product --> Redis[(Upstash Redis Cache)]
+    Cart --> Mongo
+    Payment --> Mongo
+    Analytics --> Mongo
+
+    Payment --> Stripe[Stripe API]
+    Payment --> Razorpay[Razorpay API]
+
+    Product --> Cloudinary[Cloudinary CDN]`
     },
     {
       title: "Cook Off 10.0",

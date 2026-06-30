@@ -8,6 +8,7 @@ import { Github } from "@/components/icons";
 import { portfolio } from "@/data/portfolio";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Mermaid } from "./mermaid";
 
 const container = {
   hidden: { opacity: 0 },
@@ -53,18 +54,30 @@ export function Projects() {
                   <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -mr-20 -mt-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10 mb-8">
                     
-                    {/* Image Side */}
-                    <div className={cn("relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-black/50 shadow-2xl", 
-                      isEven ? "lg:order-1" : "lg:order-2"
-                    )}>
-                      <Image 
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                      />
-                    </div>
+                    {/* Image / Mermaid Side */}
+                    {/* @ts-ignore */}
+                    {project.mermaidChart ? (
+                      <div className={cn("relative flex items-center justify-center p-4 bg-neutral-900 overflow-hidden rounded-xl border border-white/10 shadow-2xl h-full min-h-[300px]", 
+                        isEven ? "lg:order-1" : "lg:order-2"
+                      )}>
+                        <div className="absolute inset-0 w-full h-full transform group-hover:scale-105 transition-transform duration-700 ease-out overflow-y-auto no-scrollbar pointer-events-none group-hover:pointer-events-auto">
+                          {/* @ts-ignore */}
+                          <Mermaid chart={project.mermaidChart} />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className={cn("relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-black/50 shadow-2xl", 
+                        isEven ? "lg:order-1" : "lg:order-2"
+                      )}>
+                        <Image 
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      </div>
+                    )}
                     
                     {/* Content Side */}
                     <div className={cn("flex flex-col justify-center", 
