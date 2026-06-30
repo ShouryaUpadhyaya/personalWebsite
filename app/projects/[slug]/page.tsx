@@ -8,6 +8,7 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Github } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { Slideshow } from "@/components/projects/slideshow";
 import Image from "next/image";
 
 interface PageProps {
@@ -31,6 +32,23 @@ export default async function ProjectPage({ params }: PageProps) {
     content = fs.readFileSync(filePath, "utf-8");
   } catch (error) {
     content = "Failed to load project details.";
+  }
+
+  // Get project images for slideshow
+  let images: string[] = [];
+  try {
+    // If slug is cookoff, use cookoff-portal-10.0 directory
+    const imageDirName = slug === "cookoff" ? "cookoff-portal-10.0" : slug;
+    const imagesDir = path.join(process.cwd(), "public", "projects", imageDirName);
+    
+    if (fs.existsSync(imagesDir)) {
+      const files = fs.readdirSync(imagesDir);
+      images = files
+        .filter(file => /\.(png|jpe?g|webp)$/i.test(file))
+        .map(file => `/projects/${imageDirName}/${file}`);
+    }
+  } catch (error) {
+    console.error("Failed to load project images", error);
   }
 
   return (
@@ -62,6 +80,10 @@ export default async function ProjectPage({ params }: PageProps) {
             )}
           </div>
         </div>
+        
+        {images.length > 0 && (
+          <Slideshow images={images} />
+        )}
         
         <div className="prose prose-invert prose-neutral max-w-none 
           prose-img:rounded-2xl prose-img:border prose-img:border-white/10 prose-img:shadow-2xl
