@@ -143,11 +143,18 @@ export function Contact() {
               </Link>
             </div>
 
-            <Button variant="outline" className="w-full md:w-auto border-white/10 hover:bg-white/5 py-6 text-lg" asChild>
-              <Link href="/resume.pdf" target="_blank">
-                Download Resume
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="w-full sm:w-auto bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-full px-8 py-6 shadow-[0_0_30px_-10px_rgba(255,255,255,0.4)] transition-all hover:scale-105" asChild>
+                <a href="https://calendly.com/shouryaupadhyaya79" target="_blank" rel="noopener noreferrer">
+                  Book a Discovery Call
+                </a>
+              </Button>
+              <Button variant="outline" className="w-full sm:w-auto border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-8 py-6 bg-white/5 backdrop-blur-sm text-neutral-200 transition-all hover:scale-105" asChild>
+                <Link href="/resume.pdf" target="_blank">
+                  Download Resume
+                </Link>
+              </Button>
+            </div>
           </motion.div>
         </motion.div>
       </div>
