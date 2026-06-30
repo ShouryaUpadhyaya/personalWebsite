@@ -86,22 +86,22 @@ export const portfolio = {
   ],
   writing: [
     {
-      title: "Why I moved my app from Vercel/Render/Neon to a single VPS",
+      title: "Why I Moved My App from Vercel + Render + Neon to a Single VPS",
       description: "Understanding server infrastructure consolidation and cost efficiency.",
-      url: "#",
+      url: "https://medium.com/@shouryaupadhyaya79/why-i-moved-my-app-from-vercel-render-neon-to-a-single-vps-1591760bb7be",
+      date: "June 2026"
+    },
+    {
+      title: "How I Built a Pomodoro Timer That Doesn't Lie to You",
+      description: "Orphaned timers, time synchronization, and state management.",
+      url: "https://medium.com/@shouryaupadhyaya79/how-i-built-a-pomodoro-timer-that-doesnt-lie-to-you-3bfdf2b157dd",
       date: "May 2026"
     },
     {
-      title: "How I built a Pomodoro timer that doesn't lie to you",
-      description: "Orphaned timers, time synchronization, and state management.",
-      url: "#",
-      date: "March 2026"
-    },
-    {
-      title: "Stop writing boiler plate code: Async handlers in Express",
+      title: "Stop writing boiler plate code! Async Handlers in Express Backend",
       description: "Streamlining backend development with modern patterns.",
-      url: "#",
-      date: "January 2026"
+      url: "https://medium.com/@shouryaupadhyaya79/stop-writing-boiler-plate-code-async-handlers-in-express-backend-3eac2974f186",
+      date: "February 2026"
     }
   ],
   stack: [
