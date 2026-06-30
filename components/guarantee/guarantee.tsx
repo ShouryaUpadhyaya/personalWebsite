@@ -5,7 +5,7 @@ import { ShieldCheck } from "lucide-react";
 
 export function Guarantee() {
   return (
-    <section className="py-12 border-b border-white/10 bg-blue-950/20">
+    <section className="min-h-[50vh] flex justify-center items-center py-12 border-b border-white/10 bg-blue-950/20">
       <div className="container mx-auto px-4 md:px-8 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -18,9 +18,14 @@ export function Guarantee() {
             <ShieldCheck className="w-12 h-12 text-blue-400" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-white mb-2">The 30-Day Zero-Bug Guarantee</h3>
+            <h3 className="text-xl font-bold text-white mb-2">
+              The 30-Day Zero-Bug Guarantee
+            </h3>
             <p className="text-neutral-400 text-sm leading-relaxed">
-              I provide 30 days of post-launch bug fixing and support for all freelance projects. If any code I wrote breaks or crashes in production within the first month, I will fix it completely free of charge. Your peace of mind is my priority.
+              I provide 30 days of post-launch bug fixing and support for all
+              freelance projects. If any code I wrote breaks or crashes in
+              production within the first month, I will fix it completely free
+              of charge. Your peace of mind is my priority.
             </p>
           </div>
         </motion.div>
