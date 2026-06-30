@@ -133,10 +133,11 @@ export const portfolio = {
   ],
   testimonials: [
     {
-      name: "Client/Manager Name",
+      name: "Akshaj Khetarpal",
       role: "CEO",
       company: "Moss X",
-      text: "Shourya is an exceptional full-stack developer. He delivered our backend early and it hasn't gone down since. The idempotency and caching systems he built saved us thousands in potential lost sales."
+      image: "/testimonials/akshaj.jpg",
+      text: "Shourya was responsible for all of the technical implementation for our business, taking ownership of everything from architecture to deployment. Under his leadership, we successfully acquired over 100 registered customers and generated more than 20 sales. He led a team of engineers effectively, consistently delivering high-quality work and ensuring projects stayed on track. I trusted him completely with the technical side of the business, and he exceeded my expectations through his reliability, technical expertise, and ability to execute."
     },
     {
       name: "Client/Manager Name",

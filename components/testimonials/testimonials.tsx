@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import { Quote } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
+import Image from "next/image";
 
 const container = {
   hidden: { opacity: 0 },
@@ -44,9 +45,15 @@ export function Testimonials() {
                 "{t.text}"
               </p>
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-gradient-to-tr from-neutral-800 to-neutral-700 rounded-full flex items-center justify-center text-white font-bold uppercase shadow-inner">
-                  {t.name.charAt(0)}
-                </div>
+                {t.image ? (
+                  <div className="w-12 h-12 rounded-full overflow-hidden relative shadow-inner flex-shrink-0">
+                    <Image src={t.image} alt={t.name} fill className="object-cover" />
+                  </div>
+                ) : (
+                  <div className="w-12 h-12 bg-gradient-to-tr from-neutral-800 to-neutral-700 rounded-full flex items-center justify-center text-white font-bold uppercase shadow-inner flex-shrink-0">
+                    {t.name.charAt(0)}
+                  </div>
+                )}
                 <div>
                   <div className="text-white font-bold text-lg">{t.name}</div>
                   <div className="text-neutral-400 text-sm">{t.role}, {t.company}</div>
