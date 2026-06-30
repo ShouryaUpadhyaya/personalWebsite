@@ -140,10 +140,11 @@ export const portfolio = {
       text: "Shourya was responsible for all of the technical implementation for our business, taking ownership of everything from architecture to deployment. Under his leadership, we successfully acquired over 100 registered customers and generated more than 20 sales. He led a team of engineers effectively, consistently delivering high-quality work and ensuring projects stayed on track. I trusted him completely with the technical side of the business, and he exceeded my expectations through his reliability, technical expertise, and ability to execute."
     },
     {
-      name: "Client/Manager Name",
-      role: "Founder",
+      name: "Narayan",
+      role: "CEO",
       company: "Nepbyte Technology",
-      text: "Shourya dramatically improved our frontend performance. The 40% increase in our Lighthouse score directly impacted our SEO and conversion rates. Highly recommended."
+      image: "/testimonials/narayan.jpg",
+      text: "Working with Shourya at Nepbyte Technology was a great experience. He consistently delivered high-quality frontend solutions with a strong focus on performance, clean architecture, and user experience. He was proactive in solving technical challenges, collaborated effectively with the team, and took ownership of his work from start to finish. His attention to detail and commitment to writing maintainable code made him someone the team could always rely on. I would confidently recommend Shourya to any organization looking for a skilled and dependable full-stack engineer."
     }
   ],
   faq: [
