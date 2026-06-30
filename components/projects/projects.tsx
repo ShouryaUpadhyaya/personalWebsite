@@ -49,11 +49,12 @@ export function Projects() {
 
             return (
               <motion.div key={index} variants={item}>
-                <div className="bg-[#111] border border-white/5 p-6 md:p-12 group rounded-xl">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 p-6 md:p-12 group rounded-2xl transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_0_40px_-10px_rgba(120,119,198,0.3)] relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -mr-20 -mt-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
                     
                     {/* Image Side */}
-                    <div className={cn("relative aspect-video overflow-hidden rounded-md border border-white/5 bg-black/50 shadow-2xl", 
+                    <div className={cn("relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-black/50 shadow-2xl", 
                       isEven ? "lg:order-1" : "lg:order-2"
                     )}>
                       <Image 
@@ -117,13 +118,13 @@ export function Projects() {
                         </div>
                       )}
                       
-                      <div className="flex flex-wrap gap-4 mt-auto pt-4 border-t border-white/5">
-                        <Button variant="default" className="bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-none px-6 h-10" asChild>
+                      <div className="flex flex-wrap gap-4 mt-auto pt-4 border-t border-white/10">
+                        <Button variant="default" className="bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 transition-transform hover:scale-105" asChild>
                           <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-3.5 w-3.5" /> Live Link
                           </Link>
                         </Button>
-                        <Button variant="outline" className="border-white/10 hover:bg-white/5 uppercase tracking-widest font-mono text-xs rounded-none px-6 h-10 bg-neutral-900/50 text-neutral-300" asChild>
+                        <Button variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 bg-white/5 text-neutral-300 transition-transform hover:scale-105" asChild>
                           <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                             <Github className="mr-2 h-3.5 w-3.5" /> Github
                           </Link>

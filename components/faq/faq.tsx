@@ -26,15 +26,15 @@ export function FAQ() {
             return (
               <div 
                 key={index} 
-                className="bg-neutral-950 border border-white/10 rounded-lg overflow-hidden transition-colors hover:border-white/20"
+                className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden transition-all duration-300 hover:border-white/20 hover:bg-white/10"
               >
                 <button
-                  className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 focus:outline-none"
+                  className="w-full text-left px-6 py-5 md:py-6 flex items-center justify-between gap-4 focus:outline-none"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
-                  <span className="font-semibold text-white">{faqItem.question}</span>
+                  <span className="font-semibold text-white text-lg">{faqItem.question}</span>
                   <ChevronDown 
-                    className={`w-5 h-5 text-neutral-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} 
+                    className={`w-6 h-6 text-neutral-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-white" : ""}`} 
                   />
                 </button>
                 <AnimatePresence>
@@ -45,7 +45,7 @@ export function FAQ() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-6 text-neutral-400 leading-relaxed border-t border-white/5 pt-4">
+                      <div className="px-6 pb-6 text-neutral-300 leading-relaxed pt-2">
                         {faqItem.answer}
                       </div>
                     </motion.div>

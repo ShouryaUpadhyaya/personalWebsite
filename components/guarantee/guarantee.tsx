@@ -12,10 +12,10 @@ export function Guarantee() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="flex flex-col md:flex-row items-center gap-6 bg-neutral-900/60 p-6 md:p-8 rounded-xl border border-blue-500/30"
+          className="flex flex-col md:flex-row items-center gap-6 bg-white/5 backdrop-blur-xl p-8 md:p-10 rounded-2xl border border-blue-500/30 transition-all duration-500 hover:border-blue-500/50 hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.2)]"
         >
-          <div className="flex-shrink-0 bg-blue-500/20 p-4 rounded-full">
-            <ShieldCheck className="w-10 h-10 text-blue-400" />
+          <div className="flex-shrink-0 bg-blue-500/20 p-5 rounded-full">
+            <ShieldCheck className="w-12 h-12 text-blue-400" />
           </div>
           <div>
             <h3 className="text-xl font-bold text-white mb-2">The 30-Day Zero-Bug Guarantee</h3>

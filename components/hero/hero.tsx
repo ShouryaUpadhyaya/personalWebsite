@@ -39,7 +39,7 @@ export function Hero() {
               className="flex flex-col gap-6"
             >
               <motion.div variants={item}>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-white via-neutral-200 to-neutral-500 leading-tight pb-2">
                   {portfolio.personal.name}
                 </h1>
                 <h2 className="text-xl md:text-2xl text-neutral-400 mt-4 font-medium leading-relaxed max-w-2xl">
@@ -47,13 +47,13 @@ export function Hero() {
                 </h2>
               </motion.div>
               
-              <motion.div variants={item} className="flex flex-wrap gap-4 pt-4">
-                <Button size="lg" className="bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-none px-8" asChild>
+              <motion.div variants={item} className="flex flex-wrap gap-4 pt-6">
+                <Button size="lg" className="bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-full px-8 shadow-[0_0_30px_-10px_rgba(255,255,255,0.4)] transition-all hover:scale-105" asChild>
                   <a href="https://calendly.com/shouryaupadhyaya79" target="_blank" rel="noopener noreferrer">
                     Book a Discovery Call
                   </a>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/5 uppercase tracking-widest font-mono text-xs rounded-none px-8 bg-neutral-900/50 text-neutral-300" asChild>
+                <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-8 bg-white/5 backdrop-blur-sm text-neutral-200 transition-all hover:scale-105" asChild>
                   <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
                     Get Resume <FileText className="ml-2 h-4 w-4" />
                   </a>

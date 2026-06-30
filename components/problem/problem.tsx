@@ -43,8 +43,8 @@ export function Problem() {
           </motion.div>
 
           {/* Outcome / Solution */}
-          <motion.div variants={item} className="bg-neutral-950 border border-white/10 p-8 rounded-xl shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+          <motion.div variants={item} className="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-2xl shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
+            <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
             <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
               <ShieldCheck className="w-6 h-6 mr-3 text-green-500" />
               The Solution
