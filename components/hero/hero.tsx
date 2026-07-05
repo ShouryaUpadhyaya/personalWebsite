@@ -6,6 +6,7 @@ import { ArrowRight, Mail, FileText } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { downloadResume } from "@/lib/utils";
 
 import { Stats } from "@/components/stats/stats";
 
@@ -54,7 +55,7 @@ export function Hero() {
                   </a>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-8 bg-white/5 backdrop-blur-sm text-neutral-200 transition-all hover:scale-105" asChild>
-                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" onClick={downloadResume}>
                     Get Resume <FileText className="ml-2 h-4 w-4" />
                   </a>
                 </Button>

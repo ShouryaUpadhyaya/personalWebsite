@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { downloadResume } from "@/lib/utils";
 
 const navLinks = [
   { name: "Projects", href: "#projects" },
@@ -53,7 +54,7 @@ export function Navbar() {
             ))}
           </ul>
           <Button variant="outline" className="border-white/10 hover:bg-white/5" asChild>
-            <Link href="/resume.pdf" target="_blank">
+            <Link href="/resume.pdf" target="_blank" onClick={downloadResume}>
               Resume
             </Link>
           </Button>
@@ -80,7 +81,7 @@ export function Navbar() {
                 </Link>
               ))}
               <Button variant="outline" className="border-white/10 hover:bg-white/5 w-full mt-4" asChild>
-                <Link href="/resume.pdf" target="_blank">
+                <Link href="/resume.pdf" target="_blank" onClick={downloadResume}>
                   Resume
                 </Link>
               </Button>

@@ -9,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { downloadResume } from "@/lib/utils";
 
 const container = {
   hidden: { opacity: 0 },
@@ -150,7 +151,7 @@ export function Contact() {
                 </a>
               </Button>
               <Button variant="outline" className="w-full sm:w-auto border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-8 py-6 bg-white/5 backdrop-blur-sm text-neutral-200 transition-all hover:scale-105" asChild>
-                <Link href="/resume.pdf" target="_blank">
+                <Link href="/resume.pdf" target="_blank" onClick={downloadResume}>
                   Download Resume
                 </Link>
               </Button>
