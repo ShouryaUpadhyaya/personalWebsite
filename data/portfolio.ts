@@ -17,6 +17,7 @@ export const portfolio = {
     name: "Shourya Upadhyaya",
     subtitle: "Full-stack Developer",
     description: "Building production-ready scalable systems and beautiful user interfaces. Passionate about solving complex engineering problems with modern tech.",
+    about: "I'm a Computer Science & Engineering student at VIT Vellore (Class of 2028) who builds production-grade full-stack applications — from React/Next.js interfaces to Node.js, PostgreSQL, and Docker backends. I care about systems that stay fast under load: I've cut response times under 50ms with Redis caching, processed live payments with idempotency-safe Razorpay flows, and shipped real apps serving 1,500+ users. I'm currently seeking full-stack internships and full-time roles where I can own meaningful features end-to-end.",
     email: "shouryaupadhyaya26@gmail.com",
     github: "https://github.com/ShouryaUpadhyaya",
     linkedin: "https://www.linkedin.com/in/shourya-upadhyaya-998535332",
@@ -24,9 +25,9 @@ export const portfolio = {
   },
   stats: [
     { label: "Users Served", value: "1,500+", delay: 0.1 },
-    { label: "API Uptime", value: "99.9%", delay: 0.2 },
+    { label: "Production Deploys", value: "3", delay: 0.2 },
     { label: "REST APIs", value: "30+", delay: 0.3 },
-    { label: "Concurrent Load", value: "40%", delay: 0.4 }
+    { label: "Payments Processed", value: "20+", delay: 0.4 }
   ],
   projects: [
     {
@@ -173,6 +174,16 @@ export const portfolio = {
       skills: ["React", "Zustand", "Tailwind CSS", "Axios"]
     }
   ],
+  education: [
+    {
+      degree: "B.Tech — Computer Science & Engineering",
+      school: "VIT Vellore",
+      period: "Aug. 2024 – May 2028",
+      location: "Vellore, Tamil Nadu",
+      description: "Pursuing a degree in Computer Science & Engineering with a focus on full-stack development, distributed systems, and software engineering fundamentals.",
+      skills: ["DSA", "OOP", "System Design", "Computer Networks", "DBMS"]
+    }
+  ],
   writing: [
     {
       title: "Why I Moved My App from Vercel + Render + Neon to a Single VPS",
@@ -217,7 +228,7 @@ export const portfolio = {
     {
       category: "Languages",
       icon: Code2,
-      skills: ["JavaScript", "TypeScript", "Python", "SQL", "C++"]
+      skills: ["JavaScript", "TypeScript", "Python", "Java", "SQL", "C++"]
     }
   ],
   testimonials: [

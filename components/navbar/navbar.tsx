@@ -8,8 +8,10 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { downloadResume } from "@/lib/utils";
 
 const navLinks = [
+  { name: "About", href: "#about" },
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
+  { name: "Education", href: "#education" },
   { name: "Writing", href: "#writing" },
   { name: "Contact", href: "#contact" },
 ];
@@ -36,7 +38,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold tracking-tight text-white">
-          Shourya<span className="text-neutral-500">.dev</span>
+          Shourya<span className="text-neutral-500">upadhyaya.com</span>
         </Link>
 
         {/* Desktop Navigation */}

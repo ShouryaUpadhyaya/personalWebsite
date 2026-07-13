@@ -48,43 +48,61 @@ export function Contact() {
           <motion.div variants={item}>
             <Card className="bg-neutral-900/50 border-white/10">
               <CardContent className="p-6 md:p-8">
-                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-neutral-300">
-                      Name
-                    </label>
-                    <Input 
-                      id="name" 
-                      placeholder="Your Name" 
-                      className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-neutral-300">
-                      Email
-                    </label>
-                    <Input 
-                      id="email" 
-                      type="email" 
-                      placeholder="your.email@example.com" 
-                      className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700" 
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-neutral-300">
-                      Message
-                    </label>
-                    <Textarea 
-                      id="message" 
-                      placeholder="How can I help?" 
-                      rows={5}
-                      className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700 resize-none" 
-                    />
-                  </div>
-                  <Button className="w-full bg-white text-neutral-950 hover:bg-neutral-200">
-                    <Send className="mr-2 h-4 w-4" /> Send Message
-                  </Button>
-                </form>
+                <form
+                className="space-y-6"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.currentTarget;
+                  const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+                  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+                  const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
+                  const subject = encodeURIComponent(`Portfolio inquiry from ${name || "a visitor"}`);
+                  const body = encodeURIComponent(`${message}\n\n— ${name}${email ? ` (${email})` : ""}`);
+                  window.location.href = `mailto:${portfolio.personal.email}?subject=${subject}&body=${body}`;
+                }}
+              >
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-medium text-neutral-300">
+                    Name
+                  </label>
+                  <Input 
+                    id="name" 
+                    name="name"
+                    placeholder="Your Name" 
+                    required
+                    className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium text-neutral-300">
+                    Email
+                  </label>
+                  <Input 
+                    id="email" 
+                    name="email"
+                    type="email" 
+                    placeholder="your.email@example.com" 
+                    required
+                    className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-medium text-neutral-300">
+                    Message
+                  </label>
+                  <Textarea 
+                    id="message" 
+                    name="message"
+                    placeholder="How can I help?" 
+                    rows={5}
+                    required
+                    className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700 resize-none" 
+                  />
+                </div>
+                <Button type="submit" className="w-full bg-white text-neutral-950 hover:bg-neutral-200">
+                  <Send className="mr-2 h-4 w-4" /> Send Message
+                </Button>
+              </form>
               </CardContent>
             </Card>
           </motion.div>
