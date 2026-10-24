@@ -9,8 +9,8 @@ During live coding contests, hundreds of users submit code, save drafts, and run
 A flawless, real-time contest experience with zero dropped submissions and sub-second compiler feedback for over 1,000 users.
 
 ## How It Works (The Mechanism)
-1. **Triple-Layer Persistence:** Code state is guaranteed through local Zustand state, fast Redis in-memory caching, and durable MongoDB storage. 
-2. **Custom CodeMirror Editor:** Built a customized editor that handles syntax highlighting, auto-completion, and real-time syncing without blocking the main thread.
+1. **Triple-Layer Persistence:** Code state is guaranteed through in-memory Zustand state, automatic browser `localStorage` persistence, and durable MongoDB storage. 
+2. **Custom CodeMirror 6 Editor:** Built a customized editor that handles syntax highlighting, auto-completion, and real-time syncing without blocking the main thread.
 3. **Auto-Submission:** Code is automatically submitted when the timer runs out, ensuring no participant loses progress.
 4. **Optimized Server Actions:** Reduced payload sizes and utilized Next.js Server Components to render the live leaderboard instantly.
 
@@ -56,7 +56,7 @@ The coding part of the application's state is managed by a single Zustand store,
 * **UI Components**: Shadcn/UI
 * **State Management**: Zustand
 * **Form Handling**: React Hook Form & Zod
-* **Code Editor**: CodeMirror
+* **Code Editor**: CodeMirror 6
 * **HTTP Client**: Axios
 * **Notifications**: Firestore, React Hot Toast
 
@@ -64,12 +64,12 @@ The coding part of the application's state is managed by a single Zustand store,
 
 ## Detailed Features
 
-- **Advanced Code Editor**: Powered by CodeMirror, supporting multiple languages (Python, Java, C++, etc.), themes, and keybindings.
+- **Advanced Code Editor**: Powered by CodeMirror 6, supporting multiple languages (Python, Java, C++, etc.), themes, and keybindings.
 - **Progress Restoration**: Your code, selected language, and current round are automatically saved to `localStorage`, allowing you to resume your session anytime.
 - **Auto-Submission**: Code is automatically submitted when the timer runs out, ensuring no progress is lost.
 - **Resizable Layout**: A flexible and resizable panel layout to customize your workspace.
 - **Real-time Scoreboard**: Users can monitor their scores in real time as they complete rounds.
-- **Multi-language Support**: The portal uses the Monaco editor, with support for many languages like Python, Java, C++, etc.
+- **Multi-language Support**: The CodeMirror 6 IDE supports multiple contest languages including Python, Java, C++, and C.
 - **Real-time Compiler Feedback**: Get instant feedback on your code with detailed compiler messages and test case results.
 
 ### Login Interface

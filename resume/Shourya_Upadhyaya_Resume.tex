@@ -52,10 +52,12 @@
   \vspace{-3pt}\bfseries\raggedright\large
 }{}{0em}{}[\color{light-grey}{\titlerule[1.4pt]}\vspace{-5pt}]
 
-\titlespacing*{\section}{0pt}{6.5pt}{1.5ex}
+\titlespacing*{\section}{0pt}{6pt}{1.5ex}
 
 %-------------------------
 % Custom commands
+\newcommand{\ul}[1]{\underline{\smash{#1}}}
+
 \newcommand{\resumeItem}[1]{
   \item\small{
     {#1 \vspace{-1.5pt}}
@@ -67,7 +69,7 @@
     \begin{tabular*}{\textwidth}[t]{l@{\extracolsep{\fill}}r}
       #1 & {\color{dark-grey}\small #2}\vspace{0.5pt}\\
       \textit{\small #3} & {\color{dark-grey}\small\textit{#4}}\\
-    \end{tabular*}\vspace{-4.5pt}
+    \end{tabular*}\vspace{-3.5pt}
 }
 
 \newcommand{\resumeProjectHeading}[2]{
@@ -96,7 +98,7 @@
 %----------HEADING----------
 \begin{center}
     {\LARGE \textbf{Shourya Upadhyaya}} \\ \vspace{3pt}
-    {\footnotesize +91 9411594412 \,|\, \href{mailto:shouryaupadhyaya26@gmail.com}{\underline{shouryaupadhyaya26@gmail.com}} \,|\, \href{https://www.shouryaupadhyaya.com}{\underline{shouryaupadhyaya.com}} \,|\, \href{https://github.com/ShouryaUpadhyaya}{\underline{github.com/ShouryaUpadhyaya}} \,|\, \href{https://www.linkedin.com/in/shourya-upadhyaya-998535332}{\underline{linkedin.com/in/shourya-upadhyaya}}}
+    {\footnotesize +91 9411594412 \,|\, \href{mailto:shouryaupadhyaya26@gmail.com}{\ul{shouryaupadhyaya26@gmail.com}} \,|\, \href{https://www.shouryaupadhyaya.com}{\ul{shouryaupadhyaya.com}} \,|\, \href{https://github.com/ShouryaUpadhyaya}{\ul{github.com/ShouryaUpadhyaya}} \,|\, \href{https://www.linkedin.com/in/shourya-upadhyaya-998535332}{\ul{linkedin.com/in/shourya-upadhyaya}}}
 \end{center}
 \vspace{-10pt}
 
@@ -105,12 +107,12 @@
 \resumeSubHeadingListStart
 
   \resumeSubheading
-    {\textbf{Moss X} \,|\, \href{https://mossx.in}{\underline{mossx.in}} \,|\, \href{https://github.com/Moss-X/Website}{\underline{GitHub}}}
+    {\textbf{Moss X} \,|\, \href{https://mossx.in}{\ul{mossx.in}} \,|\, \href{https://github.com/Moss-X/Website}{\ul{GitHub}}}
     {Apr. 2025 -- Oct. 2025}
     {Lead Full-Stack Developer}{Remote}
     \resumeItemListStart
       \resumeItem{Architected a modular monolithic e-commerce backend serving \textbf{100+ registered users} with \textbf{Node.js, Express.js, MongoDB, and React}, building multi-stage aggregation pipelines for sales analytics, catalog filtering, and guest-to-cloud cart merging.}
-      \resumeItem{Engineered a \textbf{Redis} cache-aside layer with automated invalidation on catalog updates, cutting product listing API latency by \textbf{90\% (1.5 s to 150 ms)} and sustaining \textbf{sub-50 ms} homepage load times.}
+      \resumeItem{Engineered a \textbf{Redis} cache-aside layer with automated invalidation on catalog updates, cutting product listing API latency by \textbf{90\% (1.5~s to 150~ms)} and sustaining \textbf{sub-50~ms} homepage load times.}
       \resumeItem{Integrated \textbf{Razorpay} checkout flows with cryptographic \textbf{HMAC webhook verification}, custom \textbf{idempotency keys} (\textbf{0 duplicate charges} across \textbf{20+ live orders}), and dual-token \textbf{JWT + HttpOnly} refresh authentication.}
       \resumeItem{Led a team of \textbf{3 developers} across frontend architecture, pull-request reviews, and feature delivery while containerizing services with \textbf{Docker} for production deployments on \textbf{Render}.}
     \resumeItemListEnd
@@ -120,7 +122,7 @@
     {Sept. 2024 -- Feb. 2025}
     {Frontend Engineering Intern}{Remote}
     \resumeItemListStart
-      \resumeItem{Accelerated \textbf{Largest Contentful Paint (LCP) by 49\% (3.5 s to 1.8 s)} and boosted URLs passing \textbf{Core Web Vitals from 45\% to 85\%} through route-based code splitting, dynamic lazy loading, and semantic HTML.}
+      \resumeItem{Accelerated \textbf{Largest Contentful Paint (LCP) by 49\% (3.5~s to 1.8~s)} and boosted URLs passing \textbf{Core Web Vitals from 45\% to 85\%} through route-based code splitting, dynamic lazy loading, and semantic HTML.}
       \resumeItem{Built modular \textbf{React.js} interfaces using \textbf{Tailwind CSS} and \textbf{Zustand} state stores, implementing \textbf{Axios} request/response interceptors for automated token refresh and standardized REST API error handling.}
     \resumeItemListEnd
 
@@ -131,26 +133,26 @@
 \resumeSubHeadingListStart
 
   \resumeProjectHeading
-    {\textbf{OpenPumTa} \,|\, \emph{Next.js, Express.js, TypeScript, PostgreSQL, Prisma, Redis, Docker} \,|\, \href{https://openpumta.com}{\underline{openpumta.com}} \,|\, \href{https://github.com/ShouryaUpadhyaya/openPumta}{\underline{GitHub}}}
+    {\textbf{OpenPumTa} \,|\, \emph{Next.js, Express.js, TypeScript, PostgreSQL, Prisma, Redis, Docker} \,|\, \href{https://openpumta.com}{\ul{openpumta.com}} \,|\, \href{https://github.com/ShouryaUpadhyaya/openPumta}{\ul{GitHub}}}
     {Jan. 2025 -- Present}
     \resumeItemListStart
       \resumeItem{Scaled a full-stack productivity workspace to \textbf{300+ registered users} and \textbf{10,000+ visits}, developing \textbf{30+ Zod-validated REST APIs} and \textbf{10 Prisma/PostgreSQL models} for habits, tasks, and focus sessions.}
-      \resumeItem{Reduced \textbf{PostgreSQL read load by 80\%} via \textbf{Redis} analytics caching and engineered a persistent \textbf{WebSocket} state-synchronization engine for \textbf{sub-50 ms} cross-device Pomodoro timer accuracy.}
+      \resumeItem{Reduced \textbf{PostgreSQL read load by 80\%} via \textbf{Redis} analytics caching and engineered a persistent \textbf{WebSocket} state-synchronization engine for \textbf{sub-50~ms} cross-device Pomodoro timer accuracy.}
       \resumeItem{Deployed the multi-container \textbf{Docker Compose} stack on a self-hosted \textbf{Linux VPS} behind \textbf{Nginx} (SSL termination), instrumenting \textbf{Prometheus} scrapers and \textbf{Grafana} dashboards to monitor p95 latency, active sockets, and error rates.}
       \resumeItem{Integrated \textbf{Groq LLM} pipelines for automated daily burnout-prevention reviews, backed by centralized async error handling and automated integration tests.}
     \resumeItemListEnd
 
   \resumeProjectHeading
-    {\textbf{VoiceShield AI} \,|\, \emph{Node.js, TypeScript, Python, FastAPI, PyTorch, Whisper, WebSockets} \,|\, \href{https://github.com/ShouryaUpadhyaya/VoiceShield-AI}{\underline{GitHub}}}
+    {\textbf{VoiceShield AI} \,|\, \emph{Node.js, TypeScript, Python, FastAPI, PyTorch, Whisper, WebSockets} \,|\, \href{https://github.com/ShouryaUpadhyaya/VoiceShield-AI}{\ul{GitHub}}}
     {Smart India Hackathon Finalist}
     \resumeItemListStart
-      \resumeItem{Engineered a real-time \textbf{Node.js/TypeScript} media gateway ingesting \textbf{48 kHz mono PCM16} audio over \textbf{WebSockets}, reassembling arbitrary network frames into ordered \textbf{3-second chunks} verified by a strict byte-conservation invariant (\textbf{50+ unit tests}).}
+      \resumeItem{Engineered a real-time \textbf{Node.js/TypeScript} media gateway ingesting \textbf{48~kHz mono PCM16} audio over \textbf{WebSockets}, reassembling arbitrary network frames into ordered \textbf{3-second chunks} verified by a strict byte-conservation invariant (\textbf{50+ unit tests}).}
       \resumeItem{Decoupled \textbf{PostgreSQL} persistence off the hot audio path via asynchronous write queues while routing binary chunks over persistent WebSockets to a \textbf{FastAPI/PyTorch} inference worker and streaming live alerts to \textbf{Next.js} via \textbf{Socket.IO}.}
-      \resumeItem{Fused \textbf{OpenAI Whisper} transcripts with acoustic deepfake signals (\textbf{RawNet2, WavLM, ONNX}) inside a scam-risk agent, achieving a \textbf{1.1 s median CPU inference latency} per 3-second audio window (\textbf{2.7x faster than real-time}).}
+      \resumeItem{Fused \textbf{OpenAI Whisper} transcripts with acoustic deepfake signals (\textbf{RawNet2, WavLM, ONNX}) inside a scam-risk agent, achieving a \textbf{1.1~s median CPU inference latency} per 3-second audio window (\textbf{2.7x faster than real-time}).}
     \resumeItemListEnd
 
   \resumeProjectHeading
-    {\textbf{Cook Off 10.0 Portal} \,|\, \emph{Next.js, TypeScript, CodeMirror 6, Zustand, MongoDB} \,|\, \href{https://github.com/CodeChefVIT/cookoff-portal-10.0}{\underline{GitHub}}}
+    {\textbf{Cook Off 10.0 Portal} \,|\, \emph{Next.js, TypeScript, CodeMirror 6, Zustand, MongoDB} \,|\, \href{https://github.com/CodeChefVIT/cookoff-portal-10.0}{\ul{GitHub}}}
     {Sept. 2025 -- Feb. 2026}
     \resumeItemListStart
       \resumeItem{Architected a competitive programming IDE on \textbf{Next.js} and \textbf{CodeMirror 6} for \textbf{CodeChef-VIT}, sustaining \textbf{40\% peak concurrent load across 1,000+ contest users} with \textbf{zero dropped submissions} during final-minute traffic spikes.}
@@ -158,11 +160,11 @@
     \resumeItemListEnd
 
   \resumeProjectHeading
-    {\textbf{CRMS \& GoLakeScanner} \,|\, \emph{PostgreSQL 16, Go (pgx/v5), TypeScript, Express.js, Docker} \,|\, \href{https://github.com/ShouryaUpadhyaya/DBMS_Cloud_Management_Software}{\underline{CRMS}} \,|\, \href{https://github.com/ShouryaUpadhyaya/GoLang_Lake_Scanner}{\underline{GoScanner}}}
+    {\textbf{CRMS \& GoLakeScanner} \,|\, \emph{PostgreSQL 16, Go (pgx/v5), TypeScript, Express.js, Docker} \,|\, \href{https://github.com/ShouryaUpadhyaya/DBMS_Cloud_Management_Software}{\ul{CRMS}} \,|\, \href{https://github.com/ShouryaUpadhyaya/GoLang_Lake_Scanner}{\ul{GoScanner}}}
     {2026}
     \resumeItemListStart
-      \resumeItem{Engineered a zero-ORM cloud resource plane in \textbf{PostgreSQL 16} enforcing \textbf{Row-Level Security (RLS)} and \texttt{SELECT FOR UPDATE} quota locking; cut \textbf{1M+ row} query latency by \textbf{99.5\% (42 ms to 0.2 ms)} via \textbf{BRIN/GIN} indexing and streamed \texttt{pg\_notify} alerts over \textbf{SSE}.}
-      \resumeItem{Built an incremental \textbf{Go} data-lake indexer using \textbf{SHA-256} content addressing and a generic bounded goroutine worker pool (\texttt{pool.Run[In, Out]}) with \textbf{30 s per-file context timeouts} and \textbf{pgx/v5} cataloging.}
+      \resumeItem{Engineered a zero-ORM cloud resource plane in \textbf{PostgreSQL 16} enforcing \textbf{Row-Level Security (RLS)} and \texttt{SELECT FOR UPDATE} quota locking; cut \textbf{1M+ row} query latency by \textbf{99.5\% (42~ms to 0.2~ms)} via \textbf{BRIN/GIN} indexing and streamed \texttt{pg\_notify} alerts over \textbf{SSE}.}
+      \resumeItem{Built an incremental \textbf{Go} data-lake indexer using \textbf{SHA-256} content addressing and a generic bounded goroutine worker pool (\texttt{pool.Run[In, Out]}) with \textbf{30~s per-file context timeouts} and \textbf{pgx/v5} cataloging.}
     \resumeItemListEnd
 
 \resumeSubHeadingListEnd
@@ -175,7 +177,7 @@
    \textbf{Backend \& Streaming:} Node.js, Express.js, FastAPI, WebSockets, Socket.IO, SSE, REST APIs, Prisma ORM, pgx/v5 \\
    \textbf{Frontend:} React.js, Next.js, Tailwind CSS, Zustand, TanStack Query, CodeMirror 6 \\
    \textbf{Databases \& Caching:} PostgreSQL (RLS, Partitioning, PL/pgSQL, BRIN/GIN), MongoDB (Aggregation Pipelines), Redis \\
-   \textbf{AI / ML \& Audio:} PyTorch, OpenAI Whisper, ONNX Runtime, SpeechBrain (ECAPA-TDNN), Groq \& Gemini APIs \\
+   \textbf{AI / ML \& Audio:} PyTorch, OpenAI Whisper, ONNX Runtime, WavLM, RawNet2, SpeechBrain, Groq \& Gemini APIs \\
    \textbf{DevOps \& Tools:} Docker, Docker Compose, Nginx, Linux VPS, Prometheus, Grafana, Git, Vitest, Playwright
   }}
 \end{itemize}

@@ -318,7 +318,7 @@ export const portfolio = {
   ],
   experience: [
     {
-      role: "Full-Stack Developer (Backend Lead)",
+      role: "Lead Full-Stack Developer",
       company: "Moss X",
       companyUrl: "https://mossx.in",
       githubUrl: "https://github.com/Moss-X/Website",
@@ -327,7 +327,7 @@ export const portfolio = {
       skills: ["Node.js", "Express.js", "MongoDB", "Redis", "Razorpay", "React", "Docker"]
     },
     {
-      role: "Frontend Developer Intern",
+      role: "Frontend Engineering Intern",
       company: "Nepbyte Technology",
       period: "Sept. 2024 - Feb. 2025",
       description: "Built production React interfaces with Tailwind CSS, Zustand, and Axios REST interceptors. Improved Core Web Vitals through route-based code splitting, lazy loading, and semantic HTML — cutting Largest Contentful Paint (LCP) by 49% from 3.5s to 1.8s and boosting URLs passing Core Web Vitals from 45% to 85%.",
