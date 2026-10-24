@@ -5,7 +5,6 @@ import fs from "fs";
 import path from "path";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Mermaid } from "@/components/projects/mermaid";
 import { Navbar } from "@/components/navbar/navbar";
 import { Footer } from "@/components/footer/footer";
 import { CommandPalette } from "@/components/ui/command-palette";
@@ -18,7 +17,9 @@ interface PageProps {
   }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = portfolio.projects.find((p) => p.slug === slug);
 
@@ -67,7 +68,9 @@ export default async function ProjectPage({ params }: PageProps) {
   if (project.readmeUrl) {
     const filePath = path.join(process.cwd(), "public", project.readmeUrl);
     try {
-      content = fs.readFileSync(filePath, "utf-8");
+      const raw = fs.readFileSync(filePath, "utf-8");
+      // Remove duplicate top-level H1 title line since CaseStudyView header already renders H1
+      content = raw.replace(/^#\s+.+\n+/, "");
     } catch {
       content = "";
     }
@@ -89,6 +92,7 @@ export default async function ProjectPage({ params }: PageProps) {
                 prose-li:text-white/70 prose-li:font-light
                 prose-a:text-white prose-a:underline prose-a:decoration-white/30 hover:prose-a:decoration-white
                 prose-strong:text-white prose-strong:font-medium
+                prose-code:before:content-none prose-code:after:content-none prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:bg-white/[0.08] prose-code:font-mono prose-code:text-white/90 prose-code:font-normal
                 prose-blockquote:border-l-white/30 prose-blockquote:bg-white/[0.02] prose-blockquote:px-4 prose-blockquote:py-1 prose-blockquote:rounded-r-lg
                 prose-pre:bg-[#080808] prose-pre:border prose-pre:border-white/[0.06]
                 prose-th:bg-white/[0.04] prose-th:p-3 prose-td:p-3 prose-td:border-t prose-td:border-white/[0.06]"
@@ -96,6 +100,16 @@ export default async function ProjectPage({ params }: PageProps) {
                 <ReactMarkdown
                   remarkPlugins={[remarkGfm]}
                   components={{
+                    h1: ({ children }) => (
+                      <h3 className="text-2xl font-medium text-white mt-8 mb-4">
+                        {children}
+                      </h3>
+                    ),
+                    h2: ({ children }) => (
+                      <h3 className="text-xl md:text-2xl font-medium text-white mt-10 mb-4">
+                        {children}
+                      </h3>
+                    ),
                     img: (props) => (
                       <div className="relative w-full overflow-hidden rounded-2xl my-8">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -117,12 +131,9 @@ export default async function ProjectPage({ params }: PageProps) {
                       children?: React.ReactNode;
                     }) => {
                       const match = /language-(\w+)/.exec(className || "");
+                      // Skip duplicate Mermaid diagrams since Section 03 (Architecture) renders the interactive ScrollFlow SVG
                       if (!inline && match && match[1] === "mermaid") {
-                        return (
-                          <Mermaid
-                            chart={String(children).replace(/\n$/, "")}
-                          />
-                        );
+                        return null;
                       }
                       return (
                         <code className={className} {...props}>

@@ -11,6 +11,7 @@ const navItems = [
   { name: "Work", id: "work" },
   { name: "Experience", id: "experience" },
   { name: "Stack", id: "stack" },
+  { name: "Contact", id: "contact" },
 ] as const;
 
 const sectionIds = navItems.map((item) => item.id);
@@ -54,7 +55,7 @@ export function Navbar() {
                 aria-current={isActive ? "true" : undefined}
                 onClick={() => handleNavClick(item.id)}
                 onMouseEnter={() => setHoveredItem(item.id)}
-                className={`relative px-2.5 sm:px-4 py-1.5 transition-colors duration-300 ${
+                className={`relative px-2 sm:px-3.5 py-1.5 transition-colors duration-300 cursor-pointer ${
                   isHighlighted ? "text-white" : "text-white/60 hover:text-white"
                 }`}
               >
@@ -75,7 +76,7 @@ export function Navbar() {
           href={profile.github}
           target="_blank"
           rel="noreferrer"
-          className="px-3 sm:px-4 py-1.5 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs font-medium hover:bg-gray-200 transition-colors"
+          className="px-3 sm:px-4 py-1.5 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs font-medium hover:bg-gray-200 transition-colors shrink-0"
         >
           GitHub
         </a>

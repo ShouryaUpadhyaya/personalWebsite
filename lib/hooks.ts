@@ -74,11 +74,18 @@ export function useActiveSection(ids: readonly string[], page?: string): string 
   return active;
 }
 
+function getScrollBehavior(): ScrollBehavior {
+  if (typeof window === "undefined") return "auto";
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ? "auto"
+    : "smooth";
+}
+
 export function scrollToSection(id: string) {
   if (typeof window === "undefined") return;
   const target = document.getElementById(id);
   if (!target) return;
-  target.scrollIntoView({ behavior: "smooth" });
+  target.scrollIntoView({ behavior: getScrollBehavior() });
   history.replaceState(null, "", `#${id}`);
 }
 
@@ -89,5 +96,5 @@ export function setScrollLocked(locked: boolean) {
 
 export function smoothScrollTo(y: number) {
   if (typeof window === "undefined") return;
-  window.scrollTo({ top: y, behavior: "smooth" });
+  window.scrollTo({ top: y, behavior: getScrollBehavior() });
 }

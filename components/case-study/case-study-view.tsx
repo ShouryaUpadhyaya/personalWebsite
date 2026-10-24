@@ -57,12 +57,15 @@ function Section({
         }
       >
         <div className={wide ? "max-w-2xl" : "md:w-1/3 shrink-0"}>
-          <h2 className="font-mono text-xs tracking-[0.2em] text-white/50 mb-4 uppercase">
+          <p
+            aria-hidden="true"
+            className="font-mono text-xs tracking-[0.2em] text-white/50 mb-4 uppercase"
+          >
             {index} &middot; {label}
-          </h2>
-          <h3 className="text-2xl md:text-3xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
+          </p>
+          <h2 className="text-2xl md:text-3xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
             {title}
-          </h3>
+          </h2>
           {caption && (
             <p className="mt-4 text-white/60 font-light leading-relaxed">
               {caption}
@@ -130,9 +133,9 @@ export function CaseStudyView({
         >
           <div>
             <dt className="font-mono text-[10px] tracking-[0.2em] text-white/50 uppercase mb-2">
-              Started
+              Timeline
             </dt>
-            <dd className="text-white/80">{study.started}</dd>
+            <dd className="text-white/80">{project.year}</dd>
           </div>
           <div>
             <dt className="font-mono text-[10px] tracking-[0.2em] text-white/50 uppercase mb-2">
@@ -203,9 +206,9 @@ export function CaseStudyView({
                 <span className="font-mono text-xs text-white/40">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="text-white font-medium tracking-tight">
+                <h3 className="text-white font-medium tracking-tight">
                   {step.title}
-                </span>
+                </h3>
                 <span className="text-sm text-white/60 font-light leading-relaxed">
                   {step.text}
                 </span>

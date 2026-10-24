@@ -24,12 +24,12 @@ export function Hero() {
       onMouseMove={handleMouseMove}
       className="relative min-h-[85vh] flex flex-col justify-center pt-20 pb-16 overflow-hidden"
     >
-      {/* Pointer-following radial spotlight */}
+      {/* Pointer-following radial spotlight scoped to Hero */}
       <div
-        className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
         style={{
           background:
-            "radial-gradient(800px circle at var(--hero-x, 50%) var(--hero-y, 50%), rgba(255,255,255,0.03), transparent 40%)",
+            "radial-gradient(800px circle at var(--hero-x, 50%) var(--hero-y, 50%), rgba(255,255,255,0.035), transparent 40%)",
         }}
       />
 

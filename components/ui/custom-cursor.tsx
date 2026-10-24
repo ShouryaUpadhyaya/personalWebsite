@@ -53,17 +53,19 @@ export function CustomCursor() {
     <>
       <motion.div
         aria-hidden="true"
-        className="fixed top-0 left-0 -ml-2 -mt-2 w-4 h-4 bg-[#00E5FF] rounded-full pointer-events-none z-[100] mix-blend-difference"
+        className="fixed top-0 left-0 -ml-2 -mt-2 w-4 h-4 bg-white rounded-full pointer-events-none z-[100] mix-blend-difference"
         style={{ x: dotX, y: dotY, opacity }}
-        animate={{ scale: isHovering ? 2.5 : 1 }}
+        animate={{ scale: isHovering ? 2.4 : 1 }}
       />
       <motion.div
         aria-hidden="true"
-        className="fixed top-0 left-0 -ml-5 -mt-5 w-10 h-10 border border-[#00E5FF]/40 rounded-full pointer-events-none z-[99]"
+        className="fixed top-0 left-0 -ml-5 -mt-5 w-10 h-10 border border-white/35 rounded-full pointer-events-none z-[99]"
         style={{ x: ringX, y: ringY, opacity }}
         animate={{
           scale: isHovering ? 1.5 : 1,
-          borderColor: isHovering ? "rgba(0,229,255,0)" : "rgba(0,229,255,0.4)",
+          borderColor: isHovering
+            ? "rgba(255,255,255,0)"
+            : "rgba(255,255,255,0.35)",
         }}
       />
     </>

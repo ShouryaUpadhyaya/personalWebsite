@@ -4,6 +4,7 @@ import { About } from "@/components/about/about";
 import { Projects } from "@/components/projects/projects";
 import { Experience } from "@/components/experience/experience";
 import { TechStack } from "@/components/tech-stack/tech-stack";
+import { Writing } from "@/components/writing/writing";
 import { Contact } from "@/components/contact/contact";
 import { Footer } from "@/components/footer/footer";
 import { CommandPalette } from "@/components/ui/command-palette";
@@ -20,6 +21,7 @@ export default function Home() {
           <Projects />
           <Experience />
           <TechStack />
+          <Writing />
           <Contact />
         </main>
         <Footer />

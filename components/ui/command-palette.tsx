@@ -19,9 +19,14 @@ import {
   UserRound,
   CornerDownLeft,
   ExternalLink,
+  BookOpen,
 } from "lucide-react";
-import { profile, projects } from "@/data/portfolio";
-import { scrollToSection, setScrollLocked, useCopyToClipboard } from "@/lib/hooks";
+import { profile, projects, writing } from "@/data/portfolio";
+import {
+  scrollToSection,
+  setScrollLocked,
+  useCopyToClipboard,
+} from "@/lib/hooks";
 
 const subscribeToNothing = () => () => {};
 const detectMac = () =>
@@ -36,6 +41,7 @@ const sections = [
   { id: "work", name: "Projects", icon: FileCode2 },
   { id: "experience", name: "Experience", icon: Briefcase },
   { id: "stack", name: "Tech Stack", icon: Terminal },
+  { id: "writing", name: "Writing", icon: BookOpen },
   { id: "contact", name: "Contact", icon: Mail },
 ];
 
@@ -51,7 +57,8 @@ interface CommandItem {
 }
 
 function matches(command: CommandItem, query: string) {
-  const haystack = `${command.name} ${command.hint ?? ""} ${command.keywords}`.toLowerCase();
+  const haystack =
+    `${command.name} ${command.hint ?? ""} ${command.keywords}`.toLowerCase();
   return query
     .toLowerCase()
     .split(/\s+/)
@@ -60,7 +67,8 @@ function matches(command: CommandItem, query: string) {
 
 const isTypingTarget = (el: EventTarget | null) =>
   el instanceof HTMLElement &&
-  (el.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(el.tagName));
+  (el.isContentEditable ||
+    ["INPUT", "TEXTAREA", "SELECT"].includes(el.tagName));
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
@@ -130,13 +138,22 @@ export function CommandPalette() {
       keywords: `${project.type} ${project.tech.join(" ")} case study`,
       run: () => router.push(`/projects/${project.slug}`),
     })),
+    ...writing.map((article, idx) => ({
+      id: `writing-${idx}`,
+      group: "Writing",
+      name: article.title,
+      hint: article.readTime,
+      icon: BookOpen,
+      keywords: `article blog medium writing ${article.description}`,
+      run: () => window.open(article.url, "_blank", "noopener,noreferrer"),
+    })),
     {
       id: "copy-email",
       group: "Contact",
       name: copied ? "Copied!" : "Copy email address",
       hint: profile.email,
       icon: copied ? Check : Copy,
-      keywords: "email mail clipboard contact",
+      keywords: "copy copied email address mail clipboard contact",
       keepOpen: true,
       run: () => {
         void copy(profile.email);
@@ -184,7 +201,9 @@ export function CommandPalette() {
       ? commands
       : commands.filter((command) => matches(command, search.trim()));
   const active =
-    filteredCommands[Math.min(activeIndex, filteredCommands.length - 1)];
+    filteredCommands.length > 0
+      ? filteredCommands[Math.min(activeIndex, filteredCommands.length - 1)]
+      : undefined;
 
   useEffect(() => {
     if (open && active) {
@@ -211,7 +230,7 @@ export function CommandPalette() {
     } else if (e.key === "ArrowUp" && count) {
       e.preventDefault();
       setActiveIndex((i) => (Math.min(i, count - 1) - 1 + count) % count);
-    } else if (e.key === "Enter") {
+    } else if (e.key === "Enter" && active) {
       e.preventDefault();
       runCommand(active);
     } else if (e.key === "Tab") {
@@ -275,7 +294,7 @@ export function CommandPalette() {
                       active ? `palette-${active.id}` : undefined
                     }
                     aria-label="Search sections, projects and links"
-                    placeholder="Search projects, tech, or jump to…"
+                    placeholder="Search projects, tech, articles, or jump to…"
                     value={search}
                     onChange={(e) => {
                       setSearch(e.target.value);
@@ -286,7 +305,6 @@ export function CommandPalette() {
                   />
                   <button
                     type="button"
-                    tabIndex={-1}
                     aria-label="Close"
                     onClick={() => setOpen(false)}
                     className="text-white/50 hover:text-white transition-colors cursor-pointer"

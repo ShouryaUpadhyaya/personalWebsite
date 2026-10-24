@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   smoothScrollTo,
   useMediaQuery,
@@ -67,7 +67,7 @@ function FlowSvg({
               y={g.y + 18}
               fill="#fff"
               fillOpacity="0.45"
-              fontFamily="monospace"
+              style={{ fontFamily: "var(--font-mono)" }}
               fontSize="9"
               letterSpacing="2"
             >
@@ -124,7 +124,7 @@ function FlowSvg({
                 textAnchor="middle"
                 fill="#fff"
                 fillOpacity="0.5"
-                fontFamily="monospace"
+                style={{ fontFamily: "var(--font-mono)" }}
                 fontSize="8.5"
               >
                 {edge.label}
@@ -164,8 +164,8 @@ function FlowSvg({
               y={box.y + box.h / 2 - (node.sub ? 3 : -4)}
               textAnchor="middle"
               fill="#EEE"
-              fontFamily="monospace"
-              fontSize="11"
+              style={{ fontFamily: "var(--font-mono)" }}
+              fontSize="10.5"
               fontWeight="500"
             >
               {node.label}
@@ -176,8 +176,8 @@ function FlowSvg({
                 y={box.y + box.h / 2 + 12}
                 textAnchor="middle"
                 fill="#8a8a8a"
-                fontFamily="monospace"
-                fontSize="9"
+                style={{ fontFamily: "var(--font-mono)" }}
+                fontSize="8.5"
               >
                 {node.sub}
               </text>
@@ -199,14 +199,21 @@ export function ScrollFlow({ flow }: { flow: CaseStudyFlow }) {
   const { scrollY } = useScroll();
   const steps = flow.steps.length;
 
-  useMotionValueEvent(scrollY, "change", () => {
+  const updateStepFromScroll = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
+    const stickyOffset = 96;
     const denom = Math.max(1, rect.height - window.innerHeight);
-    const progress = Math.min(1, Math.max(0, -rect.top / denom));
+    const progress = Math.min(1, Math.max(0, (stickyOffset - rect.top) / denom));
     setActiveStep(Math.min(steps - 1, Math.floor(progress * steps)));
-  });
+  }, [steps]);
+
+  useEffect(() => {
+    updateStepFromScroll();
+  }, [updateStepFromScroll]);
+
+  useMotionValueEvent(scrollY, "change", updateStepFromScroll);
 
   const goToStep = (index: number) => {
     const el = containerRef.current;
@@ -214,7 +221,8 @@ export function ScrollFlow({ flow }: { flow: CaseStudyFlow }) {
     const scrollable = el.offsetHeight - window.innerHeight;
     smoothScrollTo(
       el.getBoundingClientRect().top +
-        window.scrollY +
+        window.scrollY -
+        96 +
         ((index + 0.5) / steps) * scrollable,
     );
   };
