@@ -81,7 +81,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
       points: [
         "Orphaned and drifting Pomodoro sessions: a timer started on a laptop must stay accurate to the second on a phone, and recover cleanly if the browser tab crashes.",
         "Expensive streak and heatmap aggregations: computing 21-day habit streaks and study-hour leaderboards across 10,000+ visits directly in PostgreSQL creates unnecessary read amplification.",
-        "Managed-cloud sprawl: running split frontend, backend, database, and cache tiers across separate free/hobby clouds added cross-region latency and unpredictable cold starts.",
+        "Managed-cloud sprawl: running split frontend, backend, database, and cache tiers across separate hobby clouds added cross-region latency and unpredictable cold starts.",
       ],
     },
     approach: [
@@ -112,21 +112,21 @@ export const caseStudies: Record<string, CaseStudyData> = {
       flow: {
         label: "OpenPumTa production architecture",
         wide: {
-          width: 720,
+          width: 760,
           height: 340,
-          node: { w: 124, h: 54 },
+          node: { w: 120, h: 54 },
           nodes: {
-            clients: [10, 140],
-            nginx: [164, 140],
-            nextjs: [320, 40],
-            express: [320, 140],
-            ws: [320, 240],
-            redis: [484, 80],
-            postgres: [484, 200],
-            grafana: [586, 140],
+            clients: [8, 140],
+            nginx: [154, 140],
+            nextjs: [300, 40],
+            express: [300, 140],
+            ws: [300, 240],
+            redis: [456, 80],
+            postgres: [456, 200],
+            grafana: [616, 140],
           },
           groups: {
-            vps: { x: 152, y: 16, w: 560, h: 304 },
+            vps: { x: 142, y: 16, w: 608, h: 304 },
           },
         },
         tall: {
@@ -211,7 +211,8 @@ export const caseStudies: Record<string, CaseStudyData> = {
           { from: "express", to: "redis", step: 4 },
           { from: "express", to: "postgres", step: 4 },
           { from: "ws", to: "redis", step: 4 },
-          { from: "express", to: "grafana", step: 5, dashed: true },
+          { from: "redis", to: "grafana", step: 5, dashed: true },
+          { from: "postgres", to: "grafana", step: 5, dashed: true },
         ],
         steps: [
           {
@@ -246,13 +247,22 @@ export const caseStudies: Record<string, CaseStudyData> = {
       stats: [
         { value: 300, suffix: "+", label: "registered active users" },
         { value: 10000, suffix: "+", label: "total platform visits served" },
-        { value: 80, suffix: "%", label: "reduction in PostgreSQL read queries via Redis" },
-        { value: 30, suffix: "+", label: "validated REST APIs & 10 Prisma models" },
+        {
+          value: 80,
+          suffix: "%",
+          label: "reduction in PostgreSQL read queries via Redis",
+        },
+        {
+          value: 30,
+          suffix: "+",
+          label: "validated REST APIs & 10 Prisma models",
+        },
       ],
       charts: [
         {
           title: "Analytics endpoint response latency",
-          caption: "Dashboard study-summary & 21-day streak query latency before and after Redis caching (lower is better).",
+          caption:
+            "Dashboard study-summary & 21-day streak query latency before and after Redis caching (lower is better).",
           max: 450,
           unit: " ms",
           bars: [
@@ -269,7 +279,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
   voiceshield: {
     name: "VoiceShield AI",
     context: "Smart India Hackathon · VIT Vellore College Finalist",
-    started: "2025",
+    started: "Sep 2025",
     problem: {
       lead: "Voice-cloning deepfakes and high-pressure social-engineering phone scams happen mid-call. Detecting them requires analyzing raw audio and conversational intent within seconds without blocking the live audio stream.",
       points: [
@@ -289,7 +299,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
       {
         title: "Dual-stream acoustic + Whisper analysis",
-        text: "Combined RawNet2/WavLM/ONNX spoof scoring on raw waveforms with OpenAI Whisper transcripts fed into a deterministic scam-risk agent.",
+        text: "Combined RawNet2, WavLM, and SpeechBrain (ECAPA-TDNN) spoof scoring on raw waveforms with OpenAI Whisper transcripts fed into a deterministic scam-risk agent.",
       },
       {
         title: "Off-path PostgreSQL write queue",
@@ -297,21 +307,22 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
     ],
     architecture: {
-      caption: "From live 48 kHz PCM16 telephony frames to sub-second Socket.IO scam alerts.",
+      caption:
+        "From live 48 kHz PCM16 telephony frames to sub-second Socket.IO scam alerts.",
       flow: {
         label: "VoiceShield AI streaming architecture",
         wide: {
-          width: 720,
+          width: 740,
           height: 300,
-          node: { w: 124, h: 52 },
+          node: { w: 120, h: 52 },
           nodes: {
-            call: [10, 120],
-            gateway: [164, 120],
-            chunker: [318, 120],
-            acoustic: [472, 40],
-            whisper: [472, 130],
-            dbqueue: [472, 220],
-            dashboard: [606, 85],
+            call: [8, 120],
+            gateway: [152, 120],
+            chunker: [296, 120],
+            acoustic: [444, 40],
+            whisper: [444, 130],
+            dbqueue: [444, 220],
+            dashboard: [600, 85],
           },
         },
         tall: {
@@ -329,13 +340,53 @@ export const caseStudies: Record<string, CaseStudyData> = {
           },
         },
         nodes: [
-          { id: "call", label: "48kHz PCM16", sub: "Android · SIP", kind: "input", step: 0 },
-          { id: "gateway", label: "WS GATEWAY", sub: "Node.js + TS", kind: "focus", step: 1 },
-          { id: "chunker", label: "3s CHUNKER", sub: "Byte-Invariant", kind: "focus", step: 2 },
-          { id: "acoustic", label: "ACOUSTIC ML", sub: "RawNet2 · ONNX", step: 3 },
-          { id: "whisper", label: "WHISPER STT", sub: "Scam-Risk Agent", step: 3 },
-          { id: "dbqueue", label: "ASYNC DB QUEUE", sub: "Off-Path PG Write", kind: "store", step: 4 },
-          { id: "dashboard", label: "LIVE UI", sub: "Socket.IO Stream", kind: "store", step: 5 },
+          {
+            id: "call",
+            label: "48kHz PCM16",
+            sub: "Android · SIP",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "gateway",
+            label: "WS GATEWAY",
+            sub: "Node.js + TS",
+            kind: "focus",
+            step: 1,
+          },
+          {
+            id: "chunker",
+            label: "3s CHUNKER",
+            sub: "Byte-Invariant",
+            kind: "focus",
+            step: 2,
+          },
+          {
+            id: "acoustic",
+            label: "ACOUSTIC ML",
+            sub: "RawNet2 · ONNX",
+            step: 3,
+          },
+          {
+            id: "whisper",
+            label: "WHISPER STT",
+            sub: "Scam-Risk Agent",
+            step: 3,
+          },
+          {
+            id: "dbqueue",
+            label: "ASYNC DB QUEUE",
+            sub: "Off-Path PG Write",
+            kind: "store",
+            step: 4,
+          },
+          {
+            id: "dashboard",
+            label: "LIVE UI",
+            sub: "Socket.IO Stream",
+            kind: "store",
+            step: 5,
+          },
         ],
         edges: [
           { from: "call", to: "gateway", step: 1 },
@@ -347,32 +398,72 @@ export const caseStudies: Record<string, CaseStudyData> = {
           { from: "whisper", to: "dashboard", step: 5 },
         ],
         steps: [
-          { title: "Live 48 kHz mono PCM16 stream", text: "Audio frames arrive over WebSockets from the Android CallVault client or SIP bridge." },
-          { title: "Non-blocking Node.js ingest", text: "The TypeScript gateway validates session state and buffers incoming binary frames." },
-          { title: "Exact 3-second window assembly", text: "Frames are sliced and concatenated into ordered 288,000-byte windows with zero dropped or duplicated bytes." },
-          { title: "Parallel acoustic + transcript inference", text: "FastAPI evaluates voice spoof probability alongside Whisper transcription and scam-intent rules." },
-          { title: "Off-path PostgreSQL persistence", text: "Call telemetry and chunk verdicts are queued asynchronously off the real-time audio thread." },
-          { title: "Real-time Socket.IO dashboard", text: "Per-window spoof scores and transcripts stream live to the operator dashboard." },
+          {
+            title: "Live 48 kHz mono PCM16 stream",
+            text: "Audio frames arrive over WebSockets from the Android CallVault client or SIP bridge.",
+          },
+          {
+            title: "Non-blocking Node.js ingest",
+            text: "The TypeScript gateway validates session state and buffers incoming binary frames.",
+          },
+          {
+            title: "Exact 3-second window assembly",
+            text: "Frames are sliced and concatenated into ordered 288,000-byte windows with zero dropped or duplicated bytes.",
+          },
+          {
+            title: "Parallel acoustic + transcript inference",
+            text: "FastAPI evaluates voice spoof probability alongside Whisper transcription and scam-intent rules.",
+          },
+          {
+            title: "Off-path PostgreSQL persistence",
+            text: "Call telemetry and chunk verdicts are queued asynchronously off the real-time audio thread.",
+          },
+          {
+            title: "Real-time Socket.IO dashboard",
+            text: "Per-window spoof scores and transcripts stream live to the operator dashboard.",
+          },
         ],
       },
     },
     results: {
       title: "Streaming benchmarks",
       stats: [
-        { value: 1.1, decimals: 1, suffix: " s", label: "median CPU inference per 3-second audio window" },
-        { value: 48, suffix: " kHz", label: "mono PCM16 sampling rate with 100% byte conservation" },
-        { value: 3, suffix: " s", label: "ordered sliding audio window (288 KB/chunk)" },
-        { value: 0, label: "blocking database writes on the audio ingest path" },
+        {
+          value: 1.1,
+          decimals: 1,
+          suffix: " s",
+          label: "median CPU inference per 3-second audio window",
+        },
+        {
+          value: 48,
+          suffix: " kHz",
+          label: "mono PCM16 sampling rate with 100% byte conservation",
+        },
+        {
+          value: 3,
+          suffix: " s",
+          label: "ordered sliding audio window (288 KB/chunk)",
+        },
+        {
+          value: 0,
+          label: "blocking database writes on the audio ingest path",
+        },
       ],
       charts: [
         {
           title: "Processing budget per 3.0s real-time window",
-          caption: "Median end-to-end CPU processing latency vs the 3.0-second real-time deadline (lower is better).",
+          caption:
+            "Median end-to-end CPU processing latency vs the 3.0-second real-time deadline (lower is better).",
           max: 3.0,
           unit: " s",
           reference: { value: 3.0, label: "3.0s real-time budget" },
           bars: [
-            { label: "VoiceShield CPU Pipeline (Median)", value: 1.1, display: "1.1s", highlight: true },
+            {
+              label: "VoiceShield CPU Pipeline (Median)",
+              value: 1.1,
+              display: "1.1s",
+              highlight: true,
+            },
             { label: "Real-Time Window Budget", value: 3.0, display: "3.0s" },
           ],
         },
@@ -409,7 +500,8 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
     ],
     architecture: {
-      caption: "Modular monolith with Redis catalog caching and idempotent Razorpay verification.",
+      caption:
+        "Modular monolith with Redis catalog caching and idempotent Razorpay verification.",
       flow: {
         label: "Moss X e-commerce architecture",
         wide: {
@@ -439,12 +531,47 @@ export const caseStudies: Record<string, CaseStudyData> = {
           },
         },
         nodes: [
-          { id: "spa", label: "REACT SPA", sub: "<50ms Homepage", kind: "input", step: 0 },
-          { id: "api", label: "EXPRESS API", sub: "Modular Monolith", kind: "focus", step: 1 },
-          { id: "redis", label: "REDIS CACHE", sub: "150ms Catalog", kind: "store", step: 2 },
-          { id: "mongo", label: "MONGODB", sub: "Aggregations", kind: "store", step: 3 },
-          { id: "razorpay", label: "RAZORPAY", sub: "HMAC + Idempotent", kind: "focus", step: 4 },
-          { id: "admin", label: "ADMIN ANALYTICS", sub: "Sales & Inventory", step: 5 },
+          {
+            id: "spa",
+            label: "REACT SPA",
+            sub: "<50ms Homepage",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "api",
+            label: "EXPRESS API",
+            sub: "Modular Monolith",
+            kind: "focus",
+            step: 1,
+          },
+          {
+            id: "redis",
+            label: "REDIS CACHE",
+            sub: "150ms Catalog",
+            kind: "store",
+            step: 2,
+          },
+          {
+            id: "mongo",
+            label: "MONGODB",
+            sub: "Aggregations",
+            kind: "store",
+            step: 3,
+          },
+          {
+            id: "razorpay",
+            label: "RAZORPAY",
+            sub: "HMAC + Idempotent",
+            kind: "focus",
+            step: 4,
+          },
+          {
+            id: "admin",
+            label: "ADMIN ANALYTICS",
+            sub: "Sales & Inventory",
+            step: 5,
+          },
         ],
         edges: [
           { from: "spa", to: "api", step: 1 },
@@ -454,27 +581,59 @@ export const caseStudies: Record<string, CaseStudyData> = {
           { from: "mongo", to: "admin", step: 5 },
         ],
         steps: [
-          { title: "Sub-50ms storefront", text: "Customers browse products, carts, and checkout flows in the React storefront." },
-          { title: "Express modular monolith", text: "Domain modules isolate catalog, cart, auth, payment, and analytics logic." },
-          { title: "Redis catalog acceleration", text: "Product listings resolve from Redis in 150ms instead of hitting MongoDB on every request." },
-          { title: "MongoDB persistence & pipelines", text: "Orders, users, and aggregation pipelines run against indexed collections." },
-          { title: "HMAC-verified Razorpay webhooks", text: "Cryptographic signature verification and idempotency guards prevent duplicate charges." },
-          { title: "Real-time admin insights", text: "Aggregation pipelines power revenue breakdowns and inventory management." },
+          {
+            title: "Sub-50ms storefront",
+            text: "Customers browse products, carts, and checkout flows in the React storefront.",
+          },
+          {
+            title: "Express modular monolith",
+            text: "Domain modules isolate catalog, cart, auth, payment, and analytics logic.",
+          },
+          {
+            title: "Redis catalog acceleration",
+            text: "Product listings resolve from Redis in 150ms instead of hitting MongoDB on every request.",
+          },
+          {
+            title: "MongoDB persistence & pipelines",
+            text: "Orders, users, and aggregation pipelines run against indexed collections.",
+          },
+          {
+            title: "HMAC-verified Razorpay webhooks",
+            text: "Cryptographic signature verification and idempotency guards prevent duplicate charges.",
+          },
+          {
+            title: "Real-time admin insights",
+            text: "Aggregation pipelines power revenue breakdowns and inventory management.",
+          },
         ],
       },
     },
     results: {
       title: "Latency & production metrics",
       stats: [
-        { value: 90, suffix: "%", label: "reduction in product listing API latency (1.5s → 150ms)" },
-        { value: 50, prefix: "<", suffix: " ms", label: "homepage response latency" },
+        {
+          value: 90,
+          suffix: "%",
+          label: "reduction in product listing API latency (1.5s → 150ms)",
+        },
+        {
+          value: 50,
+          prefix: "<",
+          suffix: " ms",
+          label: "homepage response latency",
+        },
         { value: 100, suffix: "+", label: "registered customers on mossx.in" },
-        { value: 20, suffix: "+", label: "live Razorpay orders with zero duplicate charges" },
+        {
+          value: 20,
+          suffix: "+",
+          label: "live Razorpay orders with zero duplicate charges",
+        },
       ],
       charts: [
         {
           title: "Product catalog API response time",
-          caption: "Mean response time before and after Redis caching (lower is better).",
+          caption:
+            "Mean response time before and after Redis caching (lower is better).",
           max: 1500,
           unit: " ms",
           bars: [
@@ -487,8 +646,9 @@ export const caseStudies: Record<string, CaseStudyData> = {
   },
   crms: {
     name: "CRMS Cloud Control Plane",
-    context: "Database-Centric Multi-Tenant Cloud & Telemetry Engine · PostgreSQL 16",
-    started: "2026",
+    context:
+      "Database-Centric Multi-Tenant Cloud & Telemetry Engine · PostgreSQL 16",
+    started: "Jan 2026",
     problem: {
       lead: "Application-layer multi-tenancy and check-then-act quota checks break under concurrent requests: a missing WHERE clause leaks tenant rows, and parallel VM provisioning requests bypass vCPU/RAM limits.",
       points: [
@@ -500,23 +660,24 @@ export const caseStudies: Record<string, CaseStudyData> = {
     approach: [
       {
         title: "PostgreSQL 16 Row-Level Security (RLS)",
-        text: "Wrapped every request in a database transaction setting `SET LOCAL app.current_org_id`, enforcing tenant isolation directly inside PostgreSQL policies alongside `btree_gist` temporal exclusion constraints.",
+        text: "Wrapped every request in a database transaction setting SET LOCAL app.current_org_id, enforcing tenant isolation directly inside PostgreSQL policies alongside btree_gist temporal exclusion constraints.",
       },
       {
         title: "Pessimistic SELECT FOR UPDATE quota locks",
-        text: "Implemented `sp_allocate_resource` in PL/pgSQL to lock the parent quota row during allocation, serializing concurrent requests and eliminating over-allocation races.",
+        text: "Implemented sp_allocate_resource in PL/pgSQL to lock the parent quota row during allocation, serializing concurrent requests and eliminating over-allocation races.",
       },
       {
         title: "1M+ row range partitioning + BRIN & GIN indexes",
-        text: "Partitioned `usage_metrics` by timestamp and indexed with BRIN (block-range) and GIN (JSONB tags), reducing time-range query latency from 42ms to 0.2ms.",
+        text: "Partitioned usage_metrics by timestamp and indexed with BRIN (block-range) and GIN (JSONB tags), reducing time-range query latency from 42ms to 0.2ms.",
       },
       {
         title: "Read-only Docker proxy & LISTEN/NOTIFY SSE",
-        text: "Collected live container CPU/memory every 30s through a restricted `tecnativa/docker-socket-proxy` and pushed threshold alerts to the React console via PostgreSQL `pg_notify` and Server-Sent Events.",
+        text: "Collected live container CPU/memory every 30s through a restricted tecnativa/docker-socket-proxy and pushed threshold alerts to the React console via PostgreSQL pg_notify and Server-Sent Events.",
       },
     ],
     architecture: {
-      caption: "All business invariants live inside PostgreSQL 16 triggers, stored procedures, and RLS policies.",
+      caption:
+        "All business invariants live inside PostgreSQL 16 triggers, stored procedures, and RLS policies.",
       flow: {
         label: "CRMS PostgreSQL 16 control plane architecture",
         wide: {
@@ -550,14 +711,60 @@ export const caseStudies: Record<string, CaseStudyData> = {
           },
         },
         nodes: [
-          { id: "docker", label: "DOCKER PROXY", sub: "Read-Only Socket", kind: "input", step: 0 },
-          { id: "client", label: "CLOUD CONSOLE", sub: "React + DB Lab", kind: "input", step: 0 },
-          { id: "collector", label: "COLLECTOR", sub: "30s Telemetry", step: 1 },
-          { id: "api", label: "EXPRESS API", sub: "SET LOCAL org_id", step: 2 },
-          { id: "procs", label: "PL/pgSQL PROCS", sub: "FOR UPDATE Locks", kind: "focus", step: 3 },
-          { id: "rls", label: "PG16 RLS", sub: "Tenant Isolation", kind: "focus", step: 3 },
-          { id: "partitions", label: "1M+ PARTITIONS", sub: "BRIN · GIN · 0.2ms", kind: "store", step: 4 },
-          { id: "sse", label: "PG_NOTIFY SSE", sub: "Live Alerts", kind: "store", step: 5 },
+          {
+            id: "docker",
+            label: "DOCKER PROXY",
+            sub: "Read-Only Socket",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "client",
+            label: "CLOUD CONSOLE",
+            sub: "React + DB Lab",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "collector",
+            label: "COLLECTOR",
+            sub: "30s Telemetry",
+            step: 1,
+          },
+          {
+            id: "api",
+            label: "EXPRESS API",
+            sub: "SET LOCAL org_id",
+            step: 2,
+          },
+          {
+            id: "procs",
+            label: "PL/pgSQL PROCS",
+            sub: "FOR UPDATE Locks",
+            kind: "focus",
+            step: 3,
+          },
+          {
+            id: "rls",
+            label: "PG16 RLS",
+            sub: "Tenant Isolation",
+            kind: "focus",
+            step: 3,
+          },
+          {
+            id: "partitions",
+            label: "1M+ PARTITIONS",
+            sub: "BRIN · GIN · 0.2ms",
+            kind: "store",
+            step: 4,
+          },
+          {
+            id: "sse",
+            label: "PG_NOTIFY SSE",
+            sub: "Live Alerts",
+            kind: "store",
+            step: 5,
+          },
         ],
         edges: [
           { from: "docker", to: "collector", step: 1 },
@@ -570,32 +777,75 @@ export const caseStudies: Record<string, CaseStudyData> = {
           { from: "sse", to: "client", step: 5, dashed: true },
         ],
         steps: [
-          { title: "Isolated Docker telemetry & console", text: "Container stats are read via a restricted socket proxy while tenants interact through the React console." },
-          { title: "30-second metric ingestion", text: "The collector batches CPU, memory, network, and disk I/O readings into PostgreSQL." },
-          { title: "Per-request RLS transaction context", text: "Every API call sets `app.current_org_id` locally so PostgreSQL policies filter rows automatically." },
-          { title: "Transactional stored procedures", text: "`SELECT ... FOR UPDATE` locks prevent concurrent VM quota over-allocation." },
-          { title: "Partitioned storage with BRIN & GIN", text: "1,000,000+ metric rows are range-partitioned and queried in 0.2ms." },
-          { title: "Zero-polling LISTEN/NOTIFY stream", text: "Threshold triggers fire `pg_notify`, streaming live alerts to the browser over SSE." },
+          {
+            title: "Isolated Docker telemetry & console",
+            text: "Container stats are read via a restricted socket proxy while tenants interact through the React console.",
+          },
+          {
+            title: "30-second metric ingestion",
+            text: "The collector batches CPU, memory, network, and disk I/O readings into PostgreSQL.",
+          },
+          {
+            title: "Per-request RLS transaction context",
+            text: "Every API call sets app.current_org_id locally so PostgreSQL policies filter rows automatically.",
+          },
+          {
+            title: "Transactional stored procedures",
+            text: "SELECT ... FOR UPDATE row locks prevent concurrent VM quota over-allocation.",
+          },
+          {
+            title: "Partitioned storage with BRIN & GIN",
+            text: "1,000,000+ metric rows are range-partitioned and queried in 0.2ms.",
+          },
+          {
+            title: "Zero-polling LISTEN/NOTIFY stream",
+            text: "Threshold triggers fire pg_notify, streaming live alerts to the browser over SSE.",
+          },
         ],
       },
     },
     results: {
       title: "Database benchmark (1,000,000+ rows)",
       stats: [
-        { value: 0.2, decimals: 1, suffix: " ms", label: "indexed time-range query latency (down from 42ms)" },
-        { value: 1000000, suffix: "+", label: "partitioned telemetry rows benchmarked" },
-        { value: 14, label: "3NF/BCNF tables with RLS & exclusion constraints" },
-        { value: 0, label: "quota race-condition over-allocations under parallel load" },
+        {
+          value: 0.2,
+          decimals: 1,
+          suffix: " ms",
+          label: "indexed time-range query latency (down from 42ms)",
+        },
+        {
+          value: 1000000,
+          suffix: "+",
+          label: "partitioned telemetry rows benchmarked",
+        },
+        {
+          value: 14,
+          label: "3NF/BCNF tables with RLS & exclusion constraints",
+        },
+        {
+          value: 0,
+          label: "quota race-condition over-allocations under parallel load",
+        },
       ],
       charts: [
         {
           title: "1M-row time-range query execution time",
-          caption: "PostgreSQL EXPLAIN ANALYZE execution time before and after range partitioning + BRIN/GIN indexing (lower is better).",
+          caption:
+            "PostgreSQL EXPLAIN ANALYZE execution time before and after range partitioning + BRIN/GIN indexing (lower is better).",
           max: 45,
           unit: " ms",
           bars: [
-            { label: "Partitioned + BRIN / GIN Index", value: 0.2, display: "0.2 ms", highlight: true },
-            { label: "Unindexed Sequential Scan", value: 42.0, display: "42.0 ms" },
+            {
+              label: "Partitioned + BRIN / GIN Index",
+              value: 0.2,
+              display: "0.2 ms",
+              highlight: true,
+            },
+            {
+              label: "Unindexed Sequential Scan",
+              value: 42.0,
+              display: "42.0 ms",
+            },
           ],
         },
       ],
@@ -604,7 +854,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
   "job-agent": {
     name: "Job Agent",
     context: "Autonomous Job-Discovery, Multi-Resume Scorer & ATS Classifier",
-    started: "2026",
+    started: "Feb 2026",
     problem: {
       lead: "Hunting for software engineering internships across dozens of ATS boards and tracking hundreds of recruiter emails manually wastes hours — while naive LLM auto-appliers hallucinate skills and corrupt pipeline state.",
       points: [
@@ -624,7 +874,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
       {
         title: "12-class Gmail OAuth state machine",
-        text: "Synced recruiter threads via Gmail OAuth and classified emails into 12 categories with strict forward-only stage progression (`SAVED -> APPLIED -> SCREENING -> OA -> INTERVIEW -> OFFER`).",
+        text: "Synced recruiter threads via Gmail OAuth and classified emails into 12 categories with strict forward-only stage progression (SAVED → APPLIED → SCREENING → OA → INTERVIEW → OFFER).",
       },
       {
         title: "Guarded Playwright runner with SSE logs",
@@ -632,7 +882,8 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
     ],
     architecture: {
-      caption: "From 8+ ATS feeds and Gmail OAuth threads to deterministic resume scoring and guarded Playwright runs.",
+      caption:
+        "From 8+ ATS feeds and Gmail OAuth threads to deterministic resume scoring and guarded Playwright runs.",
       flow: {
         label: "Job Agent pipeline architecture",
         wide: {
@@ -664,13 +915,54 @@ export const caseStudies: Record<string, CaseStudyData> = {
           },
         },
         nodes: [
-          { id: "ats", label: "8+ ATS FEEDS", sub: "Greenhouse · Lever", kind: "input", step: 0 },
-          { id: "gmail", label: "GMAIL OAUTH", sub: "Recruiter Threads", kind: "input", step: 0 },
-          { id: "scorer", label: "RESUME SCORER", sub: "0–100 Deterministic", kind: "focus", step: 1 },
-          { id: "classifier", label: "12-CLASS NLP", sub: "Forward-Only State", kind: "focus", step: 2 },
-          { id: "postgres", label: "POSTGRESQL", sub: "Prisma Models", kind: "store", step: 3 },
-          { id: "dashboard", label: "NEXT.JS 16 UI", sub: "7-Tab Workspace", step: 4 },
-          { id: "playwright", label: "PLAYWRIGHT", sub: "Dry-Run + SSE", kind: "focus", step: 5 },
+          {
+            id: "ats",
+            label: "8+ ATS FEEDS",
+            sub: "Greenhouse · Lever",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "gmail",
+            label: "GMAIL OAUTH",
+            sub: "Recruiter Threads",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "scorer",
+            label: "RESUME SCORER",
+            sub: "0–100 Deterministic",
+            kind: "focus",
+            step: 1,
+          },
+          {
+            id: "classifier",
+            label: "12-CLASS NLP",
+            sub: "Forward-Only State",
+            kind: "focus",
+            step: 2,
+          },
+          {
+            id: "postgres",
+            label: "POSTGRESQL",
+            sub: "Prisma Models",
+            kind: "store",
+            step: 3,
+          },
+          {
+            id: "dashboard",
+            label: "NEXT.JS 16 UI",
+            sub: "7-Tab Workspace",
+            step: 4,
+          },
+          {
+            id: "playwright",
+            label: "PLAYWRIGHT",
+            sub: "Dry-Run + SSE",
+            kind: "focus",
+            step: 5,
+          },
         ],
         edges: [
           { from: "ats", to: "scorer", step: 1 },
@@ -681,21 +973,47 @@ export const caseStudies: Record<string, CaseStudyData> = {
           { from: "dashboard", to: "playwright", step: 5 },
         ],
         steps: [
-          { title: "Ingest ATS boards & Gmail", text: "Public ATS endpoints and Gmail OAuth threads sync into the Express 5 backend." },
-          { title: "Deterministic 0–100 multi-resume rubric", text: "Each posting is scored against every resume variant to pick the highest-fit CV." },
-          { title: "12-class email state machine", text: "Confirmation, OA, interview, and offer emails advance application stages monotonically." },
-          { title: "Unified PostgreSQL state", text: "Jobs, resume scores, email threads, and run logs persist via Prisma." },
-          { title: "7-tab Next.js 16 control center", text: "Review ranked jobs, inspect score breakdowns, and trigger automation runs." },
-          { title: "Guarded Playwright execution", text: "Browser runners prefill ATS forms in dry-run mode and stream live SSE telemetry." },
+          {
+            title: "Ingest ATS boards & Gmail",
+            text: "Public ATS endpoints and Gmail OAuth threads sync into the Express 5 backend.",
+          },
+          {
+            title: "Deterministic 0–100 multi-resume rubric",
+            text: "Each posting is scored against every resume variant to pick the highest-fit CV.",
+          },
+          {
+            title: "12-class email state machine",
+            text: "Confirmation, OA, interview, and offer emails advance application stages monotonically.",
+          },
+          {
+            title: "Unified PostgreSQL state",
+            text: "Jobs, resume scores, email threads, and run logs persist via Prisma.",
+          },
+          {
+            title: "7-tab Next.js 16 control center",
+            text: "Review ranked jobs, inspect score breakdowns, and trigger automation runs.",
+          },
+          {
+            title: "Guarded Playwright execution",
+            text: "Browser runners prefill ATS forms in dry-run mode and stream live SSE telemetry.",
+          },
         ],
       },
     },
     results: {
       title: "System capabilities",
       stats: [
-        { value: 100, suffix: "-pt", label: "deterministic weighted multi-resume scoring rubric" },
+        {
+          value: 100,
+          suffix: "-pt",
+          label: "deterministic weighted multi-resume scoring rubric",
+        },
         { value: 12, label: "Gmail recruiter email classification categories" },
-        { value: 8, suffix: "+", label: "ATS job sources aggregated automatically" },
+        {
+          value: 8,
+          suffix: "+",
+          label: "ATS job sources aggregated automatically",
+        },
         { value: 7, label: "interactive workspace tabs in Next.js 16" },
       ],
     },
@@ -703,7 +1021,7 @@ export const caseStudies: Record<string, CaseStudyData> = {
   "golang-lake-scanner": {
     name: "GoLakeScanner",
     context: "Concurrent Data-Lake File Classifier & Indexer in Go",
-    started: "2026",
+    started: "Jan 2026",
     problem: {
       lead: "Scanning large unstructured data lakes full of nested PDFs, scanned images, and corrupt archives fails when a single hung file parser blocks the entire pipeline or when unchanged files are re-indexed on every run.",
       points: [
@@ -714,23 +1032,24 @@ export const caseStudies: Record<string, CaseStudyData> = {
     approach: [
       {
         title: "Phase 1: Streaming SHA-256 state diffing",
-        text: "Walked directory trees and computed streaming 64 KB SHA-256 digests against the PostgreSQL catalog to classify every file as `New`, `Modified`, or `Unchanged` before dispatching heavy probes.",
+        text: "Walked directory trees and computed streaming 64 KB SHA-256 digests against the PostgreSQL catalog to classify every file as New, Modified, or Unchanged before dispatching heavy probes.",
       },
       {
         title: "Phase 2: Generic bounded worker pool",
-        text: "Implemented `pool.Run[In, Out](ctx, workers, jobs, fn)` using Go generics and bounded channels to cap concurrency while propagating cancellation cleanly.",
+        text: "Implemented pool.Run[In, Out](ctx, workers, jobs, fn) using Go generics and bounded channels to cap concurrency while propagating cancellation cleanly.",
       },
       {
         title: "Per-file 30s context timeouts & magic-byte probes",
-        text: "Wrapped each worker invocation in `context.WithTimeout(ctx, 30*time.Second)` while inspecting 512-byte magic headers and PDF `/Font` & `/FlateDecode` streams to distinguish native PDFs from scanned images.",
+        text: "Wrapped each worker invocation in context.WithTimeout(ctx, 30*time.Second) while inspecting 512-byte magic headers and PDF /Font & /FlateDecode streams to distinguish native PDFs from scanned images.",
       },
       {
         title: "Signal-safe pgx/v5 PostgreSQL catalog",
-        text: "Persisted file state transitions via `pgx/v5` connection pools and handled `SIGINT`/`SIGTERM` so interrupted scans resume from the exact unindexed file.",
+        text: "Persisted file state transitions via pgx/v5 connection pools and handled SIGINT and SIGTERM so interrupted scans resume from the exact unindexed file.",
       },
     ],
     architecture: {
-      caption: "Two-phase incremental SHA-256 walker and generic bounded goroutine worker pool.",
+      caption:
+        "Two-phase incremental SHA-256 walker and generic bounded goroutine worker pool.",
       flow: {
         label: "GoLakeScanner concurrent pipeline",
         wide: {
@@ -758,11 +1077,40 @@ export const caseStudies: Record<string, CaseStudyData> = {
           },
         },
         nodes: [
-          { id: "fs", label: "DATA LAKE", sub: "Nested PDFs · Media", kind: "input", step: 0 },
-          { id: "walker", label: "SHA-256 WALKER", sub: "New · Changed · Skip", kind: "focus", step: 1 },
-          { id: "pool", label: "POOL.RUN[IN,OUT]", sub: "Bounded Goroutines", kind: "focus", step: 2 },
-          { id: "probes", label: "FILE PROBES", sub: "30s Timeout · PDF", step: 3 },
-          { id: "pg", label: "POSTGRESQL", sub: "pgx/v5 Catalog", kind: "store", step: 4 },
+          {
+            id: "fs",
+            label: "DATA LAKE",
+            sub: "Nested PDFs · Media",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "walker",
+            label: "SHA-256 WALKER",
+            sub: "New · Changed · Skip",
+            kind: "focus",
+            step: 1,
+          },
+          {
+            id: "pool",
+            label: "POOL.RUN[IN,OUT]",
+            sub: "Bounded Goroutines",
+            kind: "focus",
+            step: 2,
+          },
+          {
+            id: "probes",
+            label: "FILE PROBES",
+            sub: "30s Timeout · PDF",
+            step: 3,
+          },
+          {
+            id: "pg",
+            label: "POSTGRESQL",
+            sub: "pgx/v5 Catalog",
+            kind: "store",
+            step: 4,
+          },
         ],
         edges: [
           { from: "fs", to: "walker", step: 1 },
@@ -772,21 +1120,49 @@ export const caseStudies: Record<string, CaseStudyData> = {
           { from: "walker", to: "pg", step: 4, dashed: true },
         ],
         steps: [
-          { title: "Walk nested directories", text: "Streams files from the target data lake without loading full files into memory." },
-          { title: "Incremental SHA-256 diffing", text: "Unchanged files are skipped immediately; only new or modified files enter Phase 2." },
-          { title: "Generic bounded worker pool", text: "`pool.Run[In, Out]` dispatches jobs across N worker goroutines with backpressure." },
-          { title: "30s timeout-isolated classification", text: "Magic-byte and PDF structure probes classify files without risking a pipeline hang." },
-          { title: "Resumable pgx/v5 catalog", text: "Results commit atomically to PostgreSQL with clean SIGINT/SIGTERM resume support." },
+          {
+            title: "Walk nested directories",
+            text: "Streams files from the target data lake without loading full files into memory.",
+          },
+          {
+            title: "Incremental SHA-256 diffing",
+            text: "Unchanged files are skipped immediately; only new or modified files enter Phase 2.",
+          },
+          {
+            title: "Generic bounded worker pool",
+            text: "pool.Run[In, Out] dispatches jobs across N worker goroutines with channel backpressure.",
+          },
+          {
+            title: "30s timeout-isolated classification",
+            text: "Magic-byte and PDF structure probes classify files without risking a pipeline hang.",
+          },
+          {
+            title: "Resumable pgx/v5 catalog",
+            text: "Results commit atomically to PostgreSQL with clean SIGINT/SIGTERM resume support.",
+          },
         ],
       },
     },
     results: {
       title: "Engineering guarantees",
       stats: [
-        { value: 2, label: "phases: incremental SHA-256 diffing then bounded deep probes" },
-        { value: 30, suffix: " s", label: "hard per-file context timeout preventing worker starvation" },
-        { value: "O(1)", label: "streaming 64 KB buffer memory footprint per worker" },
-        { value: "100%", label: "resumable progress across SIGINT/SIGTERM interrupts" },
+        {
+          value: 2,
+          label: "phases: incremental SHA-256 diffing then bounded deep probes",
+        },
+        {
+          value: 30,
+          suffix: " s",
+          label: "hard per-file context timeout preventing worker starvation",
+        },
+        {
+          value: "O(1)",
+          label: "streaming 64 KB buffer memory footprint per worker",
+        },
+        {
+          value: "100%",
+          label: "resumable progress across SIGINT/SIGTERM interrupts",
+        },
       ],
     },
   },
@@ -816,7 +1192,8 @@ export const caseStudies: Record<string, CaseStudyData> = {
       },
     ],
     architecture: {
-      caption: "Triple-layer persistence from CodeMirror 6 to Zustand, LocalStorage, and MongoDB.",
+      caption:
+        "Triple-layer persistence from CodeMirror 6 to Zustand, LocalStorage, and MongoDB.",
       flow: {
         label: "Cook Off 10.0 contest portal architecture",
         wide: {
@@ -844,11 +1221,41 @@ export const caseStudies: Record<string, CaseStudyData> = {
           },
         },
         nodes: [
-          { id: "editor", label: "CODEMIRROR 6", sub: "Multi-Language IDE", kind: "input", step: 0 },
-          { id: "zustand", label: "ZUSTAND STORE", sub: "In-Memory State", kind: "focus", step: 1 },
-          { id: "local", label: "LOCALSTORAGE", sub: "Instant Recovery", kind: "store", step: 2 },
-          { id: "axios", label: "AXIOS PIPELINE", sub: "JWT & Retry Queue", kind: "focus", step: 3 },
-          { id: "mongo", label: "MONGODB + JUDGE", sub: "1,000+ Contestants", kind: "store", step: 4 },
+          {
+            id: "editor",
+            label: "CODEMIRROR 6",
+            sub: "Multi-Language IDE",
+            kind: "input",
+            step: 0,
+          },
+          {
+            id: "zustand",
+            label: "ZUSTAND STORE",
+            sub: "In-Memory State",
+            kind: "focus",
+            step: 1,
+          },
+          {
+            id: "local",
+            label: "LOCALSTORAGE",
+            sub: "Instant Recovery",
+            kind: "store",
+            step: 2,
+          },
+          {
+            id: "axios",
+            label: "AXIOS PIPELINE",
+            sub: "JWT & Retry Queue",
+            kind: "focus",
+            step: 3,
+          },
+          {
+            id: "mongo",
+            label: "MONGODB + JUDGE",
+            sub: "1,000+ Contestants",
+            kind: "store",
+            step: 4,
+          },
         ],
         edges: [
           { from: "editor", to: "zustand", step: 1 },
@@ -857,20 +1264,46 @@ export const caseStudies: Record<string, CaseStudyData> = {
           { from: "axios", to: "mongo", step: 4 },
         ],
         steps: [
-          { title: "CodeMirror 6 keystrokes", text: "Contestants write and test solutions across languages in real time." },
-          { title: "Zustand state orchestration", text: "Active problem buffers, language selections, and test results update with zero re-render lag." },
-          { title: "Write-through LocalStorage backup", text: "Every edit persists locally so a browser crash or refresh recovers instantaneously." },
-          { title: "Authenticated Axios submission queue", text: "Interceptors attach tokens and handle retries during peak submission bursts." },
-          { title: "MongoDB checkpoint & judge verdict", text: "Submissions are evaluated and persisted for 1,000+ participants." },
+          {
+            title: "CodeMirror 6 keystrokes",
+            text: "Contestants write and test solutions across languages in real time.",
+          },
+          {
+            title: "Zustand state orchestration",
+            text: "Active problem buffers, language selections, and test results update with zero re-render lag.",
+          },
+          {
+            title: "Write-through LocalStorage backup",
+            text: "Every edit persists locally so a browser crash or refresh recovers instantaneously.",
+          },
+          {
+            title: "Authenticated Axios submission queue",
+            text: "Interceptors attach tokens and handle retries during peak submission bursts.",
+          },
+          {
+            title: "MongoDB checkpoint & judge verdict",
+            text: "Submissions are evaluated and persisted for 1,000+ participants.",
+          },
         ],
       },
     },
     results: {
       title: "Contest scale",
       stats: [
-        { value: 1000, suffix: "+", label: "active contest participants served" },
-        { value: 3, label: "persistence layers (Zustand, LocalStorage, MongoDB)" },
-        { value: 40, suffix: "%", label: "peak concurrent contest load sustained" },
+        {
+          value: 1000,
+          suffix: "+",
+          label: "active contest participants served",
+        },
+        {
+          value: 3,
+          label: "persistence layers (Zustand, LocalStorage, MongoDB)",
+        },
+        {
+          value: 40,
+          suffix: "%",
+          label: "peak concurrent contest load sustained",
+        },
         { value: 0, label: "lost code submissions across the event" },
       ],
     },

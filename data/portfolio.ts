@@ -6,7 +6,7 @@ export const profile = {
   role: "Software Engineer",
   tagline:
     "Software engineer specializing in distributed backend architectures, real-time audio & ML pipelines, and high-performance full-stack systems.",
-  location: "Bengaluru",
+  location: "Bengaluru, India",
   education: {
     institution: "Vellore Inst. of Technology",
     degree: "B.Tech in Computer Science & Engineering",
@@ -17,10 +17,15 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/shourya-upadhyaya-998535332",
   twitter: "https://x.com/Shourya60756648",
   resume: RESUME_URL,
-  bio: "Third-year Computer Science undergraduate at VIT Vellore focused on backend-heavy web products, real-time streaming pipelines, and database-centric systems. I build production services with Node.js, TypeScript, Python, Go, PostgreSQL, and Redis, deploy them in Docker behind Nginx, and instrument them with Prometheus and Grafana.",
+  bio: "Third-year Computer Science undergraduate at VIT Vellore, based in Bengaluru, focused on backend-heavy web products, real-time streaming pipelines, and database-centric systems. I build production services with Node.js, TypeScript, Python, Go, PostgreSQL, and Redis, deploy them in Docker behind Nginx, and instrument them with Prometheus and Grafana.",
 };
 
 export const domains = ["Backend", "AI / ML", "Full-Stack", "Systems"] as const;
+
+export interface ProjectMetric {
+  value: string;
+  label: string;
+}
 
 export interface ProjectItem {
   id: string;
@@ -35,7 +40,7 @@ export interface ProjectItem {
   goal: string;
   challenge: string;
   result: string;
-  metrics: string[];
+  metrics: ProjectMetric[];
   tech: string[];
   year: string;
   github: string;
@@ -65,23 +70,29 @@ export const projects: ProjectItem[] = [
     result:
       "Scaled to 300+ registered users and 10,000+ visits across 30+ REST APIs & 10 Prisma models; cut DB load by 80% with Redis caching and monitored via Prometheus & Grafana.",
     metrics: [
-      "300+ Registered Users & 10K+ Visits",
-      "80% DB Load Cut via Redis Cache",
-      "30+ REST APIs & WebSocket Sync",
+      { value: "300+ Users", label: "10,000+ total platform visits" },
+      { value: "-80% DB Load", label: "via Redis write-through cache" },
+      { value: "30+ APIs", label: "10 Prisma models & WS sync" },
     ],
     tech: [
       "Next.js",
+      "React",
       "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
       "Node.js",
       "Express.js",
+      "REST APIs",
+      "WebSockets",
       "PostgreSQL",
+      "SQL",
       "Prisma",
       "Redis",
-      "WebSockets",
       "Docker",
       "Nginx",
       "Prometheus",
       "Grafana",
+      "Linux",
     ],
     year: "Jan 2025 — Present",
     github: "https://github.com/ShouryaUpadhyaya/openPumta",
@@ -102,16 +113,16 @@ export const projects: ProjectItem[] = [
     tagline:
       "Low-latency 48 kHz PCM16 audio gateway and multi-model deepfake & scam-risk engine built for Smart India Hackathon (VIT Vellore Finalist).",
     description:
-      "Engineered a Node.js and TypeScript WebSocket media gateway ingesting live 48 kHz mono PCM16 call streams, reassembling arbitrary network frames into ordered 3-second sliding windows while enforcing a strict byte-conservation invariant. Routed chunks over a persistent WebSocket to a FastAPI ML engine running RawNet2/WavLM acoustic deepfake models and OpenAI Whisper STT, achieving ~1.1s median CPU latency while queuing PostgreSQL writes off the hot audio path.",
+      "Engineered a Node.js and TypeScript WebSocket media gateway ingesting live 48 kHz mono PCM16 call streams, reassembling arbitrary network frames into ordered 3-second sliding windows while enforcing a strict byte-conservation invariant. Routed chunks over a persistent WebSocket to a FastAPI ML engine running RawNet2, WavLM, and SpeechBrain acoustic deepfake models alongside OpenAI Whisper STT, achieving ~1.1s median CPU latency while queuing PostgreSQL writes off the hot audio path.",
     goal: "Detect synthetic voices and social-engineering phone scams in real time during live calls without stalling audio playback.",
     challenge:
       "Reassembling arbitrary 48 kHz PCM16 WebSocket frames into exact 3-second buffers while isolating slow database writes off the hot audio path.",
     result:
       "Enforced a strict byte-conservation invariant across 3s audio chunks, queued PostgreSQL writes off-path, and fused Whisper + PyTorch acoustic models at 1.1s median CPU latency.",
     metrics: [
-      "~1.1s Median CPU Inference / 3s Chunk",
-      "48 kHz PCM16 Byte-Conserving Buffer",
-      "SIH College Finalist · Off-Path DB Queue",
+      { value: "~1.1s CPU", label: "median inference per 3s window" },
+      { value: "48 kHz PCM16", label: "100% byte-conserving ring buffer" },
+      { value: "SIH Finalist", label: "off-path async PostgreSQL queue" },
     ],
     tech: [
       "Node.js",
@@ -121,14 +132,17 @@ export const projects: ProjectItem[] = [
       "PyTorch",
       "OpenAI Whisper",
       "ONNX Runtime",
+      "SpeechBrain",
       "WebSockets",
       "PostgreSQL",
+      "Prisma",
       "Next.js",
+      "Tailwind CSS",
     ],
-    year: "2025",
+    year: "Sep 2025 — Dec 2025",
     github: "https://github.com/ShouryaUpadhyaya/VoiceShield-AI",
     githubUrl: "https://github.com/ShouryaUpadhyaya/VoiceShield-AI",
-    image: "/projects/openpumta.png",
+    image: "/og-image.png",
     readmeUrl: "/content/projects/voiceshield.md",
   },
   {
@@ -149,16 +163,19 @@ export const projects: ProjectItem[] = [
     result:
       "Slashed product listing API latency by 90% (1.5s to 150ms) via Redis caching, kept homepage latency below 50ms, and processed 20+ live Razorpay orders with zero duplicate charges.",
     metrics: [
-      "1.5s → 150ms API Latency (-90%)",
-      "<50ms Homepage Load · 100+ Users",
-      "Idempotent HMAC Razorpay Webhooks",
+      { value: "1.5s → 150ms", label: "catalog API latency (-90%)" },
+      { value: "<50ms Load", label: "serving 100+ registered users" },
+      { value: "0 Duplicates", label: "HMAC idempotent Razorpay webhooks" },
     ],
     tech: [
+      "JavaScript",
       "Node.js",
       "Express.js",
+      "REST APIs",
       "MongoDB",
       "Redis",
       "React",
+      "Zustand",
       "Tailwind CSS",
       "Docker",
     ],
@@ -188,24 +205,28 @@ export const projects: ProjectItem[] = [
     result:
       "Enforced tenant isolation via PostgreSQL RLS, prevented concurrent quota over-allocation with SELECT FOR UPDATE locking, and cut 1M-row query latency from 42ms to 0.2ms via BRIN/GIN indexing.",
     metrics: [
-      "42ms → 0.2ms on 1M+ Partitioned Rows",
-      "PostgreSQL 16 RLS & FOR UPDATE Locks",
-      "Live LISTEN/NOTIFY SSE Docker Stream",
+      { value: "42ms → 0.2ms", label: "on 1M+ BRIN-partitioned rows" },
+      { value: "PG16 RLS", label: "& SELECT FOR UPDATE quota locks" },
+      { value: "Live SSE", label: "pg_notify Docker telemetry stream" },
     ],
     tech: [
       "PostgreSQL",
+      "SQL",
       "PL/pgSQL & RLS",
       "TypeScript",
       "Node.js",
       "Express.js",
+      "REST APIs",
       "React",
+      "Tailwind CSS",
       "Docker",
+      "Nginx",
     ],
-    year: "2026",
+    year: "Jan 2026 — Mar 2026",
     github: "https://github.com/ShouryaUpadhyaya/DBMS_Cloud_Management_Software",
     githubUrl:
       "https://github.com/ShouryaUpadhyaya/DBMS_Cloud_Management_Software",
-    image: "/projects/openpumta.png",
+    image: "/og-image.png",
     readmeUrl: "/content/projects/crms.md",
   },
   {
@@ -226,23 +247,26 @@ export const projects: ProjectItem[] = [
     result:
       "Built a 7-tab Express 5 + Next.js 16 platform with a 0-100 deterministic multi-resume scorer, 12-class Gmail OAuth state machine, and dry-run-first Playwright runner.",
     metrics: [
-      "0–100 Deterministic Multi-Resume Scorer",
-      "12-Class Gmail OAuth State Machine",
-      "8+ ATS Collectors & Guarded Playwright",
+      { value: "0–100 Rubric", label: "deterministic multi-resume scorer" },
+      { value: "12-Class NLP", label: "forward-only Gmail state machine" },
+      { value: "8+ ATS Feeds", label: "with dry-run Playwright runner" },
     ],
     tech: [
       "Next.js",
+      "React",
       "TypeScript",
+      "Tailwind CSS",
       "Node.js",
       "Express.js",
+      "REST APIs",
       "PostgreSQL",
       "Prisma",
       "Playwright",
     ],
-    year: "2026",
+    year: "Feb 2026 — Present",
     github: "https://github.com/ShouryaUpadhyaya/job_agent",
     githubUrl: "https://github.com/ShouryaUpadhyaya/job_agent",
-    image: "/projects/openpumta.png",
+    image: "/og-image.png",
     readmeUrl: "/content/projects/job-agent.md",
   },
   {
@@ -263,15 +287,15 @@ export const projects: ProjectItem[] = [
     result:
       "Engineered a two-phase SHA-256 incremental walker and generic bounded goroutine worker pool (pool.Run[In, Out]) with 30s per-file context timeouts and pgx/v5 cataloging.",
     metrics: [
-      "Generic Bounded Pool pool.Run[In, Out]",
-      "SHA-256 Incremental State Diffing",
-      "30s Per-File Timeout & pgx/v5 Catalog",
+      { value: "pool.Run[T]", label: "generic bounded goroutine pool" },
+      { value: "SHA-256 Diff", label: "64 KB streaming incremental skip" },
+      { value: "30s Timeout", label: "per-file isolation & pgx/v5 catalog" },
     ],
-    tech: ["Go", "PostgreSQL", "Linux"],
-    year: "2026",
+    tech: ["Go", "PostgreSQL", "SQL", "Linux"],
+    year: "Jan 2026 — Feb 2026",
     github: "https://github.com/ShouryaUpadhyaya/GoLang_Lake_Scanner",
     githubUrl: "https://github.com/ShouryaUpadhyaya/GoLang_Lake_Scanner",
-    image: "/projects/openpumta.png",
+    image: "/og-image.png",
     readmeUrl: "/content/projects/golang-lake-scanner.md",
   },
   {
@@ -285,21 +309,23 @@ export const projects: ProjectItem[] = [
     tagline:
       "Competitive programming IDE built on Next.js and CodeMirror 6 serving 1,000+ contest participants with triple-layer state persistence.",
     description:
-      "Engineered the real-time competitive coding portal for CodeChef-VIT's flagship contest with 1,000+ active participants. Built a multi-language CodeMirror 6 IDE backed by triple-layer state persistence (Zustand in-memory store, LocalStorage write-through cache, and debounced MongoDB sync) and Axios auth/retry interceptors to guarantee zero lost submissions under 40% peak concurrent load.",
+      "Engineered the real-time competitive coding portal for CodeChef-VIT's flagship contest with 1,000+ active participants. Built a multi-language CodeMirror 6 IDE (supporting C++, Python, Java, and JavaScript) backed by triple-layer state persistence (Zustand in-memory store, LocalStorage write-through cache, and debounced MongoDB sync) and Axios auth/retry interceptors to guarantee zero lost submissions under 40% peak concurrent load.",
     goal: "Deliver a flawless, real-time competitive programming IDE with zero dropped submissions for 1,000+ contest participants.",
     challenge:
       "Preventing code loss and state corruption when hundreds of contestants compile and submit simultaneously in the final 5 minutes.",
     result:
       "Sustained 40% concurrent load across 1,000+ users on CodeMirror 6 using triple-layer persistence (Zustand, LocalStorage, MongoDB) and Axios auth interceptors.",
     metrics: [
-      "1,000+ Active Contest Participants",
-      "Triple-Layer Persistence (0 Data Loss)",
-      "40% Peak Concurrent Traffic Sustained",
+      { value: "1,000+ Coders", label: "active contest participants" },
+      { value: "3-Layer Sync", label: "Zustand · LocalStorage · MongoDB" },
+      { value: "40% Peak Load", label: "sustained with 0 dropped submits" },
     ],
     tech: [
       "Next.js",
       "React",
       "TypeScript",
+      "JavaScript",
+      "C++",
       "Tailwind CSS",
       "Zustand",
       "CodeMirror 6",
@@ -323,8 +349,10 @@ export const experience = [
     description:
       "Architected full-stack e-commerce flows for 100+ users using React, Express.js, and MongoDB aggregation pipelines. Cached the product catalog API in Redis to cut response latency by 90% (1.5s to 150ms) and keep homepage latency under 50ms. Integrated Razorpay payments with HMAC webhook verification and idempotency keys across 20+ live orders, containerized services with Docker, and led 3 developers through PR reviews and delivery.",
     tech: [
+      "JavaScript",
       "Node.js",
       "Express.js",
+      "REST APIs",
       "MongoDB",
       "Redis",
       "React",
@@ -339,7 +367,14 @@ export const experience = [
     period: "Sep 2024 — Feb 2025",
     description:
       "Built responsive React interfaces with Tailwind CSS, Zustand state management, and Axios REST interceptors. Improved Core Web Vitals through route-based code splitting, lazy asset loading, and semantic HTML — reducing Largest Contentful Paint (LCP) by 49% from 3.5s to 1.8s and raising URLs passing Core Web Vitals from 45% to 85%.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Zustand"],
+    tech: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Zustand",
+      "REST APIs",
+    ],
   },
 ];
 
@@ -363,23 +398,26 @@ export const writing = [
   {
     title: "Why I Moved My App from Vercel + Render + Neon to a Single VPS",
     description:
-      "Consolidating Next.js, Express, PostgreSQL, and Redis onto a single Docker Compose Linux VPS behind Nginx.",
+      "Consolidating Next.js, Express, PostgreSQL, and Redis onto a single Docker Compose Linux VPS behind Nginx to eliminate cold starts and cross-region hops.",
     url: "https://medium.com/@shouryaupadhyaya79/why-i-moved-my-app-from-vercel-render-neon-to-a-single-vps-1591760bb7be",
     date: "2025",
+    readTime: "6 min read",
   },
   {
     title: "How I Built a Pomodoro Timer That Doesn't Lie to You",
     description:
-      "Solving orphaned timers, client tab drift, and cross-device WebSocket synchronization in OpenPumTa.",
+      "Solving orphaned timers, sleeping browser tab drift, and cross-device WebSocket state synchronization in OpenPumTa.",
     url: "https://medium.com/@shouryaupadhyaya79/how-i-built-a-pomodoro-timer-that-doesnt-lie-to-you-3bfdf2b157dd",
     date: "2025",
+    readTime: "5 min read",
   },
   {
     title: "Stop Writing Boilerplate Code! Async Handlers in Express Backend",
     description:
-      "Centralizing error propagation and Zod request validation across 30+ Express REST endpoints.",
+      "Centralizing async error propagation and Zod schema validation across 30+ Express REST endpoints.",
     url: "https://medium.com/@shouryaupadhyaya79/stop-writing-boiler-plate-code-async-handlers-in-express-backend-3eac2974f186",
     date: "2025",
+    readTime: "4 min read",
   },
 ];
 

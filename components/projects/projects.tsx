@@ -20,66 +20,72 @@ function ShowcaseProjectCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 36 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay: Math.min(index * 0.05, 0.2) }}
+      transition={{ duration: 0.65, delay: Math.min(index * 0.05, 0.15) }}
     >
-      <SpotlightCard className="p-8 md:p-14 hover:border-white/[0.14] transition-colors duration-500">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-7">
+      <SpotlightCard className="p-6 sm:p-8 md:p-12 hover:border-white/[0.14] transition-colors duration-500">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+          <div className="space-y-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <span className="inline-block font-mono text-[10px] tracking-widest text-white px-3 py-1 bg-white/10 rounded-full uppercase">
                 {project.type}
               </span>
-              <span className="font-mono text-[11px] tracking-widest text-white/40">
+              <span className="font-mono text-[11px] tracking-widest text-white/45">
                 {String(index + 1).padStart(2, "0")} /{" "}
-                {String(projects.length).padStart(2, "0")}
+                {String(projects.length).padStart(2, "0")} &middot;{" "}
+                {project.year}
               </span>
             </div>
 
             <div>
-              <h4 className="text-3xl md:text-5xl font-medium tracking-tight text-white">
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white">
                 {project.title}
-              </h4>
+              </h3>
               <p className="font-mono text-xs tracking-wide text-white/45 mt-2">
                 {project.subtitle}
               </p>
             </div>
 
-            <p className="text-white/65 leading-relaxed font-light text-base md:text-lg max-w-[65ch]">
+            <p className="text-white/65 leading-relaxed font-light text-base max-w-[65ch]">
               {project.description}
             </p>
 
-            <ul
+            <dl
               className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-5 border-t border-white/[0.06]"
               aria-label={`${project.title} key metrics`}
             >
               {project.metrics.map((metric) => (
-                <li
-                  key={metric}
-                  className="font-mono text-xs text-white/90 leading-snug"
+                <div
+                  key={metric.value}
+                  className="flex flex-col gap-1 border-l border-white/10 pl-3"
                 >
-                  {metric}
-                </li>
+                  <dd className="text-lg md:text-xl font-medium tracking-tight text-white tabular-nums">
+                    {metric.value}
+                  </dd>
+                  <dt className="font-mono text-[11px] text-white/50 leading-snug">
+                    {metric.label}
+                  </dt>
+                </div>
               ))}
-            </ul>
+            </dl>
 
             <ul
-              className="flex flex-wrap gap-2 pt-2"
+              className="flex flex-wrap gap-1.5 pt-1"
               aria-label={`${project.title} technologies`}
             >
               {project.tech.map((t) => (
                 <li
                   key={t}
-                  className="font-mono text-xs text-white/60 px-3 py-1 rounded-full border border-white/10 bg-white/[0.02]"
+                  className="font-mono text-[11px] text-white/60 px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.02]"
                 >
                   {t}
                 </li>
               ))}
             </ul>
 
-            <div className="pt-3 flex flex-wrap items-center gap-8">
+            <div className="pt-2 flex flex-wrap items-center gap-8">
               {hasCaseStudy && (
                 <Link
                   href={`/projects/${project.slug}`}
@@ -114,7 +120,7 @@ function ShowcaseProjectCard({
           </div>
 
           {/* Interactive System Architecture Tracer */}
-          <div className="h-full min-h-[320px] rounded-xl border border-white/[0.06] bg-[#050505] p-6 md:p-8 flex flex-col justify-center relative overflow-hidden">
+          <div className="h-full min-h-[320px] rounded-xl border border-white/[0.06] bg-[#050505] p-5 sm:p-7 flex flex-col justify-center relative overflow-hidden">
             <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]" />
             <ProjectArchitectureDiagram slug={project.slug} />
           </div>
@@ -132,12 +138,15 @@ export function Projects() {
     <section id="work" className="py-24 border-t border-white/[0.05]">
       <div className="mb-12 flex flex-col gap-8">
         <div>
-          <h2 className="font-mono text-xs tracking-[0.2em] text-white/50 mb-4">
+          <p
+            aria-hidden="true"
+            className="font-mono text-xs tracking-[0.2em] text-white/50 mb-4"
+          >
             02. WORK
-          </h2>
-          <h3 className="text-3xl md:text-5xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
+          </p>
+          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
             Selected Projects
-          </h3>
+          </h2>
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-4">
@@ -202,7 +211,7 @@ export function Projects() {
       </div>
 
       {/* Full-Width Interactive Architecture Cards for All Projects */}
-      <div className="flex flex-col gap-10">
+      <div className="flex flex-col gap-8">
         {visible.map((project, index) => (
           <ShowcaseProjectCard
             key={project.id}
