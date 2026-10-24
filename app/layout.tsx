@@ -1,31 +1,41 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/next";
-const geistSans = Geist({
+import { GridBackground } from "@/components/layout/grid-background";
+import { ScrollProgress } from "@/components/layout/scroll-progress";
+import { CustomCursor } from "@/components/ui/custom-cursor";
+import { ProjectFilterProvider } from "@/lib/project-filter";
+
+const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.shouryaupadhyaya.com"),
-  title: "Shourya Upadhyaya | Full-Stack Developer",
+  title: "Shourya Upadhyaya | Software Engineer",
   description:
-    "Portfolio of Shourya Upadhyaya, building production-ready scalable systems and beautiful user interfaces.",
+    "Software engineer specializing in distributed backend architectures, real-time audio & ML pipelines, and high-performance full-stack systems.",
   keywords: [
     "Shourya Upadhyaya",
+    "Software Engineer",
+    "Backend Engineer",
     "Full-Stack Developer",
     "Next.js",
     "React",
     "Node.js",
-    "Software Engineer",
+    "Go",
+    "PostgreSQL",
     "Portfolio",
   ],
   authors: [{ name: "Shourya Upadhyaya" }],
@@ -34,25 +44,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://www.shouryaupadhyaya.com",
-    title: "Shourya Upadhyaya | Full-Stack Developer",
+    title: "Shourya Upadhyaya | Software Engineer",
     description:
-      "Portfolio of Shourya Upadhyaya, building production-ready scalable systems and beautiful user interfaces.",
-    siteName: "Shourya Upadhyaya Portfolio",
+      "Software engineer specializing in distributed backend architectures, real-time audio & ML pipelines, and high-performance full-stack systems.",
+    siteName: "Shourya Upadhyaya",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Shourya Upadhyaya — Full-Stack Developer",
+        alt: "Shourya Upadhyaya — Software Engineer",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shourya Upadhyaya | Full-Stack Developer",
+    title: "Shourya Upadhyaya | Software Engineer",
     description:
-      "Portfolio of Shourya Upadhyaya, building production-ready scalable systems and beautiful user interfaces.",
+      "Software engineer specializing in distributed backend architectures, real-time audio & ML pipelines, and high-performance full-stack systems.",
     creator: "@Shourya60756648",
     images: ["/og-image.png"],
   },
@@ -69,17 +79,26 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn(
         "h-full dark antialiased",
-        geistSans.variable,
-        geistMono.variable,
+        inter.variable,
+        jetbrainsMono.variable,
       )}
     >
       <body
         suppressHydrationWarning
-        className="min-h-full flex flex-col font-sans bg-neutral-950 text-neutral-50 selection:bg-neutral-800 relative"
+        className="bg-[#050505] text-[#EAEAEA] min-h-screen selection:bg-white selection:text-black relative font-sans overflow-x-hidden"
       >
-        {/* Global animated background gradient */}
-        <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-neutral-950 to-neutral-950"></div>
-        <TooltipProvider>{children}</TooltipProvider>
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-6 focus:left-6 focus:z-[70] focus:px-4 focus:py-2 focus:rounded-full focus:bg-white focus:text-black focus:font-mono focus:text-xs focus:tracking-widest"
+        >
+          SKIP TO CONTENT
+        </a>
+        <ScrollProgress />
+        <CustomCursor />
+        <GridBackground />
+        <ProjectFilterProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </ProjectFilterProvider>
         <Analytics />
       </body>
     </html>
