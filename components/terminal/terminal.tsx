@@ -4,12 +4,12 @@ import { useState, useEffect } from "react";
 import { ReactTerminal, TerminalContextProvider } from "react-terminal";
 
 const logsData = [
-  { text: "Server ready in 2.4s", color: "text-green-400" },
-  { text: "GET /dashboard 200 12ms", color: "text-neutral-300" },
-  { text: "POST /api/login 200 45ms", color: "text-neutral-300" },
-  { text: "Redis HIT session_data", color: "text-blue-400" },
-  { text: "Kafka EVENT user.login", color: "text-yellow-400" },
-  { text: "Webhook OK delivery_success", color: "text-purple-400" },
+  { text: "OpenPumTa: 300+ users | WS timer sync <50ms", color: "text-green-400" },
+  { text: "Moss X: Redis HIT /api/products (1.5s -> 150ms)", color: "text-blue-400" },
+  { text: "VoiceShield: 48kHz PCM16 chunk OK | Whisper 1.1s", color: "text-purple-400" },
+  { text: "CRMS: PG16 BRIN index scan 1M rows in 0.2ms", color: "text-yellow-400" },
+  { text: "Razorpay HMAC webhook verified (idempotent)", color: "text-emerald-400" },
+  { text: "Prometheus /metrics scraped | 0 errors", color: "text-neutral-300" },
 ];
 
 function TerminalLogs() {
