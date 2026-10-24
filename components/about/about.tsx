@@ -1,59 +1,82 @@
 "use client";
 
 import { motion } from "motion/react";
-import { portfolio } from "@/data/portfolio";
-import { User } from "lucide-react";
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
+import { profile } from "@/data/portfolio";
+import { SpotlightCard } from "@/components/ui/spotlight-card";
 
 export function About() {
-  const { personal } = portfolio;
-
   return (
-    <section
-      id="about"
-      className="py-24 border-b border-white/10 bg-neutral-950/50"
-    >
-      <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="flex flex-col gap-6"
-        >
-          <motion.div variants={item} className="mb-4">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
-              About
-            </h2>
-            <div className="w-12 h-1 bg-neutral-600 rounded"></div>
-          </motion.div>
+    <section id="about" className="py-24 border-t border-white/[0.05]">
+      <div className="mb-16">
+        <h2 className="font-mono text-xs tracking-[0.2em] text-white/50 mb-4">
+          01. ABOUT
+        </h2>
+        <h3 className="text-3xl md:text-5xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
+          Background
+        </h3>
+      </div>
 
-          <motion.p
-            variants={item}
-            className="text-lg text-neutral-300 leading-relaxed"
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="md:col-span-2"
+        >
+          <SpotlightCard className="h-full p-8 md:p-12 flex flex-col justify-between">
+            <h3 className="font-mono text-xs tracking-[0.2em] text-white/50 uppercase mb-8">
+              Profile
+            </h3>
+            <p className="text-xl md:text-2xl font-light leading-relaxed text-white/80">
+              {profile.bio}
+            </p>
+          </SpotlightCard>
+        </motion.div>
+
+        <div className="flex flex-col gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex-1"
           >
-            {personal.about}
-          </motion.p>
+            <SpotlightCard className="h-full p-8 flex flex-col justify-between">
+              <div className="font-mono text-[10px] tracking-widest text-white/50 mb-2">
+                LOCATION
+              </div>
+              <div className="text-xl font-medium text-white mt-4">
+                {profile.location}
+              </div>
+            </SpotlightCard>
+          </motion.div>
 
           <motion.div
-            variants={item}
-            className="flex flex-wrap items-center gap-3 pt-2"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex-1"
           >
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-neutral-400 border border-white/10 rounded-full px-4 py-1.5 bg-white/5">
-              <User className="w-4 h-4 text-neutral-500" />
-              {personal.subtitle}
-            </span>
-            <a
-              href={`mailto:${personal.email}`}
-              className="text-sm font-medium text-neutral-400 border border-white/10 rounded-full px-4 py-1.5 bg-white/5 hover:text-white hover:border-white/30 transition-colors"
-            >
-              {personal.email}
-            </a>
+            <SpotlightCard className="h-full p-8 flex flex-col justify-between">
+              <div className="font-mono text-[10px] tracking-widest text-white/50 mb-2">
+                EDUCATION
+              </div>
+              <div className="mt-4">
+                <div className="text-lg font-medium text-white">
+                  {profile.education.institution}
+                </div>
+                <div className="text-sm text-white/60 mt-1">
+                  {profile.education.degree}
+                </div>
+                <div className="font-mono text-xs text-white/50 mt-4">
+                  {profile.education.period}
+                </div>
+              </div>
+            </SpotlightCard>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
