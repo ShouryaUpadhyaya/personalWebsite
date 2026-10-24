@@ -132,11 +132,13 @@ export function Projects() {
                       )}
                       
                       <div className="flex flex-wrap gap-4 mt-auto pt-4 border-t border-white/10">
-                        <Button variant="default" className="bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 transition-transform hover:scale-105" asChild>
-                          <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink className="mr-2 h-3.5 w-3.5" /> Live Link
-                          </Link>
-                        </Button>
+                        {project.liveUrl && project.liveUrl !== "#" && (
+                          <Button variant="default" className="bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 transition-transform hover:scale-105" asChild>
+                            <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="mr-2 h-3.5 w-3.5" /> Live Link
+                            </Link>
+                          </Button>
+                        )}
                         <Button variant="outline" className="border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-6 h-10 bg-white/5 text-neutral-300 transition-transform hover:scale-105" asChild>
                           <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                             <Github className="mr-2 h-3.5 w-3.5" /> Github

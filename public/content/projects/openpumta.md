@@ -162,6 +162,6 @@ Easily configure your profile, subjects, and preferences.
 
 ## The Proof
 
-- Successfully served **1,500+ lifetime visitors**.
-- Reduced database load by **over 80%** using Redis caching.
-- Maintained **zero downtime** with sub-50ms sync latency.
+- Scaled to **300+ registered users** and **10,000+ visits** across **30+ REST APIs** and **10 Prisma models**.
+- Reduced database load by **over 80%** using Redis analytics caching.
+- Maintained **zero downtime** with sub-50ms WebSocket timer synchronization monitored via Prometheus and Grafana.
