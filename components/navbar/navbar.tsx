@@ -1,96 +1,85 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { downloadResume } from "@/lib/utils";
+import { useState } from "react";
+import { motion } from "motion/react";
+import { usePathname, useRouter } from "next/navigation";
+import { profile } from "@/data/portfolio";
+import { scrollToSection, useActiveSection } from "@/lib/hooks";
 
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Experience", href: "#experience" },
-  { name: "Education", href: "#education" },
-  { name: "Writing", href: "#writing" },
-  { name: "Contact", href: "#contact" },
-];
+const navItems = [
+  { name: "About", id: "about" },
+  { name: "Work", id: "work" },
+  { name: "Experience", id: "experience" },
+  { name: "Stack", id: "stack" },
+] as const;
+
+const sectionIds = navItems.map((item) => item.id);
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+  const activeSection = useActiveSection(sectionIds, pathname);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const highlighted =
+    hoveredItem ?? (pathname.startsWith("/projects/") ? "work" : activeSection);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleNavClick = (id: string) => {
+    if (pathname === "/") {
+      scrollToSection(id);
+    } else {
+      router.push(`/#${id}`);
+    }
+  };
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${
-        scrolled
-          ? "bg-neutral-950/80 backdrop-blur-md border-white/10 py-4"
-          : "bg-transparent border-transparent py-6"
-      }`}
+    <motion.nav
+      aria-label="Primary"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-xl px-4"
     >
-      <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold tracking-tight text-white">
-          Shourya<span className="text-neutral-500">upadhyaya.com</span>
-        </Link>
+      <div
+        onMouseLeave={() => setHoveredItem(null)}
+        className="flex items-center justify-between px-3 py-2 rounded-full border border-white/[0.08] bg-[#0A0A0A]/70 backdrop-blur-xl shadow-2xl"
+      >
+        <div className="flex items-center gap-0.5 sm:gap-1 font-mono text-[11px] sm:text-xs">
+          {navItems.map((item) => {
+            const isActive = activeSection === item.id;
+            const isHighlighted = highlighted === item.id;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                aria-current={isActive ? "true" : undefined}
+                onClick={() => handleNavClick(item.id)}
+                onMouseEnter={() => setHoveredItem(item.id)}
+                className={`relative px-2.5 sm:px-4 py-1.5 transition-colors duration-300 ${
+                  isHighlighted ? "text-white" : "text-white/60 hover:text-white"
+                }`}
+              >
+                {isHighlighted && (
+                  <motion.div
+                    layoutId="nav-pill"
+                    className="absolute inset-0 bg-white/[0.08] rounded-full"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{item.name}</span>
+              </button>
+            );
+          })}
+        </div>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <ul className="flex items-center gap-6 text-sm font-medium text-neutral-400">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="hover:text-white transition-colors"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Button variant="outline" className="border-white/10 hover:bg-white/5" asChild>
-            <Link href="/Shourya_Upadhyaya_Resume.pdf" target="_blank" onClick={downloadResume}>
-              Resume
-            </Link>
-          </Button>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <Sheet>
-          <SheetTrigger asChild className="md:hidden">
-            <Button variant="ghost" size="icon" className="text-neutral-400 hover:text-white">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="bg-neutral-950 border-white/10">
-            <SheetTitle className="text-left text-white mb-8">Navigation</SheetTitle>
-            <nav className="flex flex-col gap-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className="text-lg font-medium text-neutral-400 hover:text-white transition-colors"
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Button variant="outline" className="border-white/10 hover:bg-white/5 w-full mt-4" asChild>
-                <Link href="/Shourya_Upadhyaya_Resume.pdf" target="_blank" onClick={downloadResume}>
-                  Resume
-                </Link>
-              </Button>
-            </nav>
-          </SheetContent>
-        </Sheet>
+        <a
+          href={profile.github}
+          target="_blank"
+          rel="noreferrer"
+          className="px-3 sm:px-4 py-1.5 rounded-full bg-white text-black font-mono text-[11px] sm:text-xs font-medium hover:bg-gray-200 transition-colors"
+        >
+          GitHub
+        </a>
       </div>
-    </header>
+    </motion.nav>
   );
 }
