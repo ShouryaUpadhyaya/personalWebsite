@@ -1,180 +1,82 @@
 "use client";
 
 import { motion } from "motion/react";
-import Link from "next/link";
-import { Send, Mail } from "lucide-react";
-import { Github, Linkedin, Twitter } from "@/components/icons";
-import { portfolio } from "@/data/portfolio";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { downloadResume } from "@/lib/utils";
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
+import { ArrowUpRight, Check, Copy } from "lucide-react";
+import { profile } from "@/data/portfolio";
+import { useCopyToClipboard } from "@/lib/hooks";
 
 export function Contact() {
+  const [copied, copy] = useCopyToClipboard();
+
   return (
-    <section id="contact" className="py-24 border-b border-white/10">
-      <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
-            Contact Me
+    <section id="contact" className="py-24 border-t border-white/[0.05]">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+        <div className="w-full md:w-1/3">
+          <h2 className="font-mono text-xs tracking-[0.2em] text-white/50 mb-4">
+            05. CONTACT
           </h2>
-          <div className="w-12 h-1 bg-neutral-600 rounded"></div>
+          <h3 className="text-3xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
+            Get in touch
+          </h3>
         </div>
 
         <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="w-full md:w-2/3 flex flex-col gap-10"
         >
-          {/* Contact Form */}
-          <motion.div variants={item}>
-            <Card className="bg-neutral-900/50 border-white/10">
-              <CardContent className="p-6 md:p-8">
-                <form
-                className="space-y-6"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const form = e.currentTarget;
-                  const name = (form.elements.namedItem("name") as HTMLInputElement).value;
-                  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
-                  const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value;
-                  const subject = encodeURIComponent(`Portfolio inquiry from ${name || "a visitor"}`);
-                  const body = encodeURIComponent(`${message}\n\n— ${name}${email ? ` (${email})` : ""}`);
-                  window.location.href = `mailto:${portfolio.personal.email}?subject=${subject}&body=${body}`;
-                }}
-              >
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-neutral-300">
-                    Name
-                  </label>
-                  <Input 
-                    id="name" 
-                    name="name"
-                    placeholder="Your Name" 
-                    required
-                    className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700" 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-neutral-300">
-                    Email
-                  </label>
-                  <Input 
-                    id="email" 
-                    name="email"
-                    type="email" 
-                    placeholder="your.email@example.com" 
-                    required
-                    className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700" 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-neutral-300">
-                    Message
-                  </label>
-                  <Textarea 
-                    id="message" 
-                    name="message"
-                    placeholder="How can I help?" 
-                    rows={5}
-                    required
-                    className="bg-neutral-950 border-white/10 text-white focus-visible:ring-neutral-700 resize-none" 
-                  />
-                </div>
-                <Button type="submit" className="w-full bg-white text-neutral-950 hover:bg-neutral-200">
-                  <Send className="mr-2 h-4 w-4" /> Send Message
-                </Button>
-              </form>
-              </CardContent>
-            </Card>
-          </motion.div>
+          <p className="text-lg md:text-2xl text-white/70 font-light leading-relaxed max-w-2xl">
+            Hiring for a software, backend, ML, or full-stack role, or building
+            something interesting? I&apos;d like to hear about it.
+          </p>
 
-          {/* Social Links */}
-          <motion.div variants={item} className="flex flex-col justify-center">
-            <h3 className="text-xl font-bold text-white mb-6">Let's Connect</h3>
-            <p className="text-neutral-400 mb-8 leading-relaxed max-w-md">
-              I'm always open to discussing product design work or partnership opportunities. Feel free to reach out through any of these platforms.
-            </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a
+              href={`mailto:${profile.email}`}
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-white text-black font-mono text-xs tracking-widest uppercase hover:bg-white/85 transition-colors"
+            >
+              Email me <ArrowUpRight size={14} />
+            </a>
+            <button
+              type="button"
+              onClick={() => copy(profile.email)}
+              className="flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/15 text-white/80 font-mono text-xs tracking-wider hover:border-white/40 hover:text-white transition-colors cursor-pointer"
+            >
+              {copied ? <Check size={14} /> : <Copy size={14} />}
+              <span aria-live="polite">
+                {copied ? "Copied to clipboard" : profile.email}
+              </span>
+            </button>
+          </div>
 
-            <div className="flex flex-col gap-4 mb-8">
-              <Link 
-                href={`mailto:${portfolio.personal.email}`}
-                className="flex items-center gap-4 text-neutral-300 hover:text-white transition-colors group"
-              >
-                <div className="h-12 w-12 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <span className="font-medium text-lg">{portfolio.personal.email}</span>
-              </Link>
-              
-              <Link 
-                href={portfolio.personal.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 text-neutral-300 hover:text-white transition-colors group"
-              >
-                <div className="h-12 w-12 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
-                  <Linkedin className="h-5 w-5" />
-                </div>
-                <span className="font-medium text-lg">LinkedIn</span>
-              </Link>
-              
-              <Link 
-                href={portfolio.personal.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 text-neutral-300 hover:text-white transition-colors group"
-              >
-                <div className="h-12 w-12 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
-                  <Twitter className="h-5 w-5" />
-                </div>
-                <span className="font-medium text-lg">X (Twitter)</span>
-              </Link>
-
-              <Link 
-                href={portfolio.personal.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 text-neutral-300 hover:text-white transition-colors group"
-              >
-                <div className="h-12 w-12 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center group-hover:border-white/30 transition-colors">
-                  <Github className="h-5 w-5" />
-                </div>
-                <span className="font-medium text-lg">GitHub</span>
-              </Link>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="w-full sm:w-auto bg-white text-neutral-950 hover:bg-neutral-200 uppercase tracking-widest font-mono text-xs rounded-full px-8 py-6 shadow-[0_0_30px_-10px_rgba(255,255,255,0.4)] transition-all hover:scale-105" asChild>
-                <a href="https://calendly.com/shouryaupadhyaya79" target="_blank" rel="noopener noreferrer">
-                  Book a Discovery Call
-                </a>
-              </Button>
-              <Button variant="outline" className="w-full sm:w-auto border-white/10 hover:bg-white/10 uppercase tracking-widest font-mono text-xs rounded-full px-8 py-6 bg-white/5 backdrop-blur-sm text-neutral-200 transition-all hover:scale-105" asChild>
-                <Link href="/Shourya_Upadhyaya_Resume.pdf" target="_blank" onClick={downloadResume}>
-                  Download Resume
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
+          <div className="flex flex-wrap gap-x-8 gap-y-4 font-mono text-xs tracking-widest">
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-white/60 hover:text-white transition-colors"
+            >
+              RÉSUMÉ (PDF) <ArrowUpRight size={12} />
+            </a>
+            <a
+              href={profile.github}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1 text-white/60 hover:text-white transition-colors"
+            >
+              GITHUB <ArrowUpRight size={12} />
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1 text-white/60 hover:text-white transition-colors"
+            >
+              LINKEDIN <ArrowUpRight size={12} />
+            </a>
+          </div>
         </motion.div>
       </div>
     </section>

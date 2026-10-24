@@ -1,35 +1,29 @@
 import { Navbar } from "@/components/navbar/navbar";
 import { Hero } from "@/components/hero/hero";
 import { About } from "@/components/about/about";
-import { Problem } from "@/components/problem/problem";
 import { Projects } from "@/components/projects/projects";
-import { Testimonials } from "@/components/testimonials/testimonials";
 import { Experience } from "@/components/experience/experience";
-import { Education } from "@/components/education/education";
-import { FAQ } from "@/components/faq/faq";
-import { Writing } from "@/components/writing/writing";
 import { TechStack } from "@/components/tech-stack/tech-stack";
-import { Guarantee } from "@/components/guarantee/guarantee";
 import { Contact } from "@/components/contact/contact";
 import { Footer } from "@/components/footer/footer";
+import { CommandPalette } from "@/components/ui/command-palette";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-50 selection:bg-neutral-800">
+    <>
+      <CommandPalette />
       <Navbar />
-      <Hero />
-      <About />
-      <Problem />
-      <Projects />
-      <Testimonials />
-      <Experience />
-      <Education />
-      <FAQ />
-      <Writing />
-      <TechStack />
-      <Guarantee />
-      <Contact />
-      <Footer />
-    </main>
+      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 pt-24 pb-12">
+        <main id="main">
+          <Hero />
+          <About />
+          <Projects />
+          <Experience />
+          <TechStack />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }

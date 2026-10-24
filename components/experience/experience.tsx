@@ -1,82 +1,108 @@
 "use client";
 
-import { motion } from "motion/react";
-import { portfolio } from "@/data/portfolio";
-import { Badge } from "@/components/ui/badge";
-import { GitBranch } from "lucide-react";
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, x: -20 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-};
+import { motion, useScroll, useSpring } from "motion/react";
+import { useRef } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { experience } from "@/data/portfolio";
 
 export function Experience() {
+  const listRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: listRef,
+    offset: ["start center", "end center"],
+  });
+  const fill = useSpring(scrollYProgress, {
+    stiffness: 200,
+    damping: 40,
+    restDelta: 0.001,
+  });
+
   return (
-    <section id="experience" className="py-24 border-b border-white/10 bg-neutral-950/50">
-      <div className="container mx-auto px-4 md:px-8 max-w-4xl">
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
-            Experience
+    <section id="experience" className="py-24 border-t border-white/[0.05]">
+      <div className="flex flex-col md:flex-row gap-12 md:gap-24">
+        <div className="w-full md:w-1/3">
+          <h2 className="font-mono text-xs tracking-[0.2em] text-white/50 mb-4">
+            03. EXPERIENCE
           </h2>
-          <div className="w-12 h-1 bg-neutral-600 rounded"></div>
+          <h3 className="text-3xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-500">
+            Timeline
+          </h3>
         </div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          className="relative border-l border-white/10 ml-3 md:ml-0"
-        >
-          {portfolio.experience.map((exp, index) => (
-            <motion.div key={index} variants={item} className="mb-12 ml-8 relative group">
-              <div className="absolute -left-[41px] top-1 h-4 w-4 rounded-full border-2 border-neutral-950 bg-neutral-500 group-hover:bg-white group-hover:scale-125 transition-all duration-300" />
-              
-              <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
-                <h3 className="text-xl font-bold text-white">{exp.role}</h3>
-                <span className="text-neutral-400 font-medium hidden md:inline">•</span>
-                {exp.companyUrl ? (
-                  <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" className="text-lg text-neutral-300 font-medium hover:text-white transition-colors underline decoration-white/30 underline-offset-4">
-                    {exp.company}
-                  </a>
-                ) : (
-                  <span className="text-lg text-neutral-300 font-medium">{exp.company}</span>
+        <div ref={listRef} className="w-full md:w-2/3 flex flex-col relative">
+          {/* Vertical line */}
+          <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/[0.06] hidden md:block" />
+          <motion.div
+            aria-hidden="true"
+            className="absolute left-[7px] top-2 bottom-2 w-px origin-top bg-gradient-to-b from-white/60 via-white/30 to-white/10 hidden md:block"
+            style={{ scaleY: fill }}
+          />
+
+          <div className="flex flex-col gap-12">
+            {experience.map((exp, index) => (
+              <motion.div
+                key={exp.id}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex flex-col gap-4 group relative md:pl-8"
+              >
+                {/* Timeline node lights up while its role crosses the middle of the viewport */}
+                <motion.div
+                  className="absolute left-[3px] top-[6px] w-[9px] h-[9px] rounded-full border hidden md:block"
+                  initial={{
+                    backgroundColor: "#050505",
+                    borderColor: "rgba(255,255,255,0.2)",
+                  }}
+                  whileInView={{
+                    backgroundColor: "#EAEAEA",
+                    borderColor: "rgba(255,255,255,1)",
+                  }}
+                  viewport={{ margin: "-45% 0px -45% 0px" }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2">
+                  <h4 className="text-xl font-medium text-white group-hover:text-white transition-colors duration-300">
+                    {exp.role}
+                  </h4>
+                  <span className="font-mono text-xs text-white/50 tracking-widest">
+                    {exp.period}
+                  </span>
+                </div>
+                <div className="font-mono text-sm tracking-widest text-white/50">
+                  {exp.company}
+                </div>
+                <p className="text-white/60 text-sm md:text-base leading-relaxed mt-2 font-light max-w-2xl">
+                  {exp.description}
+                </p>
+                {exp.caseStudy && (
+                  <Link
+                    href={`/projects/${exp.caseStudy}`}
+                    className="self-start flex items-center gap-2 font-mono text-[11px] tracking-widest uppercase text-white pb-1 border-b border-white/20 hover:border-white/60 transition-colors"
+                  >
+                    Read the case study <ArrowRight size={12} />
+                  </Link>
                 )}
-                {exp.githubUrl && (
-                  <a href={exp.githubUrl} target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-white transition-colors md:ml-2">
-                    <GitBranch className="w-5 h-5" />
-                  </a>
-                )}
-              </div>
-              
-              <div className="mb-4 text-sm font-mono text-neutral-500 bg-neutral-900/50 inline-block px-3 py-1 rounded-md border border-white/5">
-                {exp.period}
-              </div>
-              
-              <p className="text-neutral-400 mb-6 leading-relaxed max-w-2xl">
-                {exp.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-2">
-                {exp.skills.map((skill, i) => (
-                  <Badge key={i} variant="outline" className="border-white/10 text-neutral-300 hover:text-white hover:border-white/30 transition-colors">
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                <ul
+                  className="flex flex-wrap gap-2"
+                  aria-label={`Tools used at ${exp.company}`}
+                >
+                  {exp.tech.map((tool) => (
+                    <li
+                      key={tool}
+                      className="font-mono text-[10px] tracking-wider text-white/50 px-2 py-1 border border-white/10 rounded"
+                    >
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
