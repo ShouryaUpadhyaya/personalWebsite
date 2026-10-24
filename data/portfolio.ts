@@ -6,7 +6,7 @@ export const profile = {
   role: "Software Engineer",
   tagline:
     "Software engineer specializing in distributed backend architectures, real-time audio & ML pipelines, and high-performance full-stack systems.",
-  location: "Vellore, India",
+  location: "Bengaluru",
   education: {
     institution: "Vellore Inst. of Technology",
     degree: "B.Tech in Computer Science & Engineering",
@@ -17,7 +17,7 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/shourya-upadhyaya-998535332",
   twitter: "https://x.com/Shourya60756648",
   resume: RESUME_URL,
-  bio: "Second-year Computer Science undergraduate at VIT Vellore focused on backend-heavy web products, real-time streaming pipelines, and database-centric systems. I build production services with Node.js, TypeScript, Python, Go, PostgreSQL, and Redis, deploy them in Docker behind Nginx, and instrument them with Prometheus and Grafana.",
+  bio: "Third-year Computer Science undergraduate at VIT Vellore focused on backend-heavy web products, real-time streaming pipelines, and database-centric systems. I build production services with Node.js, TypeScript, Python, Go, PostgreSQL, and Redis, deploy them in Docker behind Nginx, and instrument them with Prometheus and Grafana.",
 };
 
 export const domains = ["Backend", "AI / ML", "Full-Stack", "Systems"] as const;
@@ -98,11 +98,11 @@ export const projects: ProjectItem[] = [
     subtitle: "Real-Time Audio Scam & Deepfake Detection (SIH Finalist)",
     type: "Real-Time Audio ML & Streaming Systems",
     domains: ["AI / ML", "Backend", "Systems"],
-    featured: false,
+    featured: true,
     tagline:
       "Low-latency 48 kHz PCM16 audio gateway and multi-model deepfake & scam-risk engine built for Smart India Hackathon (VIT Vellore Finalist).",
     description:
-      "Engineered a Node.js/TypeScript WebSocket media gateway ingesting live 48 kHz mono PCM16 call streams, reassembling arbitrary network frames into ordered 3-second sliding windows while enforcing a strict byte-conservation invariant. Routed chunks over a persistent WebSocket to a FastAPI ML engine running RawNet2/WavLM acoustic deepfake models and OpenAI Whisper STT, achieving ~1.1s median CPU latency while queuing PostgreSQL writes off the hot audio path.",
+      "Engineered a Node.js and TypeScript WebSocket media gateway ingesting live 48 kHz mono PCM16 call streams, reassembling arbitrary network frames into ordered 3-second sliding windows while enforcing a strict byte-conservation invariant. Routed chunks over a persistent WebSocket to a FastAPI ML engine running RawNet2/WavLM acoustic deepfake models and OpenAI Whisper STT, achieving ~1.1s median CPU latency while queuing PostgreSQL writes off the hot audio path.",
     goal: "Detect synthetic voices and social-engineering phone scams in real time during live calls without stalling audio playback.",
     challenge:
       "Reassembling arbitrary 48 kHz PCM16 WebSocket frames into exact 3-second buffers while isolating slow database writes off the hot audio path.",
@@ -138,7 +138,7 @@ export const projects: ProjectItem[] = [
     subtitle: "High-Performance E-Commerce Modular Monolith",
     type: "Backend Architecture & Payment Systems",
     domains: ["Backend", "Full-Stack"],
-    featured: false,
+    featured: true,
     tagline:
       "Production e-commerce platform serving 100+ users with sub-50ms homepage latency, Redis catalog caching, and idempotent Razorpay webhooks.",
     description:
@@ -177,11 +177,11 @@ export const projects: ProjectItem[] = [
     subtitle: "Database-Centric Cloud Resource & Docker Telemetry Engine",
     type: "Database Internals & Cloud Systems",
     domains: ["Backend", "Systems"],
-    featured: false,
+    featured: true,
     tagline:
       "Multi-tenant cloud quota, billing, and live Docker telemetry platform enforced inside PostgreSQL 16 via Row-Level Security, PL/pgSQL locks, and BRIN partitioning.",
     description:
-      "Designed a 14-table 3NF/BCNF PostgreSQL 16 control plane where multi-tenant isolation is enforced at the database engine via Row-Level Security (`app.current_org_id`) and `btree_gist` temporal exclusion constraints. Eliminated check-then-act VM quota race conditions using `SELECT ... FOR UPDATE` inside transactional stored procedures, and partitioned a 1,000,000+ row telemetry table with BRIN & GIN indexes to cut time-range query latency from 42ms to 0.2ms.",
+      "Designed a 14-table 3NF/BCNF PostgreSQL 16 control plane where multi-tenant isolation is enforced at the database engine via Row-Level Security (app.current_org_id) and btree_gist temporal exclusion constraints. Eliminated check-then-act VM quota race conditions using SELECT FOR UPDATE row locks inside transactional stored procedures, and partitioned a 1,000,000+ row telemetry table with BRIN & GIN indexes to cut time-range query latency from 42ms to 0.2ms.",
     goal: "Build a multi-tenant cloud resource, quota, billing, and live Docker monitoring platform where business invariants live directly in PostgreSQL 16.",
     challenge:
       "Eliminating check-then-act VM quota race conditions and keeping analytical queries fast across 1,000,000+ time-series metric rows.",
@@ -194,6 +194,7 @@ export const projects: ProjectItem[] = [
     ],
     tech: [
       "PostgreSQL",
+      "PL/pgSQL & RLS",
       "TypeScript",
       "Node.js",
       "Express.js",
@@ -214,7 +215,7 @@ export const projects: ProjectItem[] = [
     subtitle: "Autonomous Job-Discovery, Multi-Resume Scorer & ATS Classifier",
     type: "Automation & Applied AI Pipeline",
     domains: ["Full-Stack", "Backend", "AI / ML"],
-    featured: false,
+    featured: true,
     tagline:
       "End-to-end internship discovery platform aggregating 8+ ATS feeds, deterministic 0–100 multi-resume scoring, 12-class Gmail OAuth sync, and guarded Playwright runners.",
     description:
@@ -251,11 +252,11 @@ export const projects: ProjectItem[] = [
     subtitle: "Concurrent Data-Lake File Classifier & Indexer in Go",
     type: "Concurrent Systems & CLI Tooling",
     domains: ["Systems", "Backend"],
-    featured: false,
+    featured: true,
     tagline:
       "Two-phase incremental data-lake scanner in Go with a generic bounded worker pool, SHA-256 change detection, per-file context timeouts, and pgx/v5 PostgreSQL cataloging.",
     description:
-      "Engineered a dependency-inverted Go CLI and library that walks nested data lakes, computes streaming SHA-256 hashes to classify files as new, modified, or unchanged, and dispatches pending files through a generic bounded worker pool (`pool.Run[In, Out]`) with 30-second per-file `context.WithTimeout` isolation and signal-aware graceful shutdown (`SIGINT`/`SIGTERM`).",
+      "Engineered a dependency-inverted Go CLI and library that walks nested data lakes, computes streaming SHA-256 hashes to classify files as new, modified, or unchanged, and dispatches pending files through a generic bounded worker pool (pool.Run[In, Out]) with 30-second per-file context.WithTimeout isolation and signal-aware graceful shutdown (SIGINT / SIGTERM).",
     goal: "Walk, hash, classify, and index unstructured data lakes into PostgreSQL without re-processing unchanged files or stalling on corrupt inputs.",
     challenge:
       "Isolating slow or hung file probes across thousands of nested PDFs, scans, and media files while supporting graceful interrupt and resume.",
@@ -266,7 +267,7 @@ export const projects: ProjectItem[] = [
       "SHA-256 Incremental State Diffing",
       "30s Per-File Timeout & pgx/v5 Catalog",
     ],
-    tech: ["Go", "PostgreSQL"],
+    tech: ["Go", "PostgreSQL", "Linux"],
     year: "2026",
     github: "https://github.com/ShouryaUpadhyaya/GoLang_Lake_Scanner",
     githubUrl: "https://github.com/ShouryaUpadhyaya/GoLang_Lake_Scanner",
@@ -280,7 +281,7 @@ export const projects: ProjectItem[] = [
     subtitle: "Scalable Competitive Coding Portal (CodeChef-VIT)",
     type: "High-Concurrency Frontend & State Engineering",
     domains: ["Full-Stack"],
-    featured: false,
+    featured: true,
     tagline:
       "Competitive programming IDE built on Next.js and CodeMirror 6 serving 1,000+ contest participants with triple-layer state persistence.",
     description:
@@ -301,6 +302,7 @@ export const projects: ProjectItem[] = [
       "TypeScript",
       "Tailwind CSS",
       "Zustand",
+      "CodeMirror 6",
       "MongoDB",
     ],
     year: "Sep 2025 — Feb 2026",

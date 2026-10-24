@@ -44,7 +44,7 @@ export function Hero() {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
         </span>
         <span className="font-mono text-xs tracking-widest text-white/60">
-          second-year CS &middot; {profile.education.institution} &middot;{" "}
+          third-year CS &middot; {profile.education.institution} &middot;{" "}
           <span className="text-white">Software Engineering</span>
         </span>
       </motion.div>
